@@ -76,7 +76,7 @@ guide_scenarios = {
         "closes": {
             "Soft": "Would it help if I saved you a spot on the schedule? No commitment until after the service is done.",
             "Assumptive": "Let's go ahead and get you set up — what address are we working with?",
-            "Question": "What would need to happen for this to feel like the right fit for you?"
+            "Question": "What's the main thing still holding you back?"
         }
     },
     "Price Concern": {
