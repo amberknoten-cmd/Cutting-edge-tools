@@ -93,7 +93,7 @@ guide_scenarios = {
             "Compare apples to apples": "Make sure you're comparing the full package — insurance, support, and our quality guarantee included."
         },
         "closes": {
-            "Soft": "How about this — try us for the first service and see the quality for yourself. You won't pay until three days after.",
+            "Soft": "How about this — let's get you on the schedule and you can see the quality for yourself. You won't pay until three days after.",
             "Assumptive": "I think once you see the quality, the price will make total sense. Let's get you on the schedule.",
             "Question": "If the quality matches what I'm telling you, would that price feel fair?"
         }
@@ -153,6 +153,45 @@ guide_scenarios = {
             "Soft": "Does that make sense? I promise it's set up to protect you, not complicate things.",
             "Assumptive": "Let's get you set up — I just need a card on file and we're good to go.",
             "Question": "If you knew you wouldn't be charged until three days after and could dispute anything with your bank, would that feel okay?"
+        }
+    },
+    "Fees (Long Grass Fee)": {
+        "openings": {
+            "Empathetic": "I totally get the concern — nobody likes surprise fees. Let me explain exactly how this works.",
+            "Curious": "Great question! Do you have a sense of how tall your grass is right now?",
+            "Direct": "So I want to be upfront with you about this — that's actually why I'm mentioning it now."
+        },
+        "points": {
+            "Transparency": "We're telling you NOW so there are no surprises later. That's the whole reason we bring it up.",
+            "Industry standard": "This is actually standard across the industry — overgrown yards take more time and wear on equipment.",
+            "9 inch threshold": "It only applies if the grass is 9 inches or taller. If your lawn is maintained, it won't apply at all.",
+            "Up to 100% of base": "If it does apply, it can be up to 100% of your base mowing price — but only when it's really overgrown.",
+            "One-time situation": "Usually this only comes up on the first cut if it's been a while. After that, regular service keeps it under control."
+        },
+        "closes": {
+            "Soft": "Does that make sense? We just want to be transparent so you know exactly what to expect.",
+            "Assumptive": "Now that you know how it works, let's get you on the schedule. What's the address?",
+            "Question": "Does your lawn sound like it might be in that range, or do you think you're under 9 inches?"
+        }
+    },
+    "Trust / Never Heard of You": {
+        "openings": {
+            "Empathetic": "That's totally fair — I'd want to know who I'm working with too.",
+            "Curious": "Totally understand! What would help you feel more comfortable giving us a shot?",
+            "Direct": "Let me tell you a bit about us and why so many people trust us with their lawns."
+        },
+        "points": {
+            "Amazing reviews": "If you Google us, you'll see we have amazing reviews. Real people, real experiences.",
+            "All pros insured": "Every single pro on our platform is verified and insured. We don't let just anyone on here.",
+            "Quality guarantee": "You have three full days after service to inspect the work before you're charged.",
+            "Dedicated quality team": "We have a whole team whose only job is making things right if anything's ever off.",
+            "No payment until satisfied": "You don't pay until three days after the service, so you see the quality before any money changes hands.",
+            "Fix before you pay": "If there's any issue, we send someone to fix it BEFORE you're ever charged."
+        },
+        "closes": {
+            "Soft": "How about you check out our reviews and let me save you a spot in the meantime? No pressure.",
+            "Assumptive": "I think once you see the quality, you'll be glad you went with us. Let's get you scheduled.",
+            "Question": "What would make you feel confident enough to give us a shot?"
         }
     }
 }
