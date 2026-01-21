@@ -192,88 +192,119 @@ guide_scenarios = {
     }
 }
 
-trigger_phrases = {
+attach_guides = {
     "Lawn Treatment": {
-        "phrases": [
-            "Weeds everywhere",
-            "My grass is turning brown",
-            "Neighbor's lawn looks way better",
-            "Lawn looks thin / patchy",
-            "Weeds keep coming back",
-            "I've tried everything",
-            "Grass isn't growing well",
-            "Yellow spots in the yard"
-        ],
-        "pitch": "Sounds like your lawn could really benefit from our lawn treatment program. It includes fertilizer to green things up, plus pre-emergent to stop weeds before they start and post-emergent to knock out what's already there. Most people see a real difference within a few weeks.",
-        "benefit": "Healthier, thicker grass + kills existing weeds + prevents new ones",
-        "pro_tip": "If they mention weeds, ask if they've noticed them in specific areas or all over. This helps you explain how the pre-emergent prevents new ones while post-emergent handles what's already there — it shows you're listening and builds trust."
+        "triggers": ["Weeds everywhere", "Grass is turning brown", "Neighbor's lawn looks better", "Lawn looks thin/patchy", "Weeds keep coming back", "Yellow spots"],
+        "openings": {
+            "Empathetic": "I hear that a lot — dealing with weeds and patchy grass can be really frustrating, especially when you feel like you've tried everything.",
+            "Curious": "Have you noticed if it's more weeds, or is the grass itself looking thin and unhealthy? Just trying to get a picture of what you're dealing with.",
+            "Direct": "Sounds like your lawn could really benefit from our lawn treatment program — let me tell you what it includes."
+        },
+        "points": {
+            "Fertilizer for green-up": "It includes fertilizer that helps thicken up your grass and get that green color back.",
+            "Pre-emergent stops new weeds": "There's a pre-emergent that stops weeds before they even start — so you're not constantly fighting new ones.",
+            "Post-emergent kills existing weeds": "It also has post-emergent to knock out the weeds that are already there.",
+            "Results in weeks": "Most people see a real difference within just a few weeks.",
+            "Pro learns your lawn": "And since the same pro comes back, they get to know your lawn and what it needs over time."
+        },
+        "closes": {
+            "Soft": "Want me to add that on so we can start getting your lawn back in shape?",
+            "Assumptive": "Let's go ahead and add the lawn treatment — that way we're tackling the root of the problem, not just mowing over it.",
+            "Question": "Would it help to get the lawn treatment started at the same time so you're not dealing with two separate things?"
+        },
+        "pro_tip": "If they mention weeds, ask if they've noticed them in specific areas or all over. This helps you explain how the pre-emergent prevents new ones while post-emergent handles what's already there."
     },
     "Leaf Removal": {
-        "phrases": [
-            "Leaves are piling up",
-            "Yard is covered in leaves",
-            "Can't even see my grass",
-            "It's that time of year",
-            "Fall cleanup",
-            "Leaves are out of control",
-            "Haven't been able to keep up with the leaves"
-        ],
-        "pitch": "We actually offer leaf removal too — we can knock that out and get your yard back to looking clean. Leaves left too long can actually suffocate your grass and cause dead patches, so it's worth getting ahead of it.",
-        "benefit": "Protects the lawn underneath + instant curb appeal boost",
+        "triggers": ["Leaves are piling up", "Yard is covered in leaves", "Can't even see my grass", "Fall cleanup", "Leaves are out of control"],
+        "openings": {
+            "Empathetic": "Yeah, this time of year it feels like you clean them up and they're right back the next day. It's a lot to keep up with.",
+            "Curious": "How bad has it gotten? Are we talking a light layer or is the grass completely buried at this point?",
+            "Direct": "We actually offer leaf removal too — and it's worth doing sooner rather than later."
+        },
+        "points": {
+            "Protects your lawn": "Leaves left too long can actually suffocate your grass and cause dead patches underneath.",
+            "Instant curb appeal": "Once they're cleared out, your whole yard looks cleaner and more cared for right away.",
+            "Saves you time": "It's one of those jobs that takes forever to do yourself but our crew can knock it out quickly.",
+            "Prevents mold and pests": "Wet leaves can also lead to mold and attract pests, so it's good to get ahead of it.",
+            "One crew handles it": "We can do it the same time as your mow so you're not scheduling multiple visits."
+        },
+        "closes": {
+            "Soft": "Want me to add leaf removal to this visit so we can get that taken care of for you?",
+            "Assumptive": "Let's add the leaf removal too — no point mowing over leaves, and it'll protect your grass going into winter.",
+            "Question": "Would it be easier if we just handled the leaves while we're already there?"
+        },
         "pro_tip": "Mention the lawn health angle — most people don't realize leaves can actually damage grass if left too long. It turns the conversation from 'extra service' to 'protecting your lawn.'"
     },
     "Bush Trimming": {
-        "phrases": [
-            "Bushes are overgrown",
-            "Shrubs are out of control",
-            "Everything looks messy",
-            "Curb appeal",
-            "Getting ready to sell",
-            "Bushes are blocking the windows",
-            "Haven't trimmed in forever",
-            "HOA sent a notice about bushes"
-        ],
-        "pitch": "We can help with bush trimming too — it makes a huge difference in how the whole yard looks. Especially if you're thinking about curb appeal or just want things looking neat and clean again.",
-        "benefit": "Instant curb appeal + keeps bushes healthy + HOA compliant",
+        "triggers": ["Bushes are overgrown", "Shrubs are out of control", "Everything looks messy", "Curb appeal", "Getting ready to sell", "HOA notice about bushes"],
+        "openings": {
+            "Empathetic": "Overgrown bushes can really make the whole yard feel messy, even when the lawn itself looks good. I totally get it.",
+            "Curious": "How long has it been since they were last trimmed? Sometimes they just need a good reset to look sharp again.",
+            "Direct": "We do bush trimming too, and honestly it's one of the fastest ways to boost your curb appeal."
+        },
+        "points": {
+            "Instant curb appeal": "Trimmed bushes make a huge difference in how the whole property looks from the street.",
+            "Keeps bushes healthy": "Regular trimming actually keeps them healthier and growing the right way.",
+            "HOA compliant": "If you've got an HOA, this keeps you in compliance so you don't have to worry about notices.",
+            "Frames the home nicely": "Well-maintained bushes frame your home and make everything look more polished.",
+            "Same visit convenience": "We can do it during the same visit as your mow, so it's one less thing to coordinate."
+        },
+        "closes": {
+            "Soft": "Want me to add bush trimming so we can get everything looking sharp at once?",
+            "Assumptive": "Let's add the bush trimming — it'll really complete the look and you won't have to think about it.",
+            "Question": "Would it help to have us handle the bushes while we're already out there?"
+        },
         "pro_tip": "If they mention selling their home or HOA issues, lean into urgency — trimmed bushes are one of the fastest ways to boost curb appeal, and it's often the first thing buyers and HOAs notice."
     },
     "Flower Bed Weeding": {
-        "phrases": [
-            "Flower beds are a mess",
-            "Weeds in my beds",
-            "Can't even see my flowers",
-            "Landscaping looks rough",
-            "Beds are overgrown",
-            "Just want it all cleaned up",
-            "Everything looks neglected"
-        ],
-        "pitch": "We also do flower bed weeding — it really pulls the whole yard together. Once the beds are cleaned up, your whole property looks more cared for. It's one of those things that makes a big visual difference.",
-        "benefit": "Shows off your plants + polished look + low maintenance after",
+        "triggers": ["Flower beds are a mess", "Weeds in my beds", "Can't even see my flowers", "Landscaping looks rough", "Beds are overgrown"],
+        "openings": {
+            "Empathetic": "Flower beds can get out of hand so fast — one week they're fine, the next week weeds have taken over. It's a lot to maintain.",
+            "Curious": "Are the weeds the main issue, or is it more just general cleanup and overgrowth in the beds?",
+            "Direct": "We do flower bed weeding too, and honestly it's one of those things that makes a huge visual difference."
+        },
+        "points": {
+            "Shows off your plants": "Once the weeds are out, your actual flowers and plants can finally shine.",
+            "Polished look": "Clean beds make the whole property look more cared for and put-together.",
+            "Finishing touch": "Even a freshly mowed lawn can look incomplete if the beds are messy — this is the finishing touch.",
+            "Low maintenance after": "Once we get them cleaned up, it's way easier to maintain going forward.",
+            "Boosts curb appeal": "It's one of the first things people notice when they pull up to a house."
+        },
+        "closes": {
+            "Soft": "Want me to add flower bed weeding so we can get the whole yard looking great?",
+            "Assumptive": "Let's add the bed weeding — it'll really pull everything together and make the whole property pop.",
+            "Question": "Would it make sense to have us tackle the beds while we're already there?"
+        },
         "pro_tip": "Use the 'finishing touch' angle — even a freshly mowed lawn can look incomplete if the beds are messy. Frame it as the difference between 'good' and 'wow.'"
     },
     "Full Curb Appeal Bundle": {
-        "phrases": [
-            "Getting ready to sell",
-            "Want the whole yard done",
-            "Just moved in and it's a mess",
-            "Want it to look nice for an event",
-            "Family coming to visit",
-            "Want the whole thing cleaned up",
-            "Make it look brand new"
-        ],
-        "pitch": "If you're going for that full transformation, we can bundle mowing with bush trimming, flower bed weeding, and even leaf removal if needed. A lot of people do that when they're prepping for something big — it really makes the whole property pop.",
-        "benefit": "Complete transformation + one crew handles everything + saves time",
-        "pro_tip": "When someone has a big event or is selling, they're already in 'get it done' mode. Don't be shy about suggesting the full bundle — they'll appreciate you making it easy instead of having to ask for each thing separately."
+        "triggers": ["Getting ready to sell", "Want the whole yard done", "Just moved in", "Event coming up", "Family visiting", "Make it look brand new"],
+        "openings": {
+            "Empathetic": "When you're prepping for something big, the last thing you want is to stress about the yard. I totally get wanting it all handled at once.",
+            "Curious": "What's the occasion? Just want to make sure we set you up with everything you need to get it looking perfect.",
+            "Direct": "If you're going for a full transformation, we can bundle everything together and really make the whole property pop."
+        },
+        "points": {
+            "Complete transformation": "We can do mowing, bush trimming, flower bed weeding, and leaf removal if needed — the whole package.",
+            "One crew handles it all": "Instead of coordinating multiple services, one crew takes care of everything in one visit.",
+            "Saves time and stress": "You don't have to think about it or manage different appointments — we've got it covered.",
+            "Perfect for selling": "If you're selling, this is exactly what gets buyers to say 'wow' when they pull up.",
+            "Great for events": "If you've got family coming or an event, this is the fastest way to get the yard guest-ready."
+        },
+        "closes": {
+            "Soft": "Want me to put together the full bundle so you don't have to worry about any of it?",
+            "Assumptive": "Let's do the full curb appeal package — that way you're covered and the whole property will look amazing.",
+            "Question": "Would it be easier to just bundle it all and knock it out in one visit?"
+        },
+        "pro_tip": "When someone has a big event or is selling, they're already in 'get it done' mode. Don't be shy about suggesting the full bundle — they'll appreciate you making it easy."
     }
 }
-
-general_pro_tip = "Don't pitch right away — acknowledge what they said first, then transition naturally. Example: 'Yeah, leaves can really pile up fast this time of year. You know, we actually offer leaf removal too...'"
 
 SCRIPT_URL = "https://script.google.com/a/macros/lawnstarter.com/s/AKfycbyEGIP63SoZrL5XAAzfpY7NfaThcMIf_R36_YebHHsRkIeUWGfCmzVRHxI1OVs_WFNv/exec"
 
 st.markdown('<div class="main-header"><h1>🌱 The <span class="highlight">Cutting Edge</span></h1></div>', unsafe_allow_html=True)
 
-tab1, tab2, tab3, tab4 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder", "🎯 Attach Triggers"])
+tab1, tab2, tab3, tab4 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder", "🎯 Attach Builder"])
 
 with tab1:
     st.markdown('<p style="text-align:center;color:#e8f5e6;">Identify the WHY, then match the right response!</p>', unsafe_allow_html=True)
@@ -352,16 +383,16 @@ with tab3:
         data = guide_scenarios[scenario]
         st.markdown("---")
         st.markdown("**Step 1: How do you want to open?**")
-        opening_style = st.radio("Choose your style:", list(data["openings"].keys()), horizontal=True)
+        opening_style = st.radio("Choose your style:", list(data["openings"].keys()), horizontal=True, key="guide_opening")
         st.markdown("---")
         st.markdown("**Step 2: Which points do you want to hit?**")
         selected_points = []
         for point_name, point_text in data["points"].items():
-            if st.checkbox(point_name, key=f"point_{scenario}_{point_name}"):
+            if st.checkbox(point_name, key=f"guide_{scenario}_{point_name}"):
                 selected_points.append(point_text)
         st.markdown("---")
         st.markdown("**Step 3: How do you want to close?**")
-        close_style = st.radio("Choose your close:", list(data["closes"].keys()), horizontal=True)
+        close_style = st.radio("Choose your close:", list(data["closes"].keys()), horizontal=True, key="guide_close")
         if selected_points:
             st.markdown("---")
             st.markdown("### 📋 Your Custom Guide")
@@ -396,8 +427,8 @@ with tab4:
     st.markdown('<div class="card"><h3 style="color:#2d5a27;">🎯 Build Your Attach Pitch</h3>', unsafe_allow_html=True)
     attach_service = st.selectbox("What service do you want to attach?", ["Select a service..."] + list(attach_guides.keys()))
     if attach_service != "Select a service...":
-        data = attach_guides[attach_service]
-        triggers_display = " • ".join([f'"{t}"' for t in data["triggers"]])
+        adata = attach_guides[attach_service]
+        triggers_display = " • ".join([f'"{t}"' for t in adata["triggers"]])
         st.markdown(f'''
         <div style="background:#e8f5e6; padding:12px; border-radius:10px; margin:10px 0;">
             <p style="color:#2d5a27; margin:0; font-size:0.85rem;"><strong>🎧 Listen for:</strong> {triggers_display}</p>
@@ -405,16 +436,16 @@ with tab4:
         ''', unsafe_allow_html=True)
         st.markdown("---")
         st.markdown("**Step 1: How do you want to open?**")
-        attach_opening = st.radio("Choose your style:", list(data["openings"].keys()), horizontal=True, key="attach_opening")
+        attach_opening = st.radio("Choose your style:", list(adata["openings"].keys()), horizontal=True, key="attach_opening")
         st.markdown("---")
         st.markdown("**Step 2: Which points do you want to hit?**")
         selected_attach_points = []
-        for point_name, point_text in data["points"].items():
+        for point_name, point_text in adata["points"].items():
             if st.checkbox(point_name, key=f"attach_{attach_service}_{point_name}"):
                 selected_attach_points.append(point_text)
         st.markdown("---")
         st.markdown("**Step 3: How do you want to close?**")
-        attach_close = st.radio("Choose your close:", list(data["closes"].keys()), horizontal=True, key="attach_close")
+        attach_close = st.radio("Choose your close:", list(adata["closes"].keys()), horizontal=True, key="attach_close")
         if selected_attach_points:
             st.markdown("---")
             st.markdown("### 📋 Your Attach Pitch")
@@ -422,7 +453,7 @@ with tab4:
             <div class="guide-output">
                 <div class="guide-section">
                     <p class="guide-label">🎯 Your Opening</p>
-                    <p class="guide-text">"{data["openings"][attach_opening]}"</p>
+                    <p class="guide-text">"{adata["openings"][attach_opening]}"</p>
                 </div>
                 <div class="guide-section">
                     <p class="guide-label">💡 Key Points to Hit</p>
@@ -435,7 +466,7 @@ with tab4:
                 </div>
                 <div class="guide-section">
                     <p class="guide-label">🎬 Your Close</p>
-                    <p class="guide-text">"{data["closes"][attach_close]}"</p>
+                    <p class="guide-text">"{adata["closes"][attach_close]}"</p>
                 </div>
             </div>
             '''
@@ -443,7 +474,7 @@ with tab4:
             st.markdown(f'''
             <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none; margin-top:15px;">
                 <h4 style="color:#2d5a27; margin-bottom:10px;">💡 Pro Tip for {attach_service}</h4>
-                <p style="color:#2d5a27; margin:0;">{data["pro_tip"]}</p>
+                <p style="color:#2d5a27; margin:0;">{adata["pro_tip"]}</p>
             </div>
             ''', unsafe_allow_html=True)
         else:
