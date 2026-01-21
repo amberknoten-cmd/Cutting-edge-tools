@@ -205,7 +205,8 @@ trigger_phrases = {
             "Yellow spots in the yard"
         ],
         "pitch": "Sounds like your lawn could really benefit from our lawn treatment program. It includes fertilizer to green things up, plus pre-emergent to stop weeds before they start and post-emergent to knock out what's already there. Most people see a real difference within a few weeks.",
-        "benefit": "Healthier, thicker grass + kills existing weeds + prevents new ones"
+        "benefit": "Healthier, thicker grass + kills existing weeds + prevents new ones",
+        "pro_tip": "If they mention weeds, ask if they've noticed them in specific areas or all over. This helps you explain how the pre-emergent prevents new ones while post-emergent handles what's already there — it shows you're listening and builds trust."
     },
     "Leaf Removal": {
         "phrases": [
@@ -218,7 +219,8 @@ trigger_phrases = {
             "Haven't been able to keep up with the leaves"
         ],
         "pitch": "We actually offer leaf removal too — we can knock that out and get your yard back to looking clean. Leaves left too long can actually suffocate your grass and cause dead patches, so it's worth getting ahead of it.",
-        "benefit": "Protects the lawn underneath + instant curb appeal boost"
+        "benefit": "Protects the lawn underneath + instant curb appeal boost",
+        "pro_tip": "Mention the lawn health angle — most people don't realize leaves can actually damage grass if left too long. It turns the conversation from 'extra service' to 'protecting your lawn.'"
     },
     "Bush Trimming": {
         "phrases": [
@@ -232,7 +234,8 @@ trigger_phrases = {
             "HOA sent a notice about bushes"
         ],
         "pitch": "We can help with bush trimming too — it makes a huge difference in how the whole yard looks. Especially if you're thinking about curb appeal or just want things looking neat and clean again.",
-        "benefit": "Instant curb appeal + keeps bushes healthy + HOA compliant"
+        "benefit": "Instant curb appeal + keeps bushes healthy + HOA compliant",
+        "pro_tip": "If they mention selling their home or HOA issues, lean into urgency — trimmed bushes are one of the fastest ways to boost curb appeal, and it's often the first thing buyers and HOAs notice."
     },
     "Flower Bed Weeding": {
         "phrases": [
@@ -245,7 +248,8 @@ trigger_phrases = {
             "Everything looks neglected"
         ],
         "pitch": "We also do flower bed weeding — it really pulls the whole yard together. Once the beds are cleaned up, your whole property looks more cared for. It's one of those things that makes a big visual difference.",
-        "benefit": "Shows off your plants + polished look + low maintenance after"
+        "benefit": "Shows off your plants + polished look + low maintenance after",
+        "pro_tip": "Use the 'finishing touch' angle — even a freshly mowed lawn can look incomplete if the beds are messy. Frame it as the difference between 'good' and 'wow.'"
     },
     "Full Curb Appeal Bundle": {
         "phrases": [
@@ -258,9 +262,12 @@ trigger_phrases = {
             "Make it look brand new"
         ],
         "pitch": "If you're going for that full transformation, we can bundle mowing with bush trimming, flower bed weeding, and even leaf removal if needed. A lot of people do that when they're prepping for something big — it really makes the whole property pop.",
-        "benefit": "Complete transformation + one crew handles everything + saves time"
+        "benefit": "Complete transformation + one crew handles everything + saves time",
+        "pro_tip": "When someone has a big event or is selling, they're already in 'get it done' mode. Don't be shy about suggesting the full bundle — they'll appreciate you making it easy instead of having to ask for each thing separately."
     }
 }
+
+general_pro_tip = "Don't pitch right away — acknowledge what they said first, then transition naturally. Example: 'Yeah, leaves can really pile up fast this time of year. You know, we actually offer leaf removal too...'"
 
 SCRIPT_URL = "https://script.google.com/a/macros/lawnstarter.com/s/AKfycbyEGIP63SoZrL5XAAzfpY7NfaThcMIf_R36_YebHHsRkIeUWGfCmzVRHxI1OVs_WFNv/exec"
 
@@ -402,6 +409,12 @@ with tab4:
                 </div>
             </div>
             ''', unsafe_allow_html=True)
+        st.markdown(f'''
+        <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none;">
+            <h4 style="color:#2d5a27; margin-bottom:10px;">💡 General Pro Tip</h4>
+            <p style="color:#2d5a27; margin:0;">{general_pro_tip}</p>
+        </div>
+        ''', unsafe_allow_html=True)
     else:
         data = trigger_phrases[selected_service]
         phrases_html = "".join([f'<li style="margin-bottom:8px;">"{phrase}"</li>' for phrase in data["phrases"]])
@@ -417,9 +430,9 @@ with tab4:
             </div>
         </div>
         ''', unsafe_allow_html=True)
-    st.markdown('''
-    <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none;">
-        <h4 style="color:#2d5a27; margin-bottom:10px;">💡 Pro Tip</h4>
-        <p style="color:#2d5a27; margin:0;">Don't pitch right away — acknowledge what they said first, then transition naturally. Example: "Yeah, leaves can really pile up fast this time of year. You know, we actually offer leaf removal too..."</p>
-    </div>
-    ''', unsafe_allow_html=True)
+        st.markdown(f'''
+        <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none;">
+            <h4 style="color:#2d5a27; margin-bottom:10px;">💡 Pro Tip for {selected_service}</h4>
+            <p style="color:#2d5a27; margin:0;">{data["pro_tip"]}</p>
+        </div>
+        ''', unsafe_allow_html=True)
