@@ -4,14 +4,12 @@ from datetime import datetime
 
 st.set_page_config(page_title="The Cutting Edge", page_icon="🌱", layout="centered")
 
-# Custom CSS
 st.markdown("""
 <style>
     .stApp { background: linear-gradient(135deg, #2d5a27 0%, #4a9c3d 50%, #3d8a35 100%); }
     .main-header { text-align: center; color: white; padding: 20px 0; }
     .main-header h1 { color: #fffef5; font-size: 2.5rem; margin-bottom: 0; }
     .main-header .highlight { color: #f5a623; }
-    .main-header p { color: #e8f5e6; }
     .card { background: #fffef5; border-radius: 20px; padding: 25px; margin: 15px 0; border-top: 6px solid #4a9c3d; }
     .category-badge { background: #4a9c3d; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 15px; }
     .surface-text { color: #666; font-style: italic; padding: 10px 0; border-bottom: 2px dashed #ddd; margin-bottom: 15px; }
@@ -27,7 +25,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Flashcard data
 objections = [
     {"id": 1, "category": "Commitment", "surface": "I only need a one-time service", "reason": "They don't want to be locked into a rigid schedule", "rebuttal": "The three cuts are completely flexible — use them whenever you need, no set schedule required. Life happens, and we work around it."},
     {"id": 2, "category": "Commitment", "surface": "I only need a one-time service", "reason": "They're worried about paying upfront for services they might not use", "rebuttal": "No upfront payment ever. You're only charged three days after each service is completed. You're never paying for something you haven't received yet."},
@@ -58,7 +55,6 @@ objections = [
 
 dispositions = ["Already Hired A Provider", "Arrival Time", "Broken Address", "Callback", "Dead Air", "Disconnected", "Drop Voicemail", "Duplicate", "Frequency Minimum", "Insufficient Capacity", "Junk Contact", "Less Than 48 Hour Turn-Around", "LGF - Long Grass Fee", "Minimum Cuts Requirement", "No In-Person Quote", "Not DM", "Timing - Unable to Qualify", "Not Qualified - Refuse Contact", "Not Qualified - Telemarketer", "Order Complexity", "Out Of Area", "Oversized Lot", "Pre Paid Card", "Price", "Property Manager", "Provider Inquiry", "Rejected CC", "Rejected CC - Online Signup", "Rejected Subcontracting", "Services Not Offered", "Support Call", "Next Spring", "Test"]
 
-# Guide Builder Data
 guide_scenarios = {
     "One-Time Service": {
         "openings": {
@@ -196,12 +192,6 @@ guide_scenarios = {
     }
 }
 
-SCRIPT_URL = "https://script.google.com/a/macros/lawnstarter.com/s/AKfycbyEGIP63SoZrL5XAAzfpY7NfaThcMIf_R36_YebHHsRkIeUWGfCmzVRHxI1OVs_WFNv/exec"
-
-# Header
-st.markdown('<div class="main-header"><h1>🌱 The <span class="highlight">Cutting Edge</span></h1></div>', unsafe_allow_html=True)
-
-# Trigger Phrases Data
 trigger_phrases = {
     "Lawn Treatment": {
         "phrases": [
@@ -272,33 +262,29 @@ trigger_phrases = {
     }
 }
 
-# Tabs
+SCRIPT_URL = "https://script.google.com/a/macros/lawnstarter.com/s/AKfycbyEGIP63SoZrL5XAAzfpY7NfaThcMIf_R36_YebHHsRkIeUWGfCmzVRHxI1OVs_WFNv/exec"
+
+st.markdown('<div class="main-header"><h1>🌱 The <span class="highlight">Cutting Edge</span></h1></div>', unsafe_allow_html=True)
+
 tab1, tab2, tab3, tab4 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder", "🎯 Attach Triggers"])
 
 with tab1:
     st.markdown('<p style="text-align:center;color:#e8f5e6;">Identify the WHY, then match the right response!</p>', unsafe_allow_html=True)
-    
     if 'card_index' not in st.session_state:
         st.session_state.card_index = 0
     if 'show_answer' not in st.session_state:
         st.session_state.show_answer = False
     if 'completed' not in st.session_state:
         st.session_state.completed = []
-    
     categories = ["All"] + list(set([o["category"] for o in objections]))
     selected_cat = st.selectbox("Filter by category:", categories)
-    
     filtered = objections if selected_cat == "All" else [o for o in objections if o["category"] == selected_cat]
-    
     if st.session_state.card_index >= len(filtered):
         st.session_state.card_index = 0
-    
     current = filtered[st.session_state.card_index]
     progress = len([c for c in st.session_state.completed if c in [o["id"] for o in filtered]])
-    
     st.progress(progress / len(filtered))
     st.markdown(f'<p style="text-align:right;color:#e8f5e6;">{progress} / {len(filtered)} reviewed</p>', unsafe_allow_html=True)
-    
     st.markdown(f'''
     <div class="card">
         <span class="category-badge">{current["category"]}</span>
@@ -308,7 +294,6 @@ with tab1:
         <p class="reason-text">{current["reason"]}</p>
     </div>
     ''', unsafe_allow_html=True)
-    
     if st.session_state.show_answer:
         st.markdown(f'''
         <div class="card" style="background: linear-gradient(135deg, #e8f5e6, #d4edda);">
@@ -316,7 +301,6 @@ with tab1:
             <p class="approach-text">{current["rebuttal"]}</p>
         </div>
         ''', unsafe_allow_html=True)
-    
     col1, col2, col3 = st.columns(3)
     with col1:
         if st.button("🔄 Flip Card", use_container_width=True):
@@ -338,64 +322,42 @@ with tab1:
 
 with tab2:
     st.markdown('<p style="text-align:center;color:#e8f5e6;">Track dispositions. Find patterns. Coach smarter.</p>', unsafe_allow_html=True)
-    
     st.markdown('<div class="card"><h3 style="color:#2d5a27;">Log a Loss</h3>', unsafe_allow_html=True)
-    
     agent_name = st.text_input("Agent Name")
     agent_id = st.text_input("Agent ID")
     disposition = st.selectbox("Disposition", ["Select disposition..."] + dispositions)
-    
     if st.button("📤 Log & Send to Sheet", use_container_width=True):
         if agent_name and agent_id and disposition != "Select disposition...":
             timestamp = datetime.now().strftime("%m/%d/%Y, %I:%M:%S %p")
-            params = urllib.parse.urlencode({
-                "agentName": agent_name,
-                "agentId": agent_id,
-                "disposition": disposition,
-                "timestamp": timestamp
-            })
+            params = urllib.parse.urlencode({"agentName": agent_name, "agentId": agent_id, "disposition": disposition, "timestamp": timestamp})
             full_url = f"{SCRIPT_URL}?{params}"
             st.markdown(f'<div class="success-box">✓ Logged: {disposition}</div>', unsafe_allow_html=True)
             st.markdown(f'<a href="{full_url}" target="_blank"><button style="width:100%;padding:10px;margin-top:10px;background:#4a9c3d;color:white;border:none;border-radius:10px;font-weight:bold;cursor:pointer;">Click here to send to Google Sheet</button></a>', unsafe_allow_html=True)
         else:
             st.warning("Please fill in all fields!")
-    
     st.markdown('</div>', unsafe_allow_html=True)
 
 with tab3:
     st.markdown('<p style="text-align:center;color:#e8f5e6;">Build your own approach — your words, your style!</p>', unsafe_allow_html=True)
-    
     st.markdown('<div class="card"><h3 style="color:#2d5a27;">🛠️ Build Your Guide</h3>', unsafe_allow_html=True)
-    
-    # Step 1: Pick scenario
     scenario = st.selectbox("What objection are you handling?", ["Select a scenario..."] + list(guide_scenarios.keys()))
-    
     if scenario != "Select a scenario...":
         data = guide_scenarios[scenario]
-        
-        # Step 2: Opening style
         st.markdown("---")
         st.markdown("**Step 1: How do you want to open?**")
         opening_style = st.radio("Choose your style:", list(data["openings"].keys()), horizontal=True)
-        
-        # Step 3: Key points
         st.markdown("---")
         st.markdown("**Step 2: Which points do you want to hit?**")
         selected_points = []
         for point_name, point_text in data["points"].items():
             if st.checkbox(point_name, key=f"point_{scenario}_{point_name}"):
                 selected_points.append(point_text)
-        
-        # Step 4: Close style
         st.markdown("---")
         st.markdown("**Step 3: How do you want to close?**")
         close_style = st.radio("Choose your close:", list(data["closes"].keys()), horizontal=True)
-        
-        # Generate the guide
         if selected_points:
             st.markdown("---")
             st.markdown("### 📋 Your Custom Guide")
-            
             guide_html = f'''
             <div class="guide-output">
                 <div class="guide-section">
@@ -408,7 +370,6 @@ with tab3:
             '''
             for point in selected_points:
                 guide_html += f'<li style="margin-bottom:10px;">{point}</li>'
-            
             guide_html += f'''
                     </ul>
                 </div>
@@ -421,5 +382,44 @@ with tab3:
             st.markdown(guide_html, unsafe_allow_html=True)
         else:
             st.info("👆 Select at least one key point to see your guide!")
-    
     st.markdown('</div>', unsafe_allow_html=True)
+
+with tab4:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Listen for these phrases — then pitch the right add-on!</p>', unsafe_allow_html=True)
+    selected_service = st.selectbox("Select a service to see trigger phrases:", ["View All"] + list(trigger_phrases.keys()))
+    if selected_service == "View All":
+        for service, data in trigger_phrases.items():
+            phrases_html = "".join([f'<li>"{phrase}"</li>' for phrase in data["phrases"]])
+            st.markdown(f'''
+            <div class="card">
+                <span class="category-badge">{service}</span>
+                <p class="reason-label" style="margin-top:15px;">🎧 LISTEN FOR:</p>
+                <ul style="color:#666; margin: 10px 0;">{phrases_html}</ul>
+                <p class="approach-label" style="margin-top:15px;">💬 YOUR PITCH:</p>
+                <p class="approach-text">{data["pitch"]}</p>
+                <div style="background:#e8f5e6; padding:10px; border-radius:10px; margin-top:15px;">
+                    <p style="color:#2d5a27; margin:0;"><strong>✨ Key Benefit:</strong> {data["benefit"]}</p>
+                </div>
+            </div>
+            ''', unsafe_allow_html=True)
+    else:
+        data = trigger_phrases[selected_service]
+        phrases_html = "".join([f'<li style="margin-bottom:8px;">"{phrase}"</li>' for phrase in data["phrases"]])
+        st.markdown(f'''
+        <div class="card">
+            <span class="category-badge">{selected_service}</span>
+            <p class="reason-label" style="margin-top:15px;">🎧 WHEN YOU HEAR:</p>
+            <ul style="color:#666; margin: 10px 0; font-size: 1.1rem;">{phrases_html}</ul>
+            <p class="approach-label" style="margin-top:20px;">💬 PIVOT TO THIS PITCH:</p>
+            <p class="approach-text" style="font-size:1.15rem;">{data["pitch"]}</p>
+            <div style="background:#e8f5e6; padding:15px; border-radius:10px; margin-top:20px;">
+                <p style="color:#2d5a27; margin:0; font-size:1.05rem;"><strong>✨ Key Benefit to Mention:</strong> {data["benefit"]}</p>
+            </div>
+        </div>
+        ''', unsafe_allow_html=True)
+    st.markdown('''
+    <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none;">
+        <h4 style="color:#2d5a27; margin-bottom:10px;">💡 Pro Tip</h4>
+        <p style="color:#2d5a27; margin:0;">Don't pitch right away — acknowledge what they said first, then transition naturally. Example: "Yeah, leaves can really pile up fast this time of year. You know, we actually offer leaf removal too..."</p>
+    </div>
+    ''', unsafe_allow_html=True)
