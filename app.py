@@ -392,47 +392,60 @@ with tab3:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with tab4:
-    st.markdown('<p style="text-align:center;color:#e8f5e6;">Listen for these phrases — then pitch the right add-on!</p>', unsafe_allow_html=True)
-    selected_service = st.selectbox("Select a service to see trigger phrases:", ["View All"] + list(trigger_phrases.keys()))
-    if selected_service == "View All":
-        for service, data in trigger_phrases.items():
-            phrases_html = "".join([f'<li>"{phrase}"</li>' for phrase in data["phrases"]])
-            st.markdown(f'''
-            <div class="card">
-                <span class="category-badge">{service}</span>
-                <p class="reason-label" style="margin-top:15px;">🎧 LISTEN FOR:</p>
-                <ul style="color:#666; margin: 10px 0;">{phrases_html}</ul>
-                <p class="approach-label" style="margin-top:15px;">💬 YOUR PITCH:</p>
-                <p class="approach-text">{data["pitch"]}</p>
-                <div style="background:#e8f5e6; padding:10px; border-radius:10px; margin-top:15px;">
-                    <p style="color:#2d5a27; margin:0;"><strong>✨ Key Benefit:</strong> {data["benefit"]}</p>
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Build your attach pitch — your words, your style!</p>', unsafe_allow_html=True)
+    st.markdown('<div class="card"><h3 style="color:#2d5a27;">🎯 Build Your Attach Pitch</h3>', unsafe_allow_html=True)
+    attach_service = st.selectbox("What service do you want to attach?", ["Select a service..."] + list(attach_guides.keys()))
+    if attach_service != "Select a service...":
+        data = attach_guides[attach_service]
+        triggers_display = " • ".join([f'"{t}"' for t in data["triggers"]])
+        st.markdown(f'''
+        <div style="background:#e8f5e6; padding:12px; border-radius:10px; margin:10px 0;">
+            <p style="color:#2d5a27; margin:0; font-size:0.85rem;"><strong>🎧 Listen for:</strong> {triggers_display}</p>
+        </div>
+        ''', unsafe_allow_html=True)
+        st.markdown("---")
+        st.markdown("**Step 1: How do you want to open?**")
+        attach_opening = st.radio("Choose your style:", list(data["openings"].keys()), horizontal=True, key="attach_opening")
+        st.markdown("---")
+        st.markdown("**Step 2: Which points do you want to hit?**")
+        selected_attach_points = []
+        for point_name, point_text in data["points"].items():
+            if st.checkbox(point_name, key=f"attach_{attach_service}_{point_name}"):
+                selected_attach_points.append(point_text)
+        st.markdown("---")
+        st.markdown("**Step 3: How do you want to close?**")
+        attach_close = st.radio("Choose your close:", list(data["closes"].keys()), horizontal=True, key="attach_close")
+        if selected_attach_points:
+            st.markdown("---")
+            st.markdown("### 📋 Your Attach Pitch")
+            attach_html = f'''
+            <div class="guide-output">
+                <div class="guide-section">
+                    <p class="guide-label">🎯 Your Opening</p>
+                    <p class="guide-text">"{data["openings"][attach_opening]}"</p>
+                </div>
+                <div class="guide-section">
+                    <p class="guide-label">💡 Key Points to Hit</p>
+                    <ul style="color:#2d5a27; line-height: 1.8;">
+            '''
+            for point in selected_attach_points:
+                attach_html += f'<li style="margin-bottom:10px;">{point}</li>'
+            attach_html += f'''
+                    </ul>
+                </div>
+                <div class="guide-section">
+                    <p class="guide-label">🎬 Your Close</p>
+                    <p class="guide-text">"{data["closes"][attach_close]}"</p>
                 </div>
             </div>
-            ''', unsafe_allow_html=True)
-        st.markdown(f'''
-        <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none;">
-            <h4 style="color:#2d5a27; margin-bottom:10px;">💡 General Pro Tip</h4>
-            <p style="color:#2d5a27; margin:0;">{general_pro_tip}</p>
-        </div>
-        ''', unsafe_allow_html=True)
-    else:
-        data = trigger_phrases[selected_service]
-        phrases_html = "".join([f'<li style="margin-bottom:8px;">"{phrase}"</li>' for phrase in data["phrases"]])
-        st.markdown(f'''
-        <div class="card">
-            <span class="category-badge">{selected_service}</span>
-            <p class="reason-label" style="margin-top:15px;">🎧 WHEN YOU HEAR:</p>
-            <ul style="color:#666; margin: 10px 0; font-size: 1.1rem;">{phrases_html}</ul>
-            <p class="approach-label" style="margin-top:20px;">💬 PIVOT TO THIS PITCH:</p>
-            <p class="approach-text" style="font-size:1.15rem;">{data["pitch"]}</p>
-            <div style="background:#e8f5e6; padding:15px; border-radius:10px; margin-top:20px;">
-                <p style="color:#2d5a27; margin:0; font-size:1.05rem;"><strong>✨ Key Benefit to Mention:</strong> {data["benefit"]}</p>
+            '''
+            st.markdown(attach_html, unsafe_allow_html=True)
+            st.markdown(f'''
+            <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none; margin-top:15px;">
+                <h4 style="color:#2d5a27; margin-bottom:10px;">💡 Pro Tip for {attach_service}</h4>
+                <p style="color:#2d5a27; margin:0;">{data["pro_tip"]}</p>
             </div>
-        </div>
-        ''', unsafe_allow_html=True)
-        st.markdown(f'''
-        <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none;">
-            <h4 style="color:#2d5a27; margin-bottom:10px;">💡 Pro Tip for {selected_service}</h4>
-            <p style="color:#2d5a27; margin:0;">{data["pro_tip"]}</p>
-        </div>
-        ''', unsafe_allow_html=True)
+            ''', unsafe_allow_html=True)
+        else:
+            st.info("👆 Select at least one key point to see your pitch!")
+    st.markdown('</div>', unsafe_allow_html=True)
