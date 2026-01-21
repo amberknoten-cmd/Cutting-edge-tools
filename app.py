@@ -201,8 +201,79 @@ SCRIPT_URL = "https://script.google.com/a/macros/lawnstarter.com/s/AKfycbyEGIP63
 # Header
 st.markdown('<div class="main-header"><h1>🌱 The <span class="highlight">Cutting Edge</span></h1></div>', unsafe_allow_html=True)
 
+# Trigger Phrases Data
+trigger_phrases = {
+    "Lawn Treatment": {
+        "phrases": [
+            "Weeds everywhere",
+            "My grass is turning brown",
+            "Neighbor's lawn looks way better",
+            "Lawn looks thin / patchy",
+            "Weeds keep coming back",
+            "I've tried everything",
+            "Grass isn't growing well",
+            "Yellow spots in the yard"
+        ],
+        "pitch": "Sounds like your lawn could really benefit from our lawn treatment program. It includes fertilizer to green things up, plus pre-emergent to stop weeds before they start and post-emergent to knock out what's already there. Most people see a real difference within a few weeks.",
+        "benefit": "Healthier, thicker grass + kills existing weeds + prevents new ones"
+    },
+    "Leaf Removal": {
+        "phrases": [
+            "Leaves are piling up",
+            "Yard is covered in leaves",
+            "Can't even see my grass",
+            "It's that time of year",
+            "Fall cleanup",
+            "Leaves are out of control",
+            "Haven't been able to keep up with the leaves"
+        ],
+        "pitch": "We actually offer leaf removal too — we can knock that out and get your yard back to looking clean. Leaves left too long can actually suffocate your grass and cause dead patches, so it's worth getting ahead of it.",
+        "benefit": "Protects the lawn underneath + instant curb appeal boost"
+    },
+    "Bush Trimming": {
+        "phrases": [
+            "Bushes are overgrown",
+            "Shrubs are out of control",
+            "Everything looks messy",
+            "Curb appeal",
+            "Getting ready to sell",
+            "Bushes are blocking the windows",
+            "Haven't trimmed in forever",
+            "HOA sent a notice about bushes"
+        ],
+        "pitch": "We can help with bush trimming too — it makes a huge difference in how the whole yard looks. Especially if you're thinking about curb appeal or just want things looking neat and clean again.",
+        "benefit": "Instant curb appeal + keeps bushes healthy + HOA compliant"
+    },
+    "Flower Bed Weeding": {
+        "phrases": [
+            "Flower beds are a mess",
+            "Weeds in my beds",
+            "Can't even see my flowers",
+            "Landscaping looks rough",
+            "Beds are overgrown",
+            "Just want it all cleaned up",
+            "Everything looks neglected"
+        ],
+        "pitch": "We also do flower bed weeding — it really pulls the whole yard together. Once the beds are cleaned up, your whole property looks more cared for. It's one of those things that makes a big visual difference.",
+        "benefit": "Shows off your plants + polished look + low maintenance after"
+    },
+    "Full Curb Appeal Bundle": {
+        "phrases": [
+            "Getting ready to sell",
+            "Want the whole yard done",
+            "Just moved in and it's a mess",
+            "Want it to look nice for an event",
+            "Family coming to visit",
+            "Want the whole thing cleaned up",
+            "Make it look brand new"
+        ],
+        "pitch": "If you're going for that full transformation, we can bundle mowing with bush trimming, flower bed weeding, and even leaf removal if needed. A lot of people do that when they're prepping for something big — it really makes the whole property pop.",
+        "benefit": "Complete transformation + one crew handles everything + saves time"
+    }
+}
+
 # Tabs
-tab1, tab2, tab3 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder"])
+tab1, tab2, tab3, tab4 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder", "🎯 Attach Triggers"])
 
 with tab1:
     st.markdown('<p style="text-align:center;color:#e8f5e6;">Identify the WHY, then match the right response!</p>', unsafe_allow_html=True)
