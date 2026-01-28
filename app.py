@@ -304,7 +304,598 @@ SCRIPT_URL = "https://script.google.com/a/macros/lawnstarter.com/s/AKfycbyEGIP63
 
 st.markdown('<div class="main-header"><h1>🌱 The <span class="highlight">Cutting Edge</span></h1></div>', unsafe_allow_html=True)
 
-tab1, tab2, tab3, tab4 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder", "🎯 Attach Builder"])
+qa_questions = [
+    {
+        "category": "Greeting & Opening",
+        "scenario": "A customer calls in. What's the FIRST thing you should do?",
+        "options": {
+            "A": "Ask for their address right away to check availability",
+            "B": "Give the standard greeting and ask what they're looking for",
+            "C": "Tell them about current promotions",
+            "D": "Ask if they've used LawnStarter before"
+        },
+        "correct": "B",
+        "explanation": "Always start with the standard greeting: 'Hello, this is [NAME] and thank you for calling LawnStarter. Would you mind sharing a bit about what you're looking for?' This sets a professional tone and lets the customer lead with their needs."
+    },
+    {
+        "category": "Greeting & Opening",
+        "scenario": "You're calling a customer who was texting with a colleague. What's the correct SMS greeting?",
+        "options": {
+            "A": "Hi, I'm calling about your lawn service inquiry",
+            "B": "Hi, this is ___ with LawnStarter, you were just texting my colleague and they asked me to give you a call. How can I help?",
+            "C": "Hello, is this the homeowner?",
+            "D": "Hi, are you still interested in lawn service?"
+        },
+        "correct": "B",
+        "explanation": "The SMS greeting should reference that they were texting a colleague: 'Hi, this is ___ with LawnStarter, you were just texting my colleague and they asked me to give you a call. How can I help?' This provides context and a smooth transition."
+    },
+    {
+        "category": "Greeting & Opening",
+        "scenario": "After the customer shares what they're looking for, what's a good way to acknowledge their response?",
+        "options": {
+            "A": "Okay, let me transfer you",
+            "B": "Yes! We can take care of all of that! / I can help you with that / Let me look into that for you",
+            "C": "That's not really what we do",
+            "D": "Can you repeat that?"
+        },
+        "correct": "B",
+        "explanation": "Acknowledge positively and focus on their main interest. Examples: 'Yes! We can take care of all of that!' or 'I can help you with that' or 'Let me look into that for you.' Then ask if they need anything else while we're out there."
+    },
+    {
+        "category": "Verification",
+        "scenario": "You need to verify a customer's information. What three things MUST you confirm?",
+        "options": {
+            "A": "Name, email, and credit card",
+            "B": "Address, phone number, and email",
+            "C": "Name, address (with zip), and phone number",
+            "D": "Phone number, frequency preference, and budget"
+        },
+        "correct": "C",
+        "explanation": "Verification requires: Phone number (mobile or landline), Address (street number, name AND zip), and Name. Email comes later during final verification."
+    },
+    {
+        "category": "Verification",
+        "scenario": "When verifying the customer's email at the end of the call, how should you read it back?",
+        "options": {
+            "A": "Just say the email quickly",
+            "B": "Spell it out phonetically (PHONETICALLYSPELLEDOUT@ALWAYS.com)",
+            "C": "Ask them to spell it for you",
+            "D": "Send a confirmation text instead"
+        },
+        "correct": "B",
+        "explanation": "Always read the email back phonetically to avoid errors. For example: 'I have your email J-O-H-N-D-O-E at G-M-A-I-L dot com.' This prevents miscommunication and ensures accuracy."
+    },
+    {
+        "category": "Price Presentation",
+        "scenario": "When presenting the price, what fee must ALWAYS be mentioned separately?",
+        "options": {
+            "A": "Long grass fee",
+            "B": "Tax fee",
+            "C": "$3.99 Trust and Safety fee",
+            "D": "Cancellation fee"
+        },
+        "correct": "C",
+        "explanation": "Always present: Base Price + $3.99 Trust and Safety fee. This fee helps cover pro vetting and potential property damage mediation. We itemize it for transparency rather than rolling it into the price."
+    },
+    {
+        "category": "Price Presentation",
+        "scenario": "A customer asks 'Does the price include taxes?' What should you say?",
+        "options": {
+            "A": "Yes, taxes are included",
+            "B": "This price does not include taxes. Taxes are based on the local laws in your area.",
+            "C": "There are no taxes on lawn services",
+            "D": "I don't know, you'll have to check your bill"
+        },
+        "correct": "B",
+        "explanation": "Always clarify: 'This price does not include taxes. Taxes are based on the local laws in your area.' Be transparent so there are no surprises on their bill."
+    },
+    {
+        "category": "Price Presentation",
+        "scenario": "What services are included in the base lawn mowing price?",
+        "options": {
+            "A": "Just mowing",
+            "B": "Mowing, trimming edges, and blowing off paved surfaces",
+            "C": "Mowing, fertilizing, and weed control",
+            "D": "Mowing and leaf removal"
+        },
+        "correct": "B",
+        "explanation": "The base mowing service includes: mowing, trimming edges, and blowing off paved surfaces. Also mention the free mobile app and web login for requesting additional services, making account changes, and contacting support."
+    },
+    {
+        "category": "3-Cut Minimum",
+        "scenario": "A customer says 'I only need a one-time mow.' What should you do FIRST?",
+        "options": {
+            "A": "Tell them about the 3-cut minimum immediately",
+            "B": "Acknowledge and find out WHY they only want one mow",
+            "C": "Offer them a discount to commit to 3 cuts",
+            "D": "Transfer them to a supervisor"
+        },
+        "correct": "B",
+        "explanation": "FIRST acknowledge and probe to find out why. Are they selling? Seasonal need? HOA notice? Understanding the reason helps you address their specific concern before discussing the 3-cut minimum."
+    },
+    {
+        "category": "3-Cut Minimum",
+        "scenario": "A customer says they're selling their home and only need one mow. What's a good response?",
+        "options": {
+            "A": "Sorry, we can't help with that",
+            "B": "Identify when they're moving, mention single mows elsewhere cost the same, emphasize short-term commitment and getting on schedule now",
+            "C": "We can waive the 3-cut minimum for you",
+            "D": "You should hire a neighbor instead"
+        },
+        "correct": "B",
+        "explanation": "For selling/moving: Identify when (have they moved already?), note that single mows with other companies are often the same price, emphasize short-term commitment, and create urgency to get on the schedule now."
+    },
+    {
+        "category": "3-Cut Minimum",
+        "scenario": "A customer got an HOA notice and says they just need one mow. How should you respond?",
+        "options": {
+            "A": "We only do 3 cuts, sorry",
+            "B": "Long grass means recurring service can help restore the lawn, use us as backup if it happens again, get on schedule now for urgency",
+            "C": "You should call your HOA",
+            "D": "We can come today if you pay extra"
+        },
+        "correct": "B",
+        "explanation": "For HOA situations: Explain that recurring service helps restore the lawn's look, they can use us as backup if it happens again, and create urgency to get on the schedule now before it gets worse."
+    },
+    {
+        "category": "3-Cut Minimum",
+        "scenario": "How should you explain the 48-hour rescheduling policy?",
+        "options": {
+            "A": "You can never change your schedule",
+            "B": "Just let us know 48 hours before the next scheduled cut if you want to make changes",
+            "C": "You have to call to cancel each time",
+            "D": "Changes require a fee"
+        },
+        "correct": "B",
+        "explanation": "Explain it simply: 'If at any point you would like to make changes to your schedule, just let us know 48 hours before the next scheduled cut.' This emphasizes flexibility while setting clear expectations."
+    },
+    {
+        "category": "Scheduling",
+        "scenario": "When providing the service window, what must you always include?",
+        "options": {
+            "A": "Just the days (Wednesday or Thursday)",
+            "B": "Just the dates (July 20th or 21st)",
+            "C": "Days AND dates (Wednesday or Thursday, July 20th or 21st)",
+            "D": "An exact arrival time"
+        },
+        "correct": "C",
+        "explanation": "Always provide the two-day window with BOTH days AND dates: 'Wednesday or Thursday, starting July 20th or 21st.' Never promise exact times."
+    },
+    {
+        "category": "Scheduling",
+        "scenario": "A customer says 'I don't want to wait around all day for the crew.' What should you tell them?",
+        "options": {
+            "A": "You have to be home for the service",
+            "B": "It's contactless - no need to be home. The two-day window allows for weather and routing adjustments.",
+            "C": "We can give you an exact time",
+            "D": "You can call the day before to find out"
+        },
+        "correct": "B",
+        "explanation": "Emphasize: It's contactless, so no need to be home. The two-day window allows for adjustments due to weather and routing. Also mention the delayed billing/quality check (3-4 days after service)."
+    },
+    {
+        "category": "Scheduling",
+        "scenario": "A customer says they need to be home to provide access. What solutions should you offer?",
+        "options": {
+            "A": "We can't service properties that need access",
+            "B": "Can leave notes for gate codes or instructions, and message the pro in advance",
+            "C": "You'll have to take the day off work",
+            "D": "We only service properties with no gates"
+        },
+        "correct": "B",
+        "explanation": "Offer solutions: They can leave notes with gate codes or special instructions, and message the pro in advance once assigned. This addresses their concern while keeping the flexible window."
+    },
+    {
+        "category": "Scheduling",
+        "scenario": "If a customer expresses flexibility with early or late service windows, what should you do?",
+        "options": {
+            "A": "Only mark one option",
+            "B": "Acknowledge their agreement, mark BOTH options, and proceed accordingly",
+            "C": "Tell them to decide later",
+            "D": "Mark neither and let the pro decide"
+        },
+        "correct": "B",
+        "explanation": "If the customer is flexible, acknowledge their agreement, mark BOTH early and late options, and proceed. This gives more scheduling flexibility while honoring their preferences."
+    },
+    {
+        "category": "Long Grass Fee",
+        "scenario": "At what height does the long grass fee potentially apply?",
+        "options": {
+            "A": "Over 6 inches",
+            "B": "Over 9 inches",
+            "C": "Over 12 inches",
+            "D": "Over 15 inches"
+        },
+        "correct": "B",
+        "explanation": "If grass is over 9 inches, a fee up to the full base mowing price may apply. If over 15 inches, the crew submits a quote for approval before servicing. Always mention this so there are no surprises!"
+    },
+    {
+        "category": "Long Grass Fee",
+        "scenario": "What happens if the grass is over 15 inches?",
+        "options": {
+            "A": "We refuse to service it",
+            "B": "The crew will submit a quote for you to approve before servicing",
+            "C": "We charge triple the base price automatically",
+            "D": "We mow it but charge later"
+        },
+        "correct": "B",
+        "explanation": "If grass is over 15 inches, the crew will submit a quote for the customer to approve BEFORE servicing. This ensures transparency and customer approval for heavily overgrown lawns."
+    },
+    {
+        "category": "Long Grass Fee",
+        "scenario": "A customer asks 'How do I know you aren't just charging extra for long grass?' What's the BEST response?",
+        "options": {
+            "A": "You'll just have to trust us",
+            "B": "Pros must submit photos, you get an email when it's assessed, and you can dispute during the 3-day quality check",
+            "C": "We never charge extra unfairly",
+            "D": "You can call support if you disagree"
+        },
+        "correct": "B",
+        "explanation": "Address with specifics: Pros must supply photos, you get an email immediately, there's a 3-day quality check before charging, and you can dispute with photo review. This builds trust through transparency."
+    },
+    {
+        "category": "Long Grass Fee",
+        "scenario": "A customer asks 'Why should I pay extra for long grass?' What's the BEST response?",
+        "options": {
+            "A": "Because that's our policy",
+            "B": "We compensate our pros for additional work. Overgrown lawns take more time and create more wear and tear on equipment.",
+            "C": "Everyone charges this",
+            "D": "You can refuse and we won't mow"
+        },
+        "correct": "B",
+        "explanation": "Explain the VALUE: We compensate our pros for additional work. Overgrown lawns take more time and create more wear and tear on equipment. This helps them understand it's fair, not arbitrary."
+    },
+    {
+        "category": "Objection Handling",
+        "scenario": "What's the correct ORDER for handling objections?",
+        "options": {
+            "A": "Lead with policies, then explain benefits",
+            "B": "Acknowledge, clarify/probe why, then address with value",
+            "C": "Offer a discount immediately, then explain",
+            "D": "Transfer to a supervisor for approval"
+        },
+        "correct": "B",
+        "explanation": "The correct order: 1) Acknowledge or show understanding, 2) Clarify or probe to find out why, 3) Address with value (what's the benefit?). Never lead with limitations and policies!"
+    },
+    {
+        "category": "Objection Handling",
+        "scenario": "What should you NEVER do when handling objections?",
+        "options": {
+            "A": "Show understanding",
+            "B": "Lead with limitations and policies",
+            "C": "Probe to find out why",
+            "D": "Address with value"
+        },
+        "correct": "B",
+        "explanation": "NEVER lead with limitations and policies. This puts the customer on the defensive. Instead, acknowledge, probe, then address with value and benefits. Policies should support your solution, not lead it."
+    },
+    {
+        "category": "48-Hour Window",
+        "scenario": "A customer says 'I have an HOA notice and need service TODAY.' What should you tell them?",
+        "options": {
+            "A": "Sorry, we can't help with urgent requests",
+            "B": "We have the fastest turnaround, and once assigned you can message your pro about availability",
+            "C": "I'll see if I can get a supervisor to approve same-day service",
+            "D": "You should try a different company"
+        },
+        "correct": "B",
+        "explanation": "Emphasize we have the fastest turnaround time in the industry. Once a pro is assigned, they can message them directly about availability. Also mention we can send a confirmation email they can forward to their HOA."
+    },
+    {
+        "category": "48-Hour Window",
+        "scenario": "A customer asks 'Why do I have to wait 48 hours?' What should you explain?",
+        "options": {
+            "A": "Because that's just how it works",
+            "B": "Routes are planned in advance and it gives us time to find a pro. Want me to hold a spot?",
+            "C": "Our pros are lazy",
+            "D": "We're understaffed"
+        },
+        "correct": "B",
+        "explanation": "Explain: Routes are planned in advance and it gives us time to find a pro in your area. Then offer to hold a spot. This turns a limitation into an action step."
+    },
+    {
+        "category": "Cross-Selling",
+        "scenario": "When offering Lawn Treatment, what should you highlight about the service?",
+        "options": {
+            "A": "It's required for all customers",
+            "B": "It includes fertilizer, weed control, and pre-emergent with 7-8 rounds per year",
+            "C": "It replaces the need for mowing",
+            "D": "It's only available in the summer"
+        },
+        "correct": "B",
+        "explanation": "Lawn Treatment includes fertilizer, weed control, and pre-emergent. For best results: 7-8 rounds per year, every 4-6 weeks. They won't be charged until service is complete. Mention that weed-free lawns can reduce mowing costs!"
+    },
+    {
+        "category": "Cross-Selling",
+        "scenario": "What should you tell New York customers about Lawn Treatment?",
+        "options": {
+            "A": "It's not available in New York",
+            "B": "We currently only offer fertilization in your area",
+            "C": "It's the same as everywhere else",
+            "D": "They get a discount"
+        },
+        "correct": "B",
+        "explanation": "For New York customers specifically: 'We currently only offer fertilization in your area.' This sets correct expectations about what's available in their region."
+    },
+    {
+        "category": "Cross-Selling",
+        "scenario": "If a customer says NO to an additional service, what should you do?",
+        "options": {
+            "A": "Keep pushing until they say yes",
+            "B": "Just move on without saying anything",
+            "C": "Remind them it can be added anytime via the app/portal",
+            "D": "Offer a bigger discount"
+        },
+        "correct": "C",
+        "explanation": "If they say no, remind them they can always add services anytime via the app or portal, or contact support for services not available there. Don't push, but leave the door open!"
+    },
+    {
+        "category": "Cross-Selling",
+        "scenario": "When cross-selling Leaf Removal, what should you ask to identify the need?",
+        "options": {
+            "A": "Do you want leaf removal?",
+            "B": "Are there any leaves or small twigs on your lawn?",
+            "C": "Is it fall time?",
+            "D": "Do you have trees?"
+        },
+        "correct": "B",
+        "explanation": "Ask specifically: 'Are there any leaves or small twigs on your lawn?' This identifies the actual need. If yes, offer the IQ Cleanup quote and set expectations about what happens if excessive leaves are found at service time."
+    },
+    {
+        "category": "Cross-Selling",
+        "scenario": "What expectation should you set about leaves and mowing?",
+        "options": {
+            "A": "We always mow over leaves",
+            "B": "If excessive leaves need to be picked up before mowing, we'll quote for cleanup which could delay service completion",
+            "C": "We never mow if there are leaves",
+            "D": "Leaves don't affect mowing"
+        },
+        "correct": "B",
+        "explanation": "Set the expectation: 'If the crew arrives and there's an excessive amount of leaves that need picked up before we can mow, we'll need to quote you for the cleanup, wait for your approval, which could prolong your service completion.'"
+    },
+    {
+        "category": "Cross-Selling",
+        "scenario": "When pitching Lawn Treatment, what optional benefit can you mention about weeds and mowing?",
+        "options": {
+            "A": "Weeds make lawns look nicer",
+            "B": "Weeds grow first, make lawns appear overgrown, and controlling them can reduce mowing frequency and costs",
+            "C": "Weeds have no effect on mowing",
+            "D": "We charge less if you have weeds"
+        },
+        "correct": "B",
+        "explanation": "Optional context: Weeds are the first to grow, making the lawn appear overgrown or warrant additional fees. Keeping weeds in check minimizes overall growth, reducing the need for more frequent mowing. This adds value to the Lawn Treatment pitch!"
+    },
+    {
+        "category": "Property Details",
+        "scenario": "A customer has outdoor pets. What TWO things should you tell them?",
+        "options": {
+            "A": "We can't service properties with pets",
+            "B": "Pets should be secured during service AND please pick up pet waste",
+            "C": "The pro will handle the pets",
+            "D": "They need to pay an extra pet fee"
+        },
+        "correct": "B",
+        "explanation": "Two requirements: 1) Pets should be secured during service time, 2) Please pick up any pet waste on the property. If excessive waste is found, the crew will mow around it."
+    },
+    {
+        "category": "Property Details",
+        "scenario": "A customer has a property gate. What should you ask?",
+        "options": {
+            "A": "Just ask if they have a gate",
+            "B": "Ask if it's wide enough for a riding mower, if it's a gated community, and if there's a code or special instructions",
+            "C": "Tell them we can't service gated properties",
+            "D": "Ask them to leave it open forever"
+        },
+        "correct": "B",
+        "explanation": "For property gates: Is it wide enough for a riding mower? For community gates: Is there a gate code or special instructions? Include access details in the 'Special Neighborhood Access' field. Be concise!"
+    },
+    {
+        "category": "Property Details",
+        "scenario": "Where should you include special access details?",
+        "options": {
+            "A": "Just tell the customer verbally",
+            "B": "In the 'Special Neighborhood Access' field on the work order",
+            "C": "In an email to the pro",
+            "D": "Nowhere, the pro will figure it out"
+        },
+        "correct": "B",
+        "explanation": "Include special access details in the 'Special Neighborhood Access' field on the work order. Keep in mind the importance of being concise so the information is clear and usable."
+    },
+    {
+        "category": "Payment",
+        "scenario": "A customer asks 'Why do I have to put a card on file?' What's the BEST response?",
+        "options": {
+            "A": "It's just our policy",
+            "B": "You don't need to be home, we charge 3 days AFTER service so you can address any issues first",
+            "C": "We need it for security purposes",
+            "D": "You can pay cash if you prefer"
+        },
+        "correct": "B",
+        "explanation": "Focus on benefits: No need to be home when service happens, and we charge 3 days AFTER completion — giving time to address any service issues before being charged. We send notifications when service is complete."
+    },
+    {
+        "category": "Payment",
+        "scenario": "When collecting payment info, what do you tell the customer?",
+        "options": {
+            "A": "Give me your card number",
+            "B": "I'm sending a secure link via text and email since we don't have access to payment info on our end",
+            "C": "You can pay after the first service",
+            "D": "We'll call back later for payment"
+        },
+        "correct": "B",
+        "explanation": "Always say: 'I'm sending over a secure link for you to add your payment info directly, since we don't have access to that on our end. This will go through text and email.' We never take card info verbally!"
+    },
+    {
+        "category": "Payment",
+        "scenario": "A customer is worried about security with online payment. What can you tell them about Stripe?",
+        "options": {
+            "A": "I don't know anything about it",
+            "B": "Stripe is highly secure and used by large businesses like Walmart and Amazon, used by millions",
+            "C": "It's pretty safe I guess",
+            "D": "You can mail a check instead"
+        },
+        "correct": "B",
+        "explanation": "Reassure them: Stripe is highly secure and used by large businesses like Walmart and Amazon — used by millions. Also remind them we charge 3 days after completion and send notifications when service is done."
+    },
+    {
+        "category": "Payment",
+        "scenario": "A customer says 'I don't like recurring charges.' What should you emphasize?",
+        "options": {
+            "A": "You have to accept them",
+            "B": "We only charge if a service is completed, send notifications when done, and charge 3 days AFTER service",
+            "C": "You can cancel anytime",
+            "D": "Everyone does recurring charges"
+        },
+        "correct": "B",
+        "explanation": "Emphasize: We only charge if a service is completed. We send email and app notifications as soon as service is done. We only charge 3 days AFTER the service. This gives them control and transparency."
+    },
+    {
+        "category": "Closing",
+        "scenario": "What should you tell the customer to expect AFTER the call?",
+        "options": {
+            "A": "Nothing, just say goodbye",
+            "B": "Email when a pro picks up the job, text with app link and temp password, and they can message the pro directly",
+            "C": "A pro will call them back",
+            "D": "They need to call back to confirm"
+        },
+        "correct": "B",
+        "explanation": "Set expectations: 1) Email confirming a pro picked up the job + their two-day window, 2) Text with app link and temporary password (email is username), 3) They can message their pro directly once assigned!"
+    },
+    {
+        "category": "Closing",
+        "scenario": "What's the LAST thing you should do before ending the call?",
+        "options": {
+            "A": "Hang up quickly to take the next call",
+            "B": "Ask 'Any other questions before I let you go?' and direct them to support via app/portal",
+            "C": "Try to sell one more service",
+            "D": "Transfer them to QA"
+        },
+        "correct": "B",
+        "explanation": "Always ask 'Any other questions before I let you go?' Then direct them to the Support Team via app or portal for future questions. End with 'Thank you for choosing LawnStarter. Have a great day!'"
+    },
+    {
+        "category": "Closing",
+        "scenario": "For landline-only customers, how should you explain logging into the website?",
+        "options": {
+            "A": "They can't use the website",
+            "B": "Enter email address, click forgot password, receive temp password via email, change password once logged in",
+            "C": "Call support for help",
+            "D": "They have to use the app instead"
+        },
+        "correct": "B",
+        "explanation": "For landline customers: 'Enter your email address and click the forgot your password option. You'll receive an email with a temporary password. Make sure to change the password once you log in.' This helps non-app users access their account."
+    },
+    {
+        "category": "Closing",
+        "scenario": "What referral opportunity should you mention in the introduction email?",
+        "options": {
+            "A": "There's no referral program",
+            "B": "Recommend us on NextDoor and receive a $20 credit to your account",
+            "C": "Refer friends for a discount",
+            "D": "Leave a Google review for $50"
+        },
+        "correct": "B",
+        "explanation": "Mention: 'In your introduction email, you will see a button about recommending us on NextDoor. Do this and receive a $20 credit to your account.' This encourages referrals and rewards the customer."
+    },
+    {
+        "category": "Not DM",
+        "scenario": "You're speaking with someone who ISN'T the decision maker. What's REQUIRED before ending the call?",
+        "options": {
+            "A": "Just say goodbye and call back later",
+            "B": "Educate on value and offer to hold a spot",
+            "C": "Ask them to have the DM call back",
+            "D": "Send an email to the DM"
+        },
+        "correct": "B",
+        "explanation": "When speaking with non-DM: Probe if DM is available, educate on value (flexibility, app benefits, quality check), and ALWAYS offer to hold a spot. Holding a spot is REQUIRED for non-DM calls."
+    },
+    {
+        "category": "Not DM",
+        "scenario": "If the decision maker IS available when you're speaking with a non-DM, what should you do?",
+        "options": {
+            "A": "Just continue with the non-DM",
+            "B": "Offer to speak with the decision maker",
+            "C": "Ask them to call back",
+            "D": "End the call"
+        },
+        "correct": "B",
+        "explanation": "If the DM is available, offer to speak with them directly. This gives you the best chance of closing the sale with the person who can actually make the decision."
+    },
+    {
+        "category": "Not DM",
+        "scenario": "If the DM is NOT available, what should you ask the non-DM?",
+        "options": {
+            "A": "When will they be back?",
+            "B": "Does the DM have specific needs or concerns?",
+            "C": "Can they make the decision instead?",
+            "D": "Should we call back tomorrow?"
+        },
+        "correct": "B",
+        "explanation": "Ask: 'Does [DM] have specific needs or concerns?' This helps you understand what's important to the actual decision maker so you can address those points and educate on value."
+    },
+    {
+        "category": "Trust & Safety Fee",
+        "scenario": "A customer asks 'Why do I have to pay the Trust & Safety fee?' What should you say?",
+        "options": {
+            "A": "It's just an extra charge we add",
+            "B": "It helps cover pro vetting and mediate potential property damage — most companies roll it into price, we itemize for transparency",
+            "C": "You can skip it if you want",
+            "D": "It's a government requirement"
+        },
+        "correct": "B",
+        "explanation": "The T&S fee covers the pro vetting process and helps mediate potential property damage. Most companies roll it into their price — we itemize it for transparency. Most local providers don't provide any coverage at all!"
+    },
+    {
+        "category": "Frequency Objections",
+        "scenario": "A customer says 'I don't want to be locked into a schedule.' What should you emphasize?",
+        "options": {
+            "A": "You have to commit to the schedule",
+            "B": "Flexible options: reschedule, skip, pause — manage via app or message your pro — can change frequency as needed",
+            "C": "Just cancel if you don't like it",
+            "D": "We'll call you before each service"
+        },
+        "correct": "B",
+        "explanation": "Emphasize flexibility: reschedule, skip, or pause options. Manage everything on the app or communicate with your pro directly. Can change frequency as needed. Regular maintenance = healthier lawn!"
+    },
+    {
+        "category": "Subcontractor Objection",
+        "scenario": "A customer says 'I don't want to work with subcontractors.' What should you tell them?",
+        "options": {
+            "A": "We don't use subcontractors",
+            "B": "They're local vetted pros, our platform helps their business, there's a quality check, you can change pro anytime",
+            "C": "You have no choice",
+            "D": "We'll send our employees instead"
+        },
+        "correct": "B",
+        "explanation": "Address the concern: They're local, vetted pros. Our platform helps local pros with their business. Explain the quality check. You can change pro anytime. It's a short-term commitment. This reframes 'subcontractor' positively."
+    },
+    {
+        "category": "Order Recap",
+        "scenario": "What must you include in the order recap?",
+        "options": {
+            "A": "Just the price",
+            "B": "Frequency, price, T&S fee, two-day window with days and dates, and all additional services with their details",
+            "C": "Just the service date",
+            "D": "Only the customer's name"
+        },
+        "correct": "B",
+        "explanation": "Full recap includes: frequency (weekly/biweekly/monthly), price, $3.99 T&S fee, two-day window with days AND dates, plus all additional services with their frequency expectations. For Lawn Treatment customers, mention they'll get an email about their first application."
+    },
+    {
+        "category": "Scope & Frequency",
+        "scenario": "What two things should you ask about scope and frequency?",
+        "options": {
+            "A": "Just ask about price",
+            "B": "What area needs service (full, front, back) and how often (weekly, biweekly, monthly)",
+            "C": "Only ask about the front yard",
+            "D": "Ask what their neighbor pays"
+        },
+        "correct": "B",
+        "explanation": "Ask about scope: What area needs service? Full yard, front, back? And frequency: How often? Weekly, biweekly, monthly (when available)? If they already told you, just confirm rather than asking again."
+    }
+]
+
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder", "🎯 Attach Builder", "🎮 QA Game Show"])
 
 with tab1:
     st.markdown('<p style="text-align:center;color:#e8f5e6;">Identify the WHY, then match the right response!</p>', unsafe_allow_html=True)
@@ -480,3 +1071,149 @@ with tab4:
         else:
             st.info("👆 Select at least one key point to see your pitch!")
     st.markdown('</div>', unsafe_allow_html=True)
+
+with tab5:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Test your QA knowledge — game show style! 🎯</p>', unsafe_allow_html=True)
+    
+    if 'qa_index' not in st.session_state:
+        st.session_state.qa_index = 0
+    if 'qa_score' not in st.session_state:
+        st.session_state.qa_score = 0
+    if 'qa_answered' not in st.session_state:
+        st.session_state.qa_answered = False
+    if 'qa_selected' not in st.session_state:
+        st.session_state.qa_selected = None
+    if 'qa_history' not in st.session_state:
+        st.session_state.qa_history = []
+    
+    total_questions = len(qa_questions)
+    current_q = qa_questions[st.session_state.qa_index]
+    
+    score_pct = (st.session_state.qa_score / max(len(st.session_state.qa_history), 1)) * 100 if st.session_state.qa_history else 0
+    
+    st.markdown(f'''
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+        <div style="background:#f5a623; padding:10px 20px; border-radius:10px;">
+            <p style="margin:0; color:#2d5a27; font-weight:bold;">🏆 Score: {st.session_state.qa_score}/{len(st.session_state.qa_history)}</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.2); padding:10px 20px; border-radius:10px;">
+            <p style="margin:0; color:white; font-weight:bold;">Question {st.session_state.qa_index + 1} of {total_questions}</p>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
+    
+    st.progress((st.session_state.qa_index + 1) / total_questions)
+    
+    st.markdown(f'''
+    <div class="card">
+        <span class="category-badge">{current_q["category"]}</span>
+        <p style="color:#2d5a27; font-size:1.2rem; font-weight:bold; margin-top:15px; line-height:1.5;">{current_q["scenario"]}</p>
+    </div>
+    ''', unsafe_allow_html=True)
+    
+    if not st.session_state.qa_answered:
+        for letter, text in current_q["options"].items():
+            if st.button(f"{letter}) {text}", key=f"qa_opt_{letter}", use_container_width=True):
+                st.session_state.qa_selected = letter
+                st.session_state.qa_answered = True
+                if letter == current_q["correct"]:
+                    st.session_state.qa_score += 1
+                st.session_state.qa_history.append({
+                    "question": current_q["scenario"],
+                    "selected": letter,
+                    "correct": current_q["correct"],
+                    "got_it": letter == current_q["correct"]
+                })
+                st.rerun()
+    else:
+        for letter, text in current_q["options"].items():
+            if letter == current_q["correct"]:
+                st.markdown(f'''
+                <div style="background:#d4edda; padding:15px; border-radius:10px; margin:5px 0; border-left:5px solid #28a745;">
+                    <p style="margin:0; color:#2d5a27;"><strong>✅ {letter}) {text}</strong></p>
+                </div>
+                ''', unsafe_allow_html=True)
+            elif letter == st.session_state.qa_selected:
+                st.markdown(f'''
+                <div style="background:#f8d7da; padding:15px; border-radius:10px; margin:5px 0; border-left:5px solid #dc3545;">
+                    <p style="margin:0; color:#721c24;"><strong>❌ {letter}) {text}</strong></p>
+                </div>
+                ''', unsafe_allow_html=True)
+            else:
+                st.markdown(f'''
+                <div style="background:#e9ecef; padding:15px; border-radius:10px; margin:5px 0;">
+                    <p style="margin:0; color:#6c757d;">{letter}) {text}</p>
+                </div>
+                ''', unsafe_allow_html=True)
+        
+        if st.session_state.qa_selected == current_q["correct"]:
+            st.markdown(f'''
+            <div class="card" style="background: linear-gradient(135deg, #d4edda, #c3e6cb); border-top: 5px solid #28a745;">
+                <h4 style="color:#155724; margin-bottom:10px;">🎉 Correct!</h4>
+                <p style="color:#155724; margin:0;">{current_q["explanation"]}</p>
+            </div>
+            ''', unsafe_allow_html=True)
+        else:
+            st.markdown(f'''
+            <div class="card" style="background: linear-gradient(135deg, #f8d7da, #f5c6cb); border-top: 5px solid #dc3545;">
+                <h4 style="color:#721c24; margin-bottom:10px;">Not quite!</h4>
+                <p style="color:#721c24; margin:0;">{current_q["explanation"]}</p>
+            </div>
+            ''', unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.session_state.qa_index < total_questions - 1:
+                if st.button("➡️ Next Question", use_container_width=True):
+                    st.session_state.qa_index += 1
+                    st.session_state.qa_answered = False
+                    st.session_state.qa_selected = None
+                    st.rerun()
+            else:
+                if st.button("🏆 See Final Score", use_container_width=True):
+                    st.session_state.qa_index += 1
+                    st.rerun()
+        with col2:
+            if st.button("🔁 Start Over", use_container_width=True):
+                st.session_state.qa_index = 0
+                st.session_state.qa_score = 0
+                st.session_state.qa_answered = False
+                st.session_state.qa_selected = None
+                st.session_state.qa_history = []
+                st.rerun()
+    
+    if st.session_state.qa_index >= total_questions:
+        final_pct = (st.session_state.qa_score / total_questions) * 100
+        if final_pct >= 90:
+            grade = "🌟 QA Superstar!"
+            grade_color = "#28a745"
+        elif final_pct >= 75:
+            grade = "✅ Solid Performance!"
+            grade_color = "#4a9c3d"
+        elif final_pct >= 60:
+            grade = "📚 Keep Studying!"
+            grade_color = "#f5a623"
+        else:
+            grade = "💪 Time to Review!"
+            grade_color = "#dc3545"
+        
+        st.markdown(f'''
+        <div class="card" style="text-align:center; border-top:6px solid {grade_color};">
+            <h2 style="color:{grade_color}; margin-bottom:10px;">{grade}</h2>
+            <p style="font-size:3rem; color:#2d5a27; font-weight:bold; margin:20px 0;">{st.session_state.qa_score} / {total_questions}</p>
+            <p style="font-size:1.5rem; color:#666;">({final_pct:.0f}%)</p>
+        </div>
+        ''', unsafe_allow_html=True)
+        
+        st.markdown("### 📋 Question Review")
+        for i, h in enumerate(st.session_state.qa_history):
+            icon = "✅" if h["got_it"] else "❌"
+            st.markdown(f"{icon} **Q{i+1}:** {h['question'][:50]}...")
+        
+        if st.button("🎮 Play Again", use_container_width=True):
+            st.session_state.qa_index = 0
+            st.session_state.qa_score = 0
+            st.session_state.qa_answered = False
+            st.session_state.qa_selected = None
+            st.session_state.qa_history = []
+            st.rerun()
