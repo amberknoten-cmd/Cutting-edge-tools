@@ -1171,7 +1171,7 @@ with tab5:
                     st.rerun()
             else:
                 if st.button("🏆 See Final Score", use_container_width=True):
-                    st.session_state.qa_index += 1
+                    st.session_state.qa_show_final = True
                     st.rerun()
         with col2:
             if st.button("🔁 Start Over", use_container_width=True):
@@ -1180,28 +1180,42 @@ with tab5:
                 st.session_state.qa_answered = False
                 st.session_state.qa_selected = None
                 st.session_state.qa_history = []
+                st.session_state.qa_show_final = False
                 st.rerun()
     
-    if st.session_state.qa_index >= total_questions:
+    if 'qa_show_final' not in st.session_state:
+        st.session_state.qa_show_final = False
+    
+    if st.session_state.qa_show_final and len(st.session_state.qa_history) == total_questions:
         final_pct = (st.session_state.qa_score / total_questions) * 100
         if final_pct >= 90:
-            grade = "🌟 QA Superstar!"
+            grade = "QA Superstar!"
             grade_color = "#28a745"
+            spriggle_emoji = "🎓"
+            spriggle_message = "Spriggle is SO proud of you! You're a QA master!"
         elif final_pct >= 75:
-            grade = "✅ Solid Performance!"
+            grade = "Solid Performance!"
             grade_color = "#4a9c3d"
+            spriggle_emoji = "😊"
+            spriggle_message = "Spriggle gives you a thumbs up! Great work!"
         elif final_pct >= 60:
-            grade = "📚 Keep Studying!"
+            grade = "Keep Studying!"
             grade_color = "#f5a623"
+            spriggle_emoji = "📖"
+            spriggle_message = "Spriggle believes in you! A little more practice and you've got this!"
         else:
-            grade = "💪 Time to Review!"
+            grade = "Time to Review!"
             grade_color = "#dc3545"
+            spriggle_emoji = "💪"
+            spriggle_message = "Spriggle says don't give up! Review the guide and try again!"
         
         st.markdown(f'''
         <div class="card" style="text-align:center; border-top:6px solid {grade_color};">
-            <h2 style="color:{grade_color}; margin-bottom:10px;">{grade}</h2>
+            <p style="font-size:5rem; margin:0;">{spriggle_emoji}🌱</p>
+            <h2 style="color:{grade_color}; margin:10px 0;">{grade}</h2>
             <p style="font-size:3rem; color:#2d5a27; font-weight:bold; margin:20px 0;">{st.session_state.qa_score} / {total_questions}</p>
             <p style="font-size:1.5rem; color:#666;">({final_pct:.0f}%)</p>
+            <p style="color:#4a9c3d; font-style:italic; margin-top:15px;">{spriggle_message}</p>
         </div>
         ''', unsafe_allow_html=True)
         
@@ -1216,4 +1230,5 @@ with tab5:
             st.session_state.qa_answered = False
             st.session_state.qa_selected = None
             st.session_state.qa_history = []
+            st.session_state.qa_show_final = False
             st.rerun()
