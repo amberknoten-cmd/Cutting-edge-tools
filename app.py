@@ -43,7 +43,7 @@ grass_guide = {
         "scientific_name": "Cynodon dactylon",
         "nickname": "The Sports Turf Champion",
         "common_locations": "Lawns, athletic fields, golf courses, parks throughout the South",
-        "image_url": "https://placehold.co/400x300/228B22/white?text=BERMUDA%5CnFine+blades%5CnDark+green%5CnDense+growth",
+        "image_file": "images/bermuda.jpg",
         "visual_desc": "🌿 FINE, narrow blades (1/16-1/8 inch) • Dark green color • Very DENSE, carpet-like • Finger-like seed heads",
         "identification": {
             "Blade Width": "Fine to medium (1/16 to 1/8 inch)",
@@ -85,7 +85,7 @@ grass_guide = {
         "scientific_name": "Stenotaphrum secundatum",
         "nickname": "The Shade-Tolerant Carpet",
         "common_locations": "Coastal areas, Florida, Texas Gulf Coast, residential lawns with shade",
-        "image_url": "https://placehold.co/400x300/2E8B57/white?text=ST.+AUGUSTINE%5CnWIDE+blades%5CnBlue-green%5CnRounded+tips",
+        "image_file": "images/st_augustine.jpg",
         "visual_desc": "🌿 WIDE, flat blades (1/4-1/2 inch) - WIDEST of Southern grasses • Blue-green color • Rounded, boat-shaped tips • Coarse texture",
         "identification": {
             "Blade Width": "Wide and flat (1/4 to 1/2 inch) — widest of common Southern grasses",
@@ -127,7 +127,7 @@ grass_guide = {
         "scientific_name": "Zoysia japonica / Zoysia matrella",
         "nickname": "The Barefoot Grass",
         "common_locations": "Transition zone, upper South, residential lawns, golf course fairways",
-        "image_url": "https://placehold.co/400x300/3CB371/white?text=ZOYSIA%5CnStiff+blades%5CnDense+mat%5CnSoft+underfoot",
+        "image_file": "images/zoysia.jpg",
         "visual_desc": "🌿 Fine-medium STIFF blades that stand upright • Medium-dark green • Creates very DENSE mat • Soft, carpet-like feel",
         "identification": {
             "Blade Width": "Fine to medium depending on variety",
@@ -169,7 +169,7 @@ grass_guide = {
         "scientific_name": "Eremochloa ophiuroides",
         "nickname": "The Lazy Man's Grass",
         "common_locations": "Southeast US, sandy/acidic soils, low-maintenance residential lawns",
-        "image_url": "https://placehold.co/400x300/9ACD32/white?text=CENTIPEDE%5CnLIGHT+green%5CnMedium+texture%5CnSlow+growing",
+        "image_file": "images/centipede.jpg",
         "visual_desc": "🌿 Medium width blades • LIGHT apple-green color (distinctive!) • Slower, less aggressive • Single spike seed head like a centipede",
         "identification": {
             "Blade Width": "Medium (about 1/4 inch)",
@@ -211,7 +211,7 @@ grass_guide = {
         "scientific_name": "Paspalum notatum",
         "nickname": "The Tough Survivor",
         "common_locations": "Florida, Gulf Coast, roadsides, pastures, low-maintenance areas, sandy soils",
-        "image_url": "https://placehold.co/400x300/6B8E23/white?text=BAHIA%5CnY-shaped+seeds%5CnCoarse+texture%5CnOpen+growth",
+        "image_file": "images/bahia.jpg",
         "visual_desc": "🌿 COARSE, tough blades • Light-medium green • Distinctive Y-SHAPED or V-shaped seed heads (easy to spot!) • Open growth habit",
         "identification": {
             "Blade Width": "Coarse, medium width",
@@ -899,7 +899,7 @@ with tab7:
             col1, col2 = st.columns([1, 2])
             with col1:
                 try:
-                    st.image(g["image_url"], use_container_width=True)
+                    st.image(g["image_file"], use_container_width=True)
                 except:
                     st.markdown(f'<div style="background:#e8f5e6; padding:30px; border-radius:10px; text-align:center;"><p style="font-size:2rem; margin:0;">🌿</p></div>', unsafe_allow_html=True)
             with col2:
@@ -929,9 +929,9 @@ with tab7:
         col_img, col_desc = st.columns([1, 1])
         with col_img:
             try:
-                st.image(g["image_url"], use_container_width=True)
+                st.image(g["image_file"], use_container_width=True)
             except:
-                pass
+                st.markdown(f'<div style="background:#e8f5e6; padding:40px; border-radius:10px; text-align:center;"><p style="font-size:3rem; margin:0;">🌿</p><p style="color:#2d5a27;">Image: {g["image_file"]}</p></div>', unsafe_allow_html=True)
         with col_desc:
             st.markdown(f'''
             <div style="background:#e8f5e6; padding:20px; border-radius:15px; height:100%;">
