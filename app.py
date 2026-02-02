@@ -43,6 +43,8 @@ grass_guide = {
         "scientific_name": "Cynodon dactylon",
         "nickname": "The Sports Turf Champion",
         "common_locations": "Lawns, athletic fields, golf courses, parks throughout the South",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Cynodon_dactylon.jpg/800px-Cynodon_dactylon.jpg",
+        "image_caption": "Bermuda grass showing its fine, dense blades and characteristic growth pattern",
         "identification": {
             "Blade Width": "Fine to medium (1/16 to 1/8 inch)",
             "Blade Color": "Dark green to medium green",
@@ -83,6 +85,8 @@ grass_guide = {
         "scientific_name": "Stenotaphrum secundatum",
         "nickname": "The Shade-Tolerant Carpet",
         "common_locations": "Coastal areas, Florida, Texas Gulf Coast, residential lawns with shade",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Stenotaphrum_secundatum.jpg/800px-Stenotaphrum_secundatum.jpg",
+        "image_caption": "St. Augustine grass with its distinctive wide, flat blades and rounded tips",
         "identification": {
             "Blade Width": "Wide and flat (1/4 to 1/2 inch) — widest of common Southern grasses",
             "Blade Color": "Blue-green to dark green",
@@ -123,6 +127,8 @@ grass_guide = {
         "scientific_name": "Zoysia japonica / Zoysia matrella",
         "nickname": "The Barefoot Grass",
         "common_locations": "Transition zone, upper South, residential lawns, golf course fairways",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Zoysia_grass.jpg/800px-Zoysia_grass.jpg",
+        "image_caption": "Zoysia grass showing its dense, carpet-like growth habit",
         "identification": {
             "Blade Width": "Fine to medium depending on variety",
             "Blade Color": "Medium to dark green",
@@ -163,6 +169,8 @@ grass_guide = {
         "scientific_name": "Eremochloa ophiuroides",
         "nickname": "The Lazy Man's Grass",
         "common_locations": "Southeast US, sandy/acidic soils, low-maintenance residential lawns",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Eremochloa_ophiuroides_%28Centipedegrass%29.jpg/800px-Eremochloa_ophiuroides_%28Centipedegrass%29.jpg",
+        "image_caption": "Centipede grass with its characteristic light green color and medium texture",
         "identification": {
             "Blade Width": "Medium (about 1/4 inch)",
             "Blade Color": "Light green to yellow-green (distinctive lighter color)",
@@ -203,6 +211,8 @@ grass_guide = {
         "scientific_name": "Paspalum notatum",
         "nickname": "The Tough Survivor",
         "common_locations": "Florida, Gulf Coast, roadsides, pastures, low-maintenance areas, sandy soils",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Paspalum_notatum_%28bahiagrass%29.jpg/800px-Paspalum_notatum_%28bahiagrass%29.jpg",
+        "image_caption": "Bahia grass showing its distinctive Y-shaped seed heads",
         "identification": {
             "Blade Width": "Coarse, medium width",
             "Blade Color": "Light to medium green",
@@ -886,18 +896,23 @@ with tab7:
         st.markdown("### 🔍 Quick ID Tips")
         for name in grass_names:
             g = grass_guide[name]
-            st.markdown(f'''
-            <div class="card" style="border-left-color: #4a9c3d;">
-                <h4 style="color:#2d5a27; margin:0;">{name}</h4>
-                <p style="color:#666; font-style:italic; margin:5px 0;">{g["nickname"]}</p>
-                <p style="color:#2d5a27;"><strong>Key Identifier:</strong> {g["identification"]["Key Identifier"]}</p>
-            </div>
-            ''', unsafe_allow_html=True)
+            col1, col2 = st.columns([1, 2])
+            with col1:
+                st.image(g["image_url"], use_container_width=True)
+            with col2:
+                st.markdown(f'''
+                <div style="padding:10px;">
+                    <h4 style="color:#2d5a27; margin:0;">{name}</h4>
+                    <p style="color:#666; font-style:italic; margin:5px 0;">{g["nickname"]}</p>
+                    <p style="color:#2d5a27;"><strong>Key Identifier:</strong> {g["identification"]["Key Identifier"]}</p>
+                </div>
+                ''', unsafe_allow_html=True)
+            st.markdown("---")
     
     else:
         g = grass_guide[selected_grass]
         
-        # Header
+        # Header with image
         st.markdown(f'''
         <div class="grass-card">
             <p class="grass-title">{selected_grass}</p>
@@ -905,6 +920,10 @@ with tab7:
             <p style="color:#666; margin:0;"><strong>Common Locations:</strong> {g["common_locations"]}</p>
         </div>
         ''', unsafe_allow_html=True)
+        
+        # Display grass image
+        st.markdown("### 📸 Visual Reference")
+        st.image(g["image_url"], caption=g["image_caption"], use_container_width=True)
         
         # Identification
         st.markdown("### 🔍 How to Identify")
