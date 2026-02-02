@@ -43,8 +43,8 @@ grass_guide = {
         "scientific_name": "Cynodon dactylon",
         "nickname": "The Sports Turf Champion",
         "common_locations": "Lawns, athletic fields, golf courses, parks throughout the South",
-        "image_url": "https://images.pexels.com/photos/1423600/pexels-photo-1423600.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "image_credit": "Fine-textured, dark green grass with dense growth",
+        "image_url": "https://placehold.co/400x300/228B22/white?text=BERMUDA%5CnFine+blades%5CnDark+green%5CnDense+growth",
+        "visual_desc": "🌿 FINE, narrow blades (1/16-1/8 inch) • Dark green color • Very DENSE, carpet-like • Finger-like seed heads",
         "identification": {
             "Blade Width": "Fine to medium (1/16 to 1/8 inch)",
             "Blade Color": "Dark green to medium green",
@@ -85,8 +85,8 @@ grass_guide = {
         "scientific_name": "Stenotaphrum secundatum",
         "nickname": "The Shade-Tolerant Carpet",
         "common_locations": "Coastal areas, Florida, Texas Gulf Coast, residential lawns with shade",
-        "image_url": "https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "image_credit": "Wide, flat blades with rounded tips and blue-green color",
+        "image_url": "https://placehold.co/400x300/2E8B57/white?text=ST.+AUGUSTINE%5CnWIDE+blades%5CnBlue-green%5CnRounded+tips",
+        "visual_desc": "🌿 WIDE, flat blades (1/4-1/2 inch) - WIDEST of Southern grasses • Blue-green color • Rounded, boat-shaped tips • Coarse texture",
         "identification": {
             "Blade Width": "Wide and flat (1/4 to 1/2 inch) — widest of common Southern grasses",
             "Blade Color": "Blue-green to dark green",
@@ -127,8 +127,8 @@ grass_guide = {
         "scientific_name": "Zoysia japonica / Zoysia matrella",
         "nickname": "The Barefoot Grass",
         "common_locations": "Transition zone, upper South, residential lawns, golf course fairways",
-        "image_url": "https://images.pexels.com/photos/1423601/pexels-photo-1423601.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "image_credit": "Dense, soft, carpet-like texture with stiff blades",
+        "image_url": "https://placehold.co/400x300/3CB371/white?text=ZOYSIA%5CnStiff+blades%5CnDense+mat%5CnSoft+underfoot",
+        "visual_desc": "🌿 Fine-medium STIFF blades that stand upright • Medium-dark green • Creates very DENSE mat • Soft, carpet-like feel",
         "identification": {
             "Blade Width": "Fine to medium depending on variety",
             "Blade Color": "Medium to dark green",
@@ -169,8 +169,8 @@ grass_guide = {
         "scientific_name": "Eremochloa ophiuroides",
         "nickname": "The Lazy Man's Grass",
         "common_locations": "Southeast US, sandy/acidic soils, low-maintenance residential lawns",
-        "image_url": "https://images.pexels.com/photos/1055379/pexels-photo-1055379.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "image_credit": "Light apple-green color with medium coarse texture",
+        "image_url": "https://placehold.co/400x300/9ACD32/white?text=CENTIPEDE%5CnLIGHT+green%5CnMedium+texture%5CnSlow+growing",
+        "visual_desc": "🌿 Medium width blades • LIGHT apple-green color (distinctive!) • Slower, less aggressive • Single spike seed head like a centipede",
         "identification": {
             "Blade Width": "Medium (about 1/4 inch)",
             "Blade Color": "Light green to yellow-green (distinctive lighter color)",
@@ -211,8 +211,8 @@ grass_guide = {
         "scientific_name": "Paspalum notatum",
         "nickname": "The Tough Survivor",
         "common_locations": "Florida, Gulf Coast, roadsides, pastures, low-maintenance areas, sandy soils",
-        "image_url": "https://images.pexels.com/photos/1767434/pexels-photo-1767434.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "image_credit": "Coarse texture with distinctive Y-shaped seed heads",
+        "image_url": "https://placehold.co/400x300/6B8E23/white?text=BAHIA%5CnY-shaped+seeds%5CnCoarse+texture%5CnOpen+growth",
+        "visual_desc": "🌿 COARSE, tough blades • Light-medium green • Distinctive Y-SHAPED or V-shaped seed heads (easy to spot!) • Open growth habit",
         "identification": {
             "Blade Width": "Coarse, medium width",
             "Blade Color": "Light to medium green",
@@ -901,18 +901,13 @@ with tab7:
                 try:
                     st.image(g["image_url"], use_container_width=True)
                 except:
-                    st.markdown(f'''
-                    <div style="background:#e8f5e6; padding:20px; border-radius:10px; text-align:center;">
-                        <p style="font-size:2rem; margin:0;">🌿</p>
-                    </div>
-                    ''', unsafe_allow_html=True)
+                    st.markdown(f'<div style="background:#e8f5e6; padding:30px; border-radius:10px; text-align:center;"><p style="font-size:2rem; margin:0;">🌿</p></div>', unsafe_allow_html=True)
             with col2:
                 st.markdown(f'''
                 <div style="padding:10px;">
                     <h4 style="color:#2d5a27; margin:0;">{name}</h4>
                     <p style="color:#666; font-style:italic; margin:5px 0;">{g["nickname"]}</p>
-                    <p style="color:#4a9c3d; font-size:0.85rem; margin:5px 0;"><strong>Look for:</strong> {g["image_credit"]}</p>
-                    <p style="color:#2d5a27;"><strong>Key ID:</strong> {g["identification"]["Key Identifier"]}</p>
+                    <p style="color:#2d5a27; font-size:0.95rem; line-height:1.6; margin:10px 0;">{g["visual_desc"]}</p>
                 </div>
                 ''', unsafe_allow_html=True)
             st.markdown("---")
@@ -929,16 +924,19 @@ with tab7:
         </div>
         ''', unsafe_allow_html=True)
         
-        # Display grass image with error handling
-        st.markdown("### 📸 Visual Reference")
-        try:
-            st.image(g["image_url"], caption=g["image_credit"], use_container_width=True)
-        except:
+        # Display grass visual identification
+        st.markdown("### 📸 Visual Identification")
+        col_img, col_desc = st.columns([1, 1])
+        with col_img:
+            try:
+                st.image(g["image_url"], use_container_width=True)
+            except:
+                pass
+        with col_desc:
             st.markdown(f'''
-            <div style="background:#e8f5e6; padding:20px; border-radius:10px; text-align:center;">
-                <p style="font-size:3rem; margin:0;">🌿</p>
-                <p style="color:#2d5a27; font-weight:bold;">{selected_grass}</p>
-                <p style="color:#666; font-style:italic;">{g["image_credit"]}</p>
+            <div style="background:#e8f5e6; padding:20px; border-radius:15px; height:100%;">
+                <p style="color:#2d5a27; font-size:1.1rem; font-weight:bold; margin-bottom:15px;">👁️ What to Look For:</p>
+                <p style="color:#2d5a27; font-size:1rem; line-height:1.8;">{g["visual_desc"]}</p>
             </div>
             ''', unsafe_allow_html=True)
         
