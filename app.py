@@ -142,6 +142,11 @@ disposition_wizard = [
     {"question": "Was there a system or property issue?", "options": {"Address not recognized in system": "Broken Address", "Outside our service area (no price, all red)": "Out Of Area", "We service the area but no crews (price but all red)": "Insufficient Capacity", "Property over 160k sq ft / 3.67 acres": "Oversized Lot", "Can't use app / no email / too complex": "Order Complexity", "No system issues — sales conversation": "next_5"}},
     {"question": "What was the main reason they didn't close?", "options": {"Already hired someone else": "Already Hired A Provider", "Overall price too high": "Price", "Objected to long grass fee": "LGF - Long Grass Fee", "Wants service less often than monthly": "Frequency Minimum", "Won't commit to 3-cut minimum": "Minimum Cuts Requirement", "Needs it within 48 hours, won't wait": "Less Than 48 Hour Turn-Around", "Wants specific arrival time": "Arrival Time", "Wants in-person quote first": "No In-Person Quote", "Doesn't want subcontractors": "Rejected Subcontracting", "Wants services we don't offer": "Services Not Offered", "Property manager — couldn't close": "Property Manager", "Payment issue — next step": "next_6"}},
     {"question": "What was the payment issue?", "options": {"Refused any card (wants cash/check)": "Rejected CC", "Won't give card on phone, will sign up online": "Rejected CC - Online Signup", "Only has prepaid card / card declined": "Pre Paid Card", "Payment link failed but completed after retries": "PF Closed Won", "Payment link failed — lost the sale": "PF Closed Loss"}}
+]
+
+SCRIPT_URL = "https://script.google.com/a/macros/lawnstarter.com/s/AKfycbyEGIP63SoZrL5XAAzfpY7NfaThcMIf_R36_YebHHsRkIeUWGfCmzVRHxI1OVs_WFNv/exec"
+
+st.markdown('<div class="main-header"><h1>🌱 The <span class="highlight">Cutting Edge</span></h1></div>', unsafe_allow_html=True)
 qa_questions = [
     {"category": "Greeting & Opening", "scenario": "A customer calls in. What's the FIRST thing you should do?", "options": {"A": "Ask for their address right away to check availability", "B": "Give the standard greeting and ask what they're looking for", "C": "Tell them about current promotions", "D": "Ask if they've used LawnStarter before"}, "correct": "B", "explanation": "Always start with the standard greeting: 'Hello, this is [NAME] and thank you for calling LawnStarter. Would you mind sharing a bit about what you're looking for?' This sets a professional tone and lets the customer lead with their needs."},
     {"category": "Greeting & Opening", "scenario": "You're calling a customer who was texting with a colleague. What's the correct SMS greeting?", "options": {"A": "Hi, I'm calling about your lawn service inquiry", "B": "Hi, this is ___ with LawnStarter, you were just texting my colleague and they asked me to give you a call. How can I help?", "C": "Hello, is this the homeowner?", "D": "Hi, are you still interested in lawn service?"}, "correct": "B", "explanation": "The SMS greeting should reference that they were texting a colleague: 'Hi, this is ___ with LawnStarter, you were just texting my colleague and they asked me to give you a call. How can I help?' This provides context and a smooth transition."},
@@ -189,3 +194,288 @@ qa_questions = [
     {"category": "Not DM", "scenario": "If the DM is NOT available, what should you ask the non-DM?", "options": {"A": "When will they be back?", "B": "Does the DM have specific needs or concerns?", "C": "Can they make the decision instead?", "D": "Should we call back tomorrow?"}, "correct": "B", "explanation": "Ask: 'Does [DM] have specific needs or concerns?' This helps you understand what's important to the actual decision maker so you can address those points and educate on value."},
     {"category": "Trust & Safety Fee", "scenario": "A customer asks 'Why do I have to pay the Trust & Safety fee?' What should you say?", "options": {"A": "It's just an extra charge we add", "B": "It helps cover pro vetting and mediate potential property damage — most companies roll it into price, we itemize for transparency", "C": "You can skip it if you want", "D": "It's a government requirement"}, "correct": "B", "explanation": "The T&S fee covers the pro vetting process and helps mediate potential property damage. Most companies roll it into their price — we itemize it for transparency. Most local providers don't provide any coverage at all!"},
     {"category": "Frequency Objections", "scenario": "A customer says 'I don't want to be locked into a schedule.' What should you emphasize?", "options": {"A": "You have to commit to the schedule", "B": "Flexible options: reschedule, skip, pause — manage via app or message your pro — can change frequency as needed", "C": "Just cancel if you don't like it", "D": "We'll call you before each service"}, "correct": "B", "explanation": "Emphasize flexibility: reschedule, skip, or pause options. Manage everything on the app or communicate with your pro directly. Can change frequency as needed. Regular maintenance = healthier lawn!"},
+    {"category": "Subcontractor Objection", "scenario": "A customer says 'I don't want to work with subcontractors.' What should you tell them?", "options": {"A": "We don't use subcontractors", "B": "They're local vetted pros, our platform helps their business, there's a quality check, you can change pro anytime", "C": "You have no choice", "D": "We'll send our employees instead"}, "correct": "B", "explanation": "Address the concern: They're local, vetted pros. Our platform helps local pros with their business. Explain the quality check. You can change pro anytime. It's a short-term commitment. This reframes 'subcontractor' positively."},
+    {"category": "Order Recap", "scenario": "What must you include in the order recap?", "options": {"A": "Just the price", "B": "Frequency, price, T&S fee, two-day window with days and dates, and all additional services with their details", "C": "Just the service date", "D": "Only the customer's name"}, "correct": "B", "explanation": "Full recap includes: frequency (weekly/biweekly/monthly), price, $3.99 T&S fee, two-day window with days AND dates, plus all additional services with their frequency expectations."},
+    {"category": "Scope & Frequency", "scenario": "What two things should you ask about scope and frequency?", "options": {"A": "Just ask about price", "B": "What area needs service (full, front, back) and how often (weekly, biweekly, monthly)", "C": "Only ask about the front yard", "D": "Ask what their neighbor pays"}, "correct": "B", "explanation": "Ask about scope: What area needs service? Full yard, front, back? And frequency: How often? Weekly, biweekly, monthly (when available)? If they already told you, just confirm rather than asking again."}
+]
+
+faq_data = {
+    "Pricing & Fees": [{"question": "What's included in the base mowing price?", "answer": "Mowing, trimming edges, and blowing off paved surfaces.", "phrasing": "Your mowing service covers the full package — we'll mow the lawn, trim up the edges, and blow off any grass clippings from your driveway and walkways."}, {"question": "What is the Trust & Safety fee?", "answer": "$3.99 fee that covers pro vetting and helps mediate potential property damage. Most companies roll it into their price; we itemize for transparency.", "phrasing": "There's a small Trust and Safety fee that helps us vet all our pros and covers you in case of any property issues. Most companies just hide it in their price — we like to be upfront about it."}, {"question": "Are taxes included in the price?", "answer": "No. Taxes are based on local laws and will be added based on your area.", "phrasing": "The price I quoted doesn't include taxes — those vary depending on where you're located, so they'll be calculated based on your local rates."}, {"question": "Why are your prices higher than some competitors?", "answer": "Price includes insured professionals, quality guarantee, 3-day billing delay, dedicated support team, and platform convenience.", "phrasing": "Our price reflects what you're actually getting — verified, insured pros, a quality guarantee, and a whole support team behind you. Plus you don't pay until three days after service, so you can make sure everything looks good first."}, {"question": "Can I get a discount?", "answer": "Check for qualified promotions. Don't lead with discounts — lead with value first.", "phrasing": "Let me see what we have available for you! But honestly, most people find the service pays for itself with the convenience and quality. Let me tell you what you're getting..."}],
+    "Scheduling & Service Windows": [{"question": "How does the two-day service window work?", "answer": "Service is scheduled within a two-day window (e.g., Wednesday or Thursday). Always provide both days AND dates.", "phrasing": "We schedule within a two-day window — so for example, your crew would come either Wednesday the 20th or Thursday the 21st. It gives us flexibility for weather and routing."}, {"question": "Can I get an exact time for when the crew will arrive?", "answer": "No exact times. The two-day window allows for weather and routing adjustments. Service is contactless, so no need to be home.", "phrasing": "We can't promise an exact time since routes can shift with weather and other jobs, but the good news is you don't need to be home! It's totally contactless."}, {"question": "Why do I have to wait 48 hours for the first service?", "answer": "Routes are planned in advance and it gives time to find a pro. This is still the fastest turnaround in the industry.", "phrasing": "The 48-hour window lets us get you matched with a great pro and fit you into the route. It's actually the fastest turnaround you'll find — most companies take way longer."}, {"question": "I need service today — can you make an exception?", "answer": "Can't guarantee same-day, but once assigned they can message their pro through the app to ask about earlier availability.", "phrasing": "I wish I could guarantee today, but here's what I can do — once you're set up and a pro is assigned, you can message them directly through the app and ask if they can squeeze you in sooner. It's worth a shot!"}, {"question": "What if I need to be home to provide access?", "answer": "They can leave gate codes or instructions in notes, and message the pro in advance once assigned.", "phrasing": "No problem! You can leave any gate codes or special instructions in your account, and once your pro is assigned you can message them directly to coordinate."}, {"question": "What if it rains on my service day?", "answer": "The two-day window allows for weather adjustments. Pro will come on the alternate day if needed.", "phrasing": "That's exactly why we have the two-day window — if weather's bad on day one, they'll come on day two. You're covered either way."}],
+    "3-Cut Minimum": [{"question": "Why is there a 3-cut minimum?", "answer": "It's a short-term commitment that allows the pro to learn your lawn and preferences. Single mows elsewhere often cost the same.", "phrasing": "It's really just a short-term commitment — three cuts. And honestly, single mows from other companies usually cost about the same anyway. Plus your pro gets to know your lawn and your preferences."}, {"question": "Can I get just one mow?", "answer": "No, but probe to find out WHY first. Address their specific situation (selling, seasonal, HOA, etc.) before discussing the minimum.", "phrasing": "I hear you — can I ask what's prompting the need for just one? [Then address their specific situation]"}, {"question": "I'm selling my house and only need one mow.", "answer": "Identify timeline, note single mows elsewhere cost the same, emphasize short-term commitment and urgency to get on schedule.", "phrasing": "Oh congrats! When's the closing? The thing is, even one-time mows from other places usually run about the same price. And with just a 3-cut commitment, you can get on our schedule now and not worry about the lawn while you're dealing with everything else."}, {"question": "I got an HOA notice — I just need it done once.", "answer": "Recurring service helps restore lawn health, can use as backup if it happens again, create urgency to get on schedule.", "phrasing": "I totally get the stress of that! Here's the thing — if it got bad enough for a notice, regular service will help get it back in shape and keep it there. And if this ever happens again, you've got us as backup. Let's get you on the schedule now before it gets worse."}, {"question": "Can I cancel after the 3 cuts?", "answer": "Yes! Just let us know 48 hours before the next scheduled service. Very flexible.", "phrasing": "Absolutely! After your three cuts, if you want to stop or take a break, just let us know 48 hours before your next scheduled service. Super flexible."}],
+    "Payment & Billing": [{"question": "When do I get charged?", "answer": "3 days after service is completed. This allows time to address any issues before being charged.", "phrasing": "You won't be charged until three days after the service is done. That gives you time to check everything out and let us know if anything needs fixing before your card is charged."}, {"question": "Why do I need a card on file?", "answer": "Allows contactless service (no need to be home), 3-day billing delay for quality assurance, and notifications when service is complete.", "phrasing": "It just makes everything easier — you don't have to be home, we don't charge until three days after so you can inspect the work first, and you'll get notifications as soon as the job's done."}, {"question": "Can I pay with cash or check?", "answer": "No, only major credit/debit cards. Benefits: no need to be home, 3-day billing delay, bank protection.", "phrasing": "We only take cards, but honestly it's a benefit for you — you don't have to be home to pay anyone, and your bank has your back if there's ever any issue. Plus we don't charge until three days after."}, {"question": "Is my card information secure?", "answer": "Yes, we use Stripe which is highly secure and used by Walmart, Amazon, and millions of businesses.", "phrasing": "Totally secure — we use Stripe, which is the same payment system that huge companies like Amazon and Walmart use. Millions of transactions every day."}, {"question": "I don't like recurring charges.", "answer": "We only charge if a service is completed. Notifications are sent when service is done. 3-day delay before charge.", "phrasing": "I get that — but we only charge when a service is actually completed. You'll get a notification as soon as it's done, and you have three full days before we charge anything. So you're always in control."}, {"question": "How do I add my payment info?", "answer": "A secure link is sent via text and email. Agents never take card info verbally.", "phrasing": "I'm going to send you a secure link by text and email — just click it and enter your card info there. We don't take payment info over the phone for security reasons."}],
+    "Long Grass Fee": [{"question": "What is the long grass fee?", "answer": "Industry standard fee if grass is over 9 inches — up to 100% of base mowing price. Over 15 inches requires a quote approval before servicing.", "phrasing": "It's an industry standard thing — if the grass is over 9 inches, there may be an additional fee up to double the base price because of the extra time and equipment wear. I'm mentioning it now so there are no surprises."}, {"question": "Why do I have to pay extra for long grass?", "answer": "Compensates pros for additional work. Overgrown lawns take more time and cause more wear on equipment.", "phrasing": "Overgrown lawns take a lot more time and are harder on the equipment, so we make sure the pros are compensated fairly for that extra work."}, {"question": "How do I know you won't just charge me unfairly?", "answer": "Pros must submit photos, you get an email immediately when assessed, 3-day quality check before charging, can dispute with photo review.", "phrasing": "Great question — the pro has to submit photos if they claim long grass. You'll get an email right away, and you have three days before you're charged to dispute it. We'll review the photos with you."}, {"question": "What if my grass is over 15 inches?", "answer": "The crew will submit a quote for approval BEFORE servicing. No surprises.", "phrasing": "If it's really overgrown — over 15 inches — the crew will send you a quote to approve before they even start. So you'll know exactly what to expect."}, {"question": "Will I always get charged the long grass fee?", "answer": "Usually only on first cut if lawn has been neglected. Regular service keeps it under control after that.", "phrasing": "Usually it only comes up on the first visit if the lawn's been let go for a while. Once you're on regular service, it stays under control and you won't see that fee."}],
+    "Cross-Selling Services": [{"question": "What's included in Lawn Treatment?", "answer": "Fertilizer, weed control, and pre-emergent. 7-8 rounds per year, every 4-6 weeks. Not charged until service is complete.", "phrasing": "It's a full lawn health package — fertilizer to green things up, weed control for what's already there, and pre-emergent to stop new weeds before they start. Usually 7 or 8 rounds a year for best results."}, {"question": "Is Lawn Treatment available in New York?", "answer": "Only fertilization is available in NY — no weed control or pre-emergent.", "phrasing": "In New York we currently just offer the fertilization part — the weed control isn't available in your area yet."}, {"question": "Why should I add Lawn Treatment?", "answer": "Weed-free lawns can reduce mowing frequency and costs. Weeds grow first and make lawn look overgrown faster.", "phrasing": "Here's a bonus — keeping weeds under control actually means your lawn grows more evenly, so you might not need mowing as often. Weeds are usually what make a lawn look overgrown fast."}, {"question": "What if there are leaves on my lawn?", "answer": "Ask if there are leaves/twigs. Offer IQ Cleanup quote. Set expectation: excessive leaves may require cleanup quote before mowing.", "phrasing": "Are there any leaves or debris on the lawn right now? If so, I can get you a quote for cleanup so there are no surprises. If the crew shows up and there's a lot, they'd need to quote it before mowing anyway."}, {"question": "What other services do you offer?", "answer": "Bush trimming, flower bed weeding, leaf removal, and in some areas: grub treatment, mosquito prevention, mulching, gutter cleaning, tree trimming, sod installation, etc.", "phrasing": "Beyond mowing, we do bush trimming, flower bed weeding, leaf removal — all the stuff that makes your yard look great. Depending on your area, we might also have things like mulching, tree trimming, and more."}, {"question": "The customer said no to an add-on. What do I do?", "answer": "Don't push. Remind them they can add services anytime via the app or portal, or contact support.", "phrasing": "No problem at all! Just so you know, you can always add any of these services later right through the app whenever you need them."}],
+    "Property Details": [{"question": "What if I have pets outside?", "answer": "Pets should be secured during service. Request that pet waste be picked up beforehand. Excessive waste will be mowed around.", "phrasing": "Just make sure any pets are secured when the crew comes by, and if you could pick up any pet waste beforehand that's super helpful. If there's a lot, they'll just mow around it."}, {"question": "What if I have a gate?", "answer": "Ask if it's wide enough for a riding mower. Get gate codes and special instructions. Include in Special Neighborhood Access field.", "phrasing": "Is the gate wide enough for a mower to fit through? And is there a code or anything special they need to know to get in? I'll make sure it's all in your account."}, {"question": "Do I need to be home for the service?", "answer": "No! Service is contactless. Leave any special instructions or gate codes in your account.", "phrasing": "Nope, you don't need to be home at all! It's totally contactless. Just leave any instructions or codes in your account and you're good to go."}, {"question": "What areas can be serviced?", "answer": "Full yard, front only, or back only. Ask the customer what area needs service.", "phrasing": "Did you need the full yard done, or just the front or back? We can do whatever works for you."}, {"question": "What if I have special instructions for the crew?", "answer": "Include in Special Neighborhood Access field. Keep notes concise and clear. Can also message pro directly once assigned.", "phrasing": "I'll add that to your account notes, and once you're matched with a pro you can also message them directly through the app to go over any details."}],
+    "Cancellation & Rescheduling": [{"question": "How do I reschedule or skip a service?", "answer": "Let us know 48 hours before the next scheduled cut. Can manage via app or by contacting support.", "phrasing": "Just give us a heads up at least 48 hours before your next scheduled service. You can do it right in the app or reach out to support."}, {"question": "Can I pause my service?", "answer": "Yes! Flexible options include reschedule, skip, or pause. Can change frequency as needed.", "phrasing": "Absolutely — you can skip, pause, or reschedule anytime. Just let us know 48 hours ahead. Totally flexible."}, {"question": "What if I want to cancel completely?", "answer": "Can cancel with 48-hour notice before next service. Short-term commitment after 3-cut minimum is met.", "phrasing": "Once you've completed your three services, you can cancel anytime — just let us know 48 hours before your next scheduled cut."}, {"question": "What's the 48-hour policy?", "answer": "Any changes to schedule must be made at least 48 hours before the next service. Applies to rescheduling, skipping, pausing, or canceling.", "phrasing": "We just ask for 48 hours notice before any scheduled service if you need to change, skip, or cancel. That gives us time to adjust the routes."}],
+    "App & Account": [{"question": "How do I access my account?", "answer": "Via mobile app (link sent by text) or web portal. Email is username, temporary password sent via text.", "phrasing": "You'll get a text with a link to download the app and a temporary password. Your email is your username. You can also use the website if you prefer."}, {"question": "What can I do in the app?", "answer": "Request additional services, make account changes, message your pro, contact support, view service history.", "phrasing": "Pretty much everything — you can add services, make changes to your account, message your pro directly, and it's the fastest way to reach support if you need anything."}, {"question": "What if I only have a landline?", "answer": "Go to website, enter email, click forgot password, receive temp password via email, change password once logged in.", "phrasing": "No problem — just go to the website, enter your email, and click 'forgot password.' You'll get a temporary password by email, then just update it once you're in."}, {"question": "How do I message my pro?", "answer": "Through the app once a pro is assigned and picks up the job.", "phrasing": "Once a pro picks up your job, you'll be able to message them directly through the app. Great for coordinating access or asking questions."}, {"question": "How do I contact support?", "answer": "Through the app or web portal — fastest method. Support team available to help.", "phrasing": "The fastest way is right through the app or website — there's a support option and the team is super responsive."}],
+    "Quality & Trust": [{"question": "How do I know the pro will do a good job?", "answer": "All pros are vetted and insured. 3-day quality check before billing. Dedicated quality team. Can change pro anytime.", "phrasing": "Every pro is vetted and insured before they can work with us. Plus you have three days to check the work before you're charged, and we have a whole team dedicated to fixing anything that's not right. And if you just don't click with your pro, you can request a different one."}, {"question": "What if I'm not happy with the service?", "answer": "3-day quality check before charging. Report issues and they'll be fixed before payment. Dedicated quality team.", "phrasing": "You have three full days after service to look everything over. If anything's not right, let us know and we'll send someone to fix it — all before you're ever charged."}, {"question": "Are the pros insured?", "answer": "Yes, all pros are verified and insured. Trust & Safety fee helps cover this.", "phrasing": "Every single one. They're all verified and insured before they can service any properties with us."}, {"question": "Can I change my pro?", "answer": "Yes, anytime. Just contact support or request through the app.", "phrasing": "Absolutely — if you're not happy or just want someone different, just let us know through the app and we'll get you matched with someone new."}, {"question": "I've never heard of your company.", "answer": "Encourage them to Google reviews. Mention no payment until 3 days after service, so they can see quality firsthand.", "phrasing": "That's fair! If you Google us, you'll see tons of great reviews from real customers. And since you don't pay until three days after service, you get to see the quality for yourself before any money changes hands."}],
+    "Not Decision Maker": [{"question": "What if I'm not speaking with the decision maker?", "answer": "Probe if DM is available. If not, ask about DM's specific needs/concerns. Educate on value. ALWAYS offer to hold a spot (required).", "phrasing": "Is [the homeowner/decision maker] available by chance? [If no] No worries! Do they have any specific concerns I could help address? Either way, I can hold a spot on the schedule so they don't miss out."}, {"question": "The person wants to check with their spouse first.", "answer": "Totally fine. Offer to hold a spot. Mention no charge until after service and can cancel 48 hours before.", "phrasing": "Totally understand! Let me hold a spot for you while you chat with them — there's no charge until after service anyway, and you can cancel up to 48 hours before if you decide it's not for you."}, {"question": "Do I need to hold a spot for non-DM calls?", "answer": "YES — holding a spot is REQUIRED for all non-DM calls.", "phrasing": "I'd love to hold a spot for you so the decision maker doesn't lose out on availability. No commitment — just keeps your options open!"}],
+    "Objection Handling": [{"question": "What's the right way to handle objections?", "answer": "1) Acknowledge or show understanding, 2) Clarify or probe to find out why, 3) Address with value (not policies). Never lead with limitations.", "phrasing": "First, let the customer know you hear them. Then ask questions to understand what's really going on. Finally, address their actual concern with how we can help — not just what our policies are."}, {"question": "Customer says 'That's too expensive.'", "answer": "Acknowledge, probe why (comparing to someone else? budget concern?), then address with value — insurance, quality guarantee, 3-day billing, support team.", "phrasing": "I hear you — price is definitely a factor. Can I ask, is it more than you expected or are you comparing to another quote? [Then address] What you're getting is insured pros, a quality guarantee, and you don't pay until three days after when you've seen the work."}, {"question": "Customer wants to think about it.", "answer": "Acknowledge, probe what's holding them back, offer to hold a spot (no commitment, can cancel 48 hrs before).", "phrasing": "Totally fair! Is there something specific you're weighing, or just want time to decide? Either way, I can hold a spot for you — no commitment, and you can cancel up to 48 hours before if you change your mind."}, {"question": "Customer says they'll call back later.", "answer": "Acknowledge, create urgency (availability fills up), offer to hold spot with no commitment.", "phrasing": "No problem! Just keep in mind availability can fill up, so if you want I can grab a spot for you now — no commitment, just holds your place. Then you can cancel if you find something else."}]
+}
+
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder", "🎯 Attach Builder", "🎮 QA Game Show", "🔍 FAQ Search", "🗺️ Upsell Map", "📋 Disposition Guide"])
+
+with tab1:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Identify the WHY, then match the right response!</p>', unsafe_allow_html=True)
+    if 'card_index' not in st.session_state: st.session_state.card_index = 0
+    if 'show_answer' not in st.session_state: st.session_state.show_answer = False
+    if 'completed' not in st.session_state: st.session_state.completed = []
+    categories = ["All"] + list(set([o["category"] for o in objections]))
+    selected_cat = st.selectbox("Filter by category:", categories)
+    filtered = objections if selected_cat == "All" else [o for o in objections if o["category"] == selected_cat]
+    if st.session_state.card_index >= len(filtered): st.session_state.card_index = 0
+    current = filtered[st.session_state.card_index]
+    progress = len([c for c in st.session_state.completed if c in [o["id"] for o in filtered]])
+    st.progress(progress / len(filtered))
+    st.markdown(f'<p style="text-align:right;color:#e8f5e6;">{progress} / {len(filtered)} reviewed</p>', unsafe_allow_html=True)
+    st.markdown(f'<div class="card"><span class="category-badge">{current["category"]}</span><span style="float:right;color:#888;">{st.session_state.card_index + 1} of {len(filtered)}</span><div class="surface-text">"{current["surface"]}"</div><p class="reason-label">🎯 THE REAL REASON</p><p class="reason-text">{current["reason"]}</p></div>', unsafe_allow_html=True)
+    if st.session_state.show_answer:
+        st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #e8f5e6, #d4edda);"><p class="approach-label">✅ BEST APPROACH</p><p class="approach-text">{current["rebuttal"]}</p></div>', unsafe_allow_html=True)
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("🔄 Flip Card", use_container_width=True): st.session_state.show_answer = not st.session_state.show_answer; st.rerun()
+    with col2:
+        if st.button("➡️ Next Card", use_container_width=True):
+            if current["id"] not in st.session_state.completed: st.session_state.completed.append(current["id"])
+            st.session_state.card_index = (st.session_state.card_index + 1) % len(filtered); st.session_state.show_answer = False; st.rerun()
+    with col3:
+        if st.button("🔁 Reset", use_container_width=True): st.session_state.completed = []; st.session_state.card_index = 0; st.session_state.show_answer = False; st.rerun()
+
+with tab2:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Track dispositions. Find patterns. Coach smarter.</p>', unsafe_allow_html=True)
+    st.markdown('<div class="card"><h3 style="color:#2d5a27;">Log a Loss</h3>', unsafe_allow_html=True)
+    agent_name = st.text_input("Agent Name"); agent_id = st.text_input("Agent ID")
+    disposition = st.selectbox("Disposition", ["Select disposition..."] + dispositions)
+    if st.button("📤 Log & Send to Sheet", use_container_width=True):
+        if agent_name and agent_id and disposition != "Select disposition...":
+            timestamp = datetime.now().strftime("%m/%d/%Y, %I:%M:%S %p")
+            params = urllib.parse.urlencode({"agentName": agent_name, "agentId": agent_id, "disposition": disposition, "timestamp": timestamp})
+            full_url = f"{SCRIPT_URL}?{params}"
+            st.markdown(f'<div class="success-box">✓ Logged: {disposition}</div>', unsafe_allow_html=True)
+            st.markdown(f'<a href="{full_url}" target="_blank"><button style="width:100%;padding:10px;margin-top:10px;background:#4a9c3d;color:white;border:none;border-radius:10px;font-weight:bold;cursor:pointer;">Click here to send to Google Sheet</button></a>', unsafe_allow_html=True)
+        else: st.warning("Please fill in all fields!")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+with tab3:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Build your own approach — your words, your style!</p>', unsafe_allow_html=True)
+    st.markdown('<div class="card"><h3 style="color:#2d5a27;">🛠️ Build Your Guide</h3>', unsafe_allow_html=True)
+    scenario = st.selectbox("What objection are you handling?", ["Select a scenario..."] + list(guide_scenarios.keys()))
+    if scenario != "Select a scenario...":
+        data = guide_scenarios[scenario]
+        st.markdown("---"); st.markdown("**Step 1: How do you want to open?**")
+        opening_style = st.radio("Choose your style:", list(data["openings"].keys()), horizontal=True, key="guide_opening")
+        st.markdown("---"); st.markdown("**Step 2: Which points do you want to hit?**")
+        selected_points = []
+        for pn, pt in data["points"].items():
+            if st.checkbox(pn, key=f"guide_{scenario}_{pn}"): selected_points.append(pt)
+        st.markdown("---"); st.markdown("**Step 3: How do you want to close?**")
+        close_style = st.radio("Choose your close:", list(data["closes"].keys()), horizontal=True, key="guide_close")
+        if selected_points:
+            st.markdown("---"); st.markdown("### 📋 Your Custom Guide")
+            gh = f'<div class="guide-output"><div class="guide-section"><p class="guide-label">🎯 Your Opening</p><p class="guide-text">"{data["openings"][opening_style]}"</p></div><div class="guide-section"><p class="guide-label">💡 Key Points to Hit</p><ul style="color:#2d5a27; line-height: 1.8;">'
+            for p in selected_points: gh += f'<li style="margin-bottom:10px;">{p}</li>'
+            gh += f'</ul></div><div class="guide-section"><p class="guide-label">🎬 Your Close</p><p class="guide-text">"{data["closes"][close_style]}"</p></div></div>'
+            st.markdown(gh, unsafe_allow_html=True)
+        else: st.info("👆 Select at least one key point to see your guide!")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+with tab4:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Build your attach pitch — your words, your style!</p>', unsafe_allow_html=True)
+    st.markdown('<div class="card"><h3 style="color:#2d5a27;">🎯 Build Your Attach Pitch</h3>', unsafe_allow_html=True)
+    attach_service = st.selectbox("What service do you want to attach?", ["Select a service..."] + list(attach_guides.keys()))
+    if attach_service != "Select a service...":
+        adata = attach_guides[attach_service]
+        td = " • ".join([f'"{t}"' for t in adata["triggers"]])
+        st.markdown(f'<div style="background:#e8f5e6; padding:12px; border-radius:10px; margin:10px 0;"><p style="color:#2d5a27; margin:0; font-size:0.85rem;"><strong>🎧 Listen for:</strong> {td}</p></div>', unsafe_allow_html=True)
+        st.markdown("---"); st.markdown("**Step 1: How do you want to open?**")
+        attach_opening = st.radio("Choose your style:", list(adata["openings"].keys()), horizontal=True, key="attach_opening")
+        st.markdown("---"); st.markdown("**Step 2: Which points do you want to hit?**")
+        sap = []
+        for pn, pt in adata["points"].items():
+            if st.checkbox(pn, key=f"attach_{attach_service}_{pn}"): sap.append(pt)
+        st.markdown("---"); st.markdown("**Step 3: How do you want to close?**")
+        attach_close = st.radio("Choose your close:", list(adata["closes"].keys()), horizontal=True, key="attach_close")
+        if sap:
+            st.markdown("---"); st.markdown("### 📋 Your Attach Pitch")
+            ah = f'<div class="guide-output"><div class="guide-section"><p class="guide-label">🎯 Your Opening</p><p class="guide-text">"{adata["openings"][attach_opening]}"</p></div><div class="guide-section"><p class="guide-label">💡 Key Points to Hit</p><ul style="color:#2d5a27; line-height: 1.8;">'
+            for p in sap: ah += f'<li style="margin-bottom:10px;">{p}</li>'
+            ah += f'</ul></div><div class="guide-section"><p class="guide-label">🎬 Your Close</p><p class="guide-text">"{adata["closes"][attach_close]}"</p></div></div>'
+            st.markdown(ah, unsafe_allow_html=True)
+            st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none; margin-top:15px;"><h4 style="color:#2d5a27; margin-bottom:10px;">💡 Pro Tip for {attach_service}</h4><p style="color:#2d5a27; margin:0;">{adata["pro_tip"]}</p></div>', unsafe_allow_html=True)
+        else: st.info("👆 Select at least one key point to see your pitch!")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+with tab5:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Test your QA knowledge — game show style! 🎯</p>', unsafe_allow_html=True)
+    if 'qa_index' not in st.session_state: st.session_state.qa_index = 0
+    if 'qa_score' not in st.session_state: st.session_state.qa_score = 0
+    if 'qa_answered' not in st.session_state: st.session_state.qa_answered = False
+    if 'qa_selected' not in st.session_state: st.session_state.qa_selected = None
+    if 'qa_history' not in st.session_state: st.session_state.qa_history = []
+    if 'qa_show_final' not in st.session_state: st.session_state.qa_show_final = False
+    total_questions = len(qa_questions); current_q = qa_questions[st.session_state.qa_index]
+    st.markdown(f'<div style="display:flex; justify-content:space-between; margin-bottom:15px;"><div style="background:#f5a623; padding:10px 20px; border-radius:10px;"><p style="margin:0; color:#2d5a27; font-weight:bold;">🏆 Score: {st.session_state.qa_score}/{len(st.session_state.qa_history)}</p></div><div style="background:rgba(255,255,255,0.2); padding:10px 20px; border-radius:10px;"><p style="margin:0; color:white; font-weight:bold;">Question {st.session_state.qa_index + 1} of {total_questions}</p></div></div>', unsafe_allow_html=True)
+    st.progress((st.session_state.qa_index + 1) / total_questions)
+    st.markdown(f'<div class="card"><span class="category-badge">{current_q["category"]}</span><p style="color:#2d5a27; font-size:1.2rem; font-weight:bold; margin-top:15px; line-height:1.5;">{current_q["scenario"]}</p></div>', unsafe_allow_html=True)
+    if not st.session_state.qa_answered:
+        for letter, text in current_q["options"].items():
+            if st.button(f"{letter}) {text}", key=f"qa_opt_{letter}", use_container_width=True):
+                st.session_state.qa_selected = letter; st.session_state.qa_answered = True
+                if letter == current_q["correct"]: st.session_state.qa_score += 1
+                st.session_state.qa_history.append({"question": current_q["scenario"], "selected": letter, "correct": current_q["correct"], "got_it": letter == current_q["correct"]}); st.rerun()
+    else:
+        for letter, text in current_q["options"].items():
+            if letter == current_q["correct"]: st.markdown(f'<div style="background:#d4edda; padding:15px; border-radius:10px; margin:5px 0; border-left:5px solid #28a745;"><p style="margin:0; color:#2d5a27;"><strong>✅ {letter}) {text}</strong></p></div>', unsafe_allow_html=True)
+            elif letter == st.session_state.qa_selected: st.markdown(f'<div style="background:#f8d7da; padding:15px; border-radius:10px; margin:5px 0; border-left:5px solid #dc3545;"><p style="margin:0; color:#721c24;"><strong>❌ {letter}) {text}</strong></p></div>', unsafe_allow_html=True)
+            else: st.markdown(f'<div style="background:#e9ecef; padding:15px; border-radius:10px; margin:5px 0;"><p style="margin:0; color:#6c757d;">{letter}) {text}</p></div>', unsafe_allow_html=True)
+        if st.session_state.qa_selected == current_q["correct"]: st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #d4edda, #c3e6cb); border-top: 5px solid #28a745;"><h4 style="color:#155724; margin-bottom:10px;">🎉 Correct!</h4><p style="color:#155724; margin:0;">{current_q["explanation"]}</p></div>', unsafe_allow_html=True)
+        else: st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #f8d7da, #f5c6cb); border-top: 5px solid #dc3545;"><h4 style="color:#721c24; margin-bottom:10px;">Not quite!</h4><p style="color:#721c24; margin:0;">{current_q["explanation"]}</p></div>', unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.session_state.qa_index < total_questions - 1:
+                if st.button("➡️ Next Question", use_container_width=True): st.session_state.qa_index += 1; st.session_state.qa_answered = False; st.session_state.qa_selected = None; st.rerun()
+            else:
+                if st.button("🏆 See Final Score", use_container_width=True): st.session_state.qa_show_final = True; st.rerun()
+        with col2:
+            if st.button("🔁 Start Over", use_container_width=True): st.session_state.qa_index = 0; st.session_state.qa_score = 0; st.session_state.qa_answered = False; st.session_state.qa_selected = None; st.session_state.qa_history = []; st.session_state.qa_show_final = False; st.rerun()
+    if st.session_state.qa_show_final and len(st.session_state.qa_history) == total_questions:
+        fp = (st.session_state.qa_score / total_questions) * 100
+        if fp >= 90: grade, gc, se, sm = "QA Superstar!", "#28a745", "🎓", "Spriggle is SO proud of you! You're a QA master!"
+        elif fp >= 75: grade, gc, se, sm = "Solid Performance!", "#4a9c3d", "😊", "Spriggle gives you a thumbs up! Great work!"
+        elif fp >= 60: grade, gc, se, sm = "Keep Studying!", "#f5a623", "📖", "Spriggle believes in you! A little more practice and you've got this!"
+        else: grade, gc, se, sm = "Time to Review!", "#dc3545", "💪", "Spriggle says don't give up! Review the guide and try again!"
+        st.markdown(f'<div class="card" style="text-align:center; border-top:6px solid {gc};"><p style="font-size:5rem; margin:0;">{se}🌱</p><h2 style="color:{gc}; margin:10px 0;">{grade}</h2><p style="font-size:3rem; color:#2d5a27; font-weight:bold; margin:20px 0;">{st.session_state.qa_score} / {total_questions}</p><p style="font-size:1.5rem; color:#666;">({fp:.0f}%)</p><p style="color:#4a9c3d; font-style:italic; margin-top:15px;">{sm}</p></div>', unsafe_allow_html=True)
+        st.markdown("### 📋 Question Review")
+        for i, h in enumerate(st.session_state.qa_history): st.markdown(f"{'✅' if h['got_it'] else '❌'} **Q{i+1}:** {h['question'][:50]}...")
+        if st.button("🎮 Play Again", use_container_width=True): st.session_state.qa_index = 0; st.session_state.qa_score = 0; st.session_state.qa_answered = False; st.session_state.qa_selected = None; st.session_state.qa_history = []; st.session_state.qa_show_final = False; st.rerun()
+
+with tab6:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Find answers fast — search or browse by category!</p>', unsafe_allow_html=True)
+    search_query = st.text_input("🔍 Search FAQs", placeholder="Type keywords like 'long grass' or 'payment'...")
+    st.markdown("**Or browse by category:**")
+    faq_categories = ["All Categories"] + list(faq_data.keys())
+    selected_faq_cat = st.selectbox("Select a category", faq_categories, label_visibility="collapsed")
+    def search_faqs(query):
+        results = []; ql = query.lower()
+        for cat, faqs in faq_data.items():
+            for faq in faqs:
+                if ql in faq["question"].lower() or ql in faq["answer"].lower() or ql in faq["phrasing"].lower(): results.append({"category": cat, **faq})
+        return results
+    if search_query:
+        results = search_faqs(search_query)
+        if results:
+            st.markdown(f'<p style="color:#e8f5e6;">Found {len(results)} result(s) for "{search_query}"</p>', unsafe_allow_html=True)
+            for r in results:
+                with st.expander(f"📌 {r['question']}"):
+                    st.markdown(f'<div style="background:#e8f5e6; padding:10px; border-radius:8px; margin-bottom:10px;"><p style="margin:0; color:#666; font-size:0.8rem;">Category: {r["category"]}</p></div>', unsafe_allow_html=True)
+                    st.markdown(f"**📋 The Facts:**"); st.markdown(f"{r['answer']}"); st.markdown(f"**💬 How to say it (in your own words):**")
+                    st.markdown(f'<div style="background:#fffef5; padding:15px; border-radius:10px; border-left:4px solid #4a9c3d;"><em>"{r["phrasing"]}"</em></div>', unsafe_allow_html=True)
+        else: st.warning(f'No results found for "{search_query}". Try different keywords!')
+    elif selected_faq_cat != "All Categories":
+        faqs = faq_data[selected_faq_cat]
+        st.markdown(f'<p style="color:#e8f5e6;">{len(faqs)} questions in {selected_faq_cat}</p>', unsafe_allow_html=True)
+        for faq in faqs:
+            with st.expander(f"📌 {faq['question']}"):
+                st.markdown(f"**📋 The Facts:**"); st.markdown(f"{faq['answer']}"); st.markdown(f"**💬 How to say it (in your own words):**")
+                st.markdown(f'<div style="background:#fffef5; padding:15px; border-radius:10px; border-left:4px solid #4a9c3d;"><em>"{faq["phrasing"]}"</em></div>', unsafe_allow_html=True)
+    else:
+        st.markdown('<p style="color:#e8f5e6;">Browse all categories:</p>', unsafe_allow_html=True)
+        for cat, faqs in faq_data.items():
+            st.markdown(f"### {cat}")
+            for faq in faqs:
+                with st.expander(f"📌 {faq['question']}"):
+                    st.markdown(f"**📋 The Facts:**"); st.markdown(f"{faq['answer']}"); st.markdown(f"**💬 How to say it (in your own words):**")
+                    st.markdown(f'<div style="background:#fffef5; padding:15px; border-radius:10px; border-left:4px solid #4a9c3d;"><em>"{faq["phrasing"]}"</em></div>', unsafe_allow_html=True)
+    st.markdown('<div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none; margin-top:20px;"><h4 style="color:#2d5a27; margin-bottom:10px;">💡 Remember</h4><p style="color:#2d5a27; margin:0;">The phrasing examples are just guides — don\'t memorize them word-for-word! Use the key points and put them in YOUR voice so it sounds natural and conversational.</p></div>', unsafe_allow_html=True)
+
+with tab7:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">See every upsell opportunity from any starting service! 🗺️</p>', unsafe_allow_html=True)
+    st.markdown('<div class="card" style="text-align:center; border-top:6px solid #f5a623;"><h3 style="color:#2d5a27; margin-bottom:5px;">🗺️ Upsell Pathway Map</h3><p style="color:#666; margin:0;">Select the service the customer called about → see natural bridges to every other service</p></div>', unsafe_allow_html=True)
+    entry_service = st.selectbox("What did the customer call about?", ["Select the starting service..."] + list(upsell_pathways.keys()), key="upsell_entry")
+    if entry_service != "Select the starting service...":
+        pathway = upsell_pathways[entry_service]
+        st.markdown(f'<div style="background:rgba(255,255,255,0.15); padding:15px; border-radius:12px; text-align:center; margin:10px 0;"><p style="color:white; font-size:1.3rem; margin:0;">{pathway["icon"]} <strong>{entry_service}</strong> → Where can we go?</p><p style="color:#d4edda; font-size:0.9rem; margin:5px 0 0 0;">{pathway["desc"]}</p></div>', unsafe_allow_html=True)
+        st.markdown('<div style="display:flex; justify-content:center; gap:20px; margin:10px 0;"><span style="color:#28a745; font-weight:bold;">🟢 Strong</span><span style="color:#f5a623; font-weight:bold;">🟡 Moderate</span><span style="color:#ffc107; font-weight:bold;">🟠 Seasonal</span><span style="color:#6c757d; font-weight:bold;">⚪ Light</span></div>', unsafe_allow_html=True)
+        pn_list = list(pathway["paths"].keys()); pl = [f'{pathway["paths"][p]["icon"]} {p} ({pathway["paths"][p]["strength"]})' for p in pn_list]
+        spl = st.radio("Choose an upsell path:", pl, horizontal=True, key="upsell_path_select")
+        spn = pn_list[pl.index(spl)]; path = pathway["paths"][spn]
+        sc_map = {"Strong": "#28a745", "Moderate": "#f5a623", "Seasonal": "#ffc107", "Light": "#6c757d"}; sc = sc_map.get(path["strength"], "#666")
+        st.markdown(f'<div class="card" style="border-top:6px solid {sc};"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;"><h3 style="color:#2d5a27; margin:0;">{pathway["icon"]} {entry_service} → {path["icon"]} {spn}</h3><span style="background:{sc}; color:white; padding:5px 15px; border-radius:20px; font-size:0.8rem; font-weight:bold;">{path["strength"]} Connection</span></div><p style="color:#666; font-style:italic; margin:0;">{path["why_it_works"]}</p></div>', unsafe_allow_html=True)
+        th = "".join([f'<li style="margin-bottom:8px; color:#2d5a27;">🎧 <em>"{t}"</em></li>' for t in path["listen_for"]])
+        st.markdown(f'<div class="card"><p class="guide-label">🎧 Listen For These Cues</p><ul style="list-style:none; padding-left:0; line-height:1.8;">{th}</ul></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #e8f5e6, #d4edda);"><p class="guide-label">🌉 Your Conversation Bridge</p><p style="color:#2d5a27; font-size:1.15rem; line-height:1.6; font-style:italic;">"{path["bridge"]}"</p></div>', unsafe_allow_html=True)
+        ph = "".join([f'<li style="margin-bottom:10px; color:#2d5a27;">{p}</li>' for p in path["key_points"]])
+        st.markdown(f'<div class="card"><p class="guide-label">💡 Key Points to Hit</p><ul style="line-height:1.8; padding-left:20px;">{ph}</ul></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top:none;"><p style="color:#2d5a27; font-weight:bold; font-size:0.8rem; text-transform:uppercase; margin-bottom:8px;">🎬 Close the Bridge</p><p style="color:#2d5a27; font-size:1.1rem; line-height:1.6; font-style:italic;">"{path["transition_line"]}"</p></div>', unsafe_allow_html=True)
+        st.markdown("---")
+        st.markdown(f'<div style="text-align:center; margin:15px 0;"><p style="color:#e8f5e6; font-weight:bold;">📋 All Paths from {entry_service}</p></div>', unsafe_allow_html=True)
+        scols = st.columns(len(pathway["paths"]))
+        for i, (pname, pdata) in enumerate(pathway["paths"].items()):
+            with scols[i]:
+                scc = sc_map.get(pdata["strength"], "#666"); iss = "border:3px solid white;" if pname == spn else ""
+                st.markdown(f'<div style="background:rgba(255,255,255,0.15); padding:15px; border-radius:12px; text-align:center; {iss}"><p style="font-size:2rem; margin:0;">{pdata["icon"]}</p><p style="color:white; font-weight:bold; margin:5px 0; font-size:0.9rem;">{pname}</p><span style="background:{scc}; color:white; padding:3px 10px; border-radius:10px; font-size:0.7rem;">{pdata["strength"]}</span></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card" style="margin-top:20px;"><h4 style="color:#2d5a27;">💡 Upsell Pro Tips</h4><p style="color:#2d5a27; line-height:1.8;"><strong>1. Don\'t pitch — bridge.</strong> The best upsells feel like natural suggestions, not add-on sales.<br><strong>2. Listen first.</strong> Wait for cues before suggesting. If they mention it, you\'re solving a problem — not selling.<br><strong>3. "While we\'re already there..."</strong> is the most powerful phrase in upselling. Convenience beats price every time.<br><strong>4. One at a time.</strong> Don\'t overwhelm with every option. Pick the strongest path based on what they\'ve said.<br><strong>5. If they say no, leave the door open.</strong> "No problem! You can always add it later through the app."</p></div>', unsafe_allow_html=True)
+
+with tab8:
+    st.markdown('<p style="text-align:center;color:#e8f5e6;">Never pick the wrong disposition again! 📋</p>', unsafe_allow_html=True)
+    st.markdown('<div class="card" style="text-align:center; border-top:6px solid #f5a623;"><h3 style="color:#2d5a27; margin-bottom:5px;">📋 Disposition Guide</h3><p style="color:#666; margin:0;">Search, browse, or use the wizard to find the right disposition every time</p></div>', unsafe_allow_html=True)
+    dispo_mode = st.radio("How do you want to find the right disposition?", ["🔍 Search & Browse", "🧙 Walk Me Through It (Wizard)"], horizontal=True, key="dispo_mode")
+    if dispo_mode == "🔍 Search & Browse":
+        dispo_search = st.text_input("🔍 Search dispositions", placeholder="Type keywords like 'cash', 'voicemail', 'HOA', 'subcontractor'...", key="dispo_search")
+        dispo_cats = ["All Categories"] + sorted(list(set([v["category"] for v in disposition_guide.values()])))
+        sel_dc = st.selectbox("Or browse by category:", dispo_cats, key="dispo_cat")
+        def search_dispos(q):
+            res = []; ql = q.lower()
+            for n, d in disposition_guide.items():
+                s = f"{n} {d['short']} {d['when']} {' '.join(d['examples'])} {' '.join(d.get('not_this',[]))} {d['category']}".lower()
+                if ql in s: res.append((n, d))
+            return res
+        if dispo_search:
+            res = search_dispos(dispo_search)
+            if res: st.markdown(f'<p style="color:#e8f5e6;">Found {len(res)} result(s) for "{dispo_search}"</p>', unsafe_allow_html=True)
+            else: st.warning(f'No results for "{dispo_search}". Try different keywords!')
+            dts = res
+        elif sel_dc != "All Categories": dts = [(n, d) for n, d in disposition_guide.items() if d["category"] == sel_dc]; st.markdown(f'<p style="color:#e8f5e6;">{len(dts)} dispositions in {sel_dc}</p>', unsafe_allow_html=True)
+        else: dts = list(disposition_guide.items())
+        for name, d in dts:
+            with st.expander(f"{d['icon']} {name} — {d['short']}"):
+                if name == "Next Spring": st.markdown('<div style="background:#f8d7da; padding:12px; border-radius:10px; margin-bottom:15px;"><p style="color:#721c24; font-weight:bold; margin:0;">⚠️ DO NOT USE — Use Callback instead</p></div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="background:#e8f5e6; padding:10px; border-radius:8px; margin-bottom:10px;"><p style="margin:0; color:#666; font-size:0.8rem;">Category: {d["category"]}</p></div>', unsafe_allow_html=True)
+                st.markdown(f"**📋 When to use:**"); st.markdown(f"{d['when']}")
+                st.markdown(f"**💬 Customer might say:**")
+                for ex in d["examples"]: st.markdown(f'<div style="background:#fffef5; padding:10px; border-radius:8px; border-left:4px solid #4a9c3d; margin:5px 0;"><em>"{ex}"</em></div>', unsafe_allow_html=True)
+                if d.get("not_this"):
+                    st.markdown(f"**🚫 NOT this disposition if:**")
+                    for nt in d["not_this"]: st.markdown(f'<div style="background:#fff3cd; padding:10px; border-radius:8px; border-left:4px solid #f5a623; margin:5px 0;">{nt}</div>', unsafe_allow_html=True)
+                if d.get("confused_with"): st.markdown(f"**🔄 Commonly confused with:** {', '.join(d['confused_with'])}")
+    else:
+        st.markdown('<div class="card"><h4 style="color:#2d5a27;">🧙 Disposition Wizard</h4><p style="color:#666;">Answer a few questions about what happened on the call and I\'ll tell you the right disposition.</p></div>', unsafe_allow_html=True)
+        if 'wizard_step' not in st.session_state: st.session_state.wizard_step = 0
+        if 'wizard_answers' not in st.session_state: st.session_state.wizard_answers = []
+        if 'wizard_result' not in st.session_state: st.session_state.wizard_result = None
+        if st.session_state.wizard_result:
+            rn = st.session_state.wizard_result; rd = disposition_guide.get(rn, {})
+            st.markdown(f'<div class="card" style="border-top:6px solid #28a745; text-align:center;"><p style="font-size:3rem; margin:0;">{rd.get("icon","📋")}</p><h2 style="color:#2d5a27; margin:10px 0;">Use: {rn}</h2><p style="color:#666; font-size:1.1rem;">{rd.get("short","")}</p></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #e8f5e6, #d4edda);"><p class="guide-label">📋 When to use</p><p style="color:#2d5a27; font-size:1.05rem; line-height:1.6;">{rd.get("when","")}</p></div>', unsafe_allow_html=True)
+            if rd.get("not_this"):
+                st.markdown(f'<div class="card"><p class="guide-label">🚫 Double-check — NOT this if:</p>', unsafe_allow_html=True)
+                for nt in rd["not_this"]: st.markdown(f'<div style="background:#fff3cd; padding:10px; border-radius:8px; border-left:4px solid #f5a623; margin:5px 0;">{nt}</div>', unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+            if st.button("🔁 Start Over", key="wizard_restart", use_container_width=True): st.session_state.wizard_step = 0; st.session_state.wizard_answers = []; st.session_state.wizard_result = None; st.rerun()
+        else:
+            cs = disposition_wizard[st.session_state.wizard_step]
+            st.progress(st.session_state.wizard_step / len(disposition_wizard))
+            st.markdown(f'<p style="color:#e8f5e6; text-align:center;">Step {st.session_state.wizard_step + 1} of {len(disposition_wizard)}</p>', unsafe_allow_html=True)
+            st.markdown(f'<div class="card"><h3 style="color:#2d5a27;">{cs["question"]}</h3></div>', unsafe_allow_html=True)
+            for ot, orr in cs["options"].items():
+                if st.button(ot, key=f"wizard_{st.session_state.wizard_step}_{ot}", use_container_width=True):
+                    st.session_state.wizard_answers.append(ot)
+                    if orr.startswith("next_"): st.session_state.wizard_step = int(orr.split("_")[1]) - 1; st.rerun()
+                    else: st.session_state.wizard_result = orr; st.rerun()
+            if st.session_state.wizard_step > 0:
+                if st.button("⬅️ Go Back", key="wizard_back", use_container_width=True):
+                    st.session_state.wizard_step = max(0, st.session_state.wizard_step - 1)
+                    if st.session_state.wizard_answers: st.session_state.wizard_answers.pop()
+                    st.rerun()
+    st.markdown('<div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none; margin-top:20px;"><h4 style="color:#2d5a27; margin-bottom:10px;">💡 Quick Reminders</h4><p style="color:#2d5a27; line-height:1.8; margin:0;"><strong>⚠️ Never use "Next Spring"</strong> — use Callback instead and note the timeframe.<br><strong>🔄 Frequency ≠ Minimum Cuts:</strong> Frequency = how often (less than monthly). Minimum Cuts = how many total (less than 3).<br><strong>📍 Broken Address ≠ Out Of Area:</strong> Broken = system can\'t find it. Out Of Area = system finds it but we don\'t service there.<br><strong>🚫 Out Of Area ≠ Insufficient Capacity:</strong> Out Of Area = no price available. Insufficient Capacity = price but no crews.<br><strong>💳 Rejected CC ≠ Online Signup:</strong> Rejected CC = won\'t use a card at all. Online Signup = won\'t give it on the phone but will do it online.<br><strong>🤔 Always try to overcome the objection BEFORE using a loss disposition!</strong></p></div>', unsafe_allow_html=True)
