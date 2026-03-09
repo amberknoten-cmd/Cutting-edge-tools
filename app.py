@@ -22,235 +22,8 @@ st.markdown("""
     .guide-section { margin-bottom: 15px; }
     .guide-label { color: #4a9c3d; font-weight: bold; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 5px; }
     .guide-text { color: #2d5a27; font-size: 1.1rem; line-height: 1.6; }
-    .grass-card { background: #fffef5; border-radius: 20px; padding: 25px; margin: 15px 0; border-left: 6px solid #4a9c3d; }
-    .grass-title { color: #2d5a27; font-size: 1.5rem; font-weight: bold; margin-bottom: 5px; }
-    .grass-subtitle { color: #666; font-style: italic; margin-bottom: 15px; }
-    .grass-section-title { color: #4a9c3d; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; margin: 15px 0 8px 0; }
-    .grass-info { color: #2d5a27; line-height: 1.6; }
-    .id-box { background: #e8f5e6; border-radius: 10px; padding: 12px; margin: 10px 0; }
-    .care-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
-    .care-item { background: #f8f9fa; padding: 10px; border-radius: 8px; }
-    .care-label { color: #4a9c3d; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
-    .care-value { color: #2d5a27; font-weight: bold; }
-    .problem-item { background: #fff3cd; padding: 10px; border-radius: 8px; margin: 5px 0; border-left: 3px solid #f5a623; }
-    .seasonal-item { background: #e8f5e6; padding: 10px; border-radius: 8px; margin: 5px 0; }
 </style>
 """, unsafe_allow_html=True)
-
-# Grass data for the guide
-grass_guide = {
-    "Bermuda": {
-        "scientific_name": "Cynodon dactylon",
-        "nickname": "The Sports Turf Champion",
-        "common_locations": "Lawns, athletic fields, golf courses, parks throughout the South",
-        "image_file": "images/bermuda.jpg",
-        "visual_desc": "🌿 FINE, narrow blades (1/16-1/8 inch) • Dark green color • Very DENSE, carpet-like • Finger-like seed heads",
-        "identification": {
-            "Blade Width": "Fine to medium (1/16 to 1/8 inch)",
-            "Blade Color": "Dark green to medium green",
-            "Texture": "Fine, dense, carpet-like",
-            "Growth Habit": "Aggressive spreader via stolons and rhizomes",
-            "Seed Head": "3-7 finger-like spikes at stem tip",
-            "Key Identifier": "Forms a very dense, tight turf; recovers quickly from damage"
-        },
-        "care": {
-            "Mowing Height": "0.5 - 2 inches (lower for hybrid varieties)",
-            "Mowing Frequency": "Every 3-7 days during peak growth",
-            "Watering": "1-1.25 inches per week; deep, infrequent watering preferred",
-            "Sunlight": "Full sun required (minimum 6-8 hours daily)",
-            "Soil pH": "6.0 - 7.0",
-            "Fertilizer": "4-6 lbs nitrogen per 1,000 sq ft annually, applied monthly during growing season"
-        },
-        "seasonal": {
-            "Spring": "Green-up begins when soil temps hit 65°F. Start mowing low, apply pre-emergent, begin fertilization after full green-up.",
-            "Summer": "Peak growth period. Mow frequently, water deeply, fertilize monthly. Watch for drought stress.",
-            "Fall": "Slow fertilization 6 weeks before first frost. Raise mowing height slightly. Apply potassium for winter hardiness.",
-            "Winter": "Goes dormant and turns brown/tan. Reduce mowing. Overseeding with ryegrass optional for green color."
-        },
-        "problems": {
-            "Large Patch (Brown Patch)": "Circular brown patches in spring/fall. Reduce nitrogen, improve drainage, fungicide if severe.",
-            "Bermuda Mites": "Causes tufted, witch's broom growth. Apply miticide, maintain lawn health.",
-            "Dollar Spot": "Small tan spots 2-4 inches. Increase nitrogen, water in morning, fungicide if needed.",
-            "Scalping": "Brown patches from cutting too low. Raise mower height gradually."
-        },
-        "pro_tips": [
-            "Bermuda is extremely aggressive and will invade flower beds — use edging!",
-            "Hybrid varieties (like Tifway 419) need lower mowing than common Bermuda",
-            "Brown winter dormancy is normal — avoid overwatering during this time",
-            "Best grass for high-traffic areas and quick recovery from damage"
-        ],
-        "image_url": "https://images.unsplash.com/photo-1558635924-5e6f217e5168?w=400"
-    },
-    "St. Augustine": {
-        "scientific_name": "Stenotaphrum secundatum",
-        "nickname": "The Shade-Tolerant Carpet",
-        "common_locations": "Coastal areas, Florida, Texas Gulf Coast, residential lawns with shade",
-        "image_file": "images/st_augustine.jpg",
-        "visual_desc": "🌿 WIDE, flat blades (1/4-1/2 inch) - WIDEST of Southern grasses • Blue-green color • Rounded, boat-shaped tips • Coarse texture",
-        "identification": {
-            "Blade Width": "Wide and flat (1/4 to 1/2 inch) — widest of common Southern grasses",
-            "Blade Color": "Blue-green to dark green",
-            "Texture": "Coarse, thick, carpet-like",
-            "Growth Habit": "Spreads via stolons only (no rhizomes)",
-            "Blade Tip": "Rounded, boat-shaped tip (distinctive!)",
-            "Key Identifier": "Thick, wide blades with rounded tips; dense, spongy feel underfoot"
-        },
-        "care": {
-            "Mowing Height": "2.5 - 4 inches (higher in shade)",
-            "Mowing Frequency": "Every 5-14 days depending on growth",
-            "Watering": "1-1.5 inches per week; more drought-sensitive than Bermuda",
-            "Sunlight": "4-6 hours minimum; best shade tolerance of warm-season grasses",
-            "Soil pH": "6.0 - 7.5",
-            "Fertilizer": "2-4 lbs nitrogen per 1,000 sq ft annually; avoid over-fertilizing"
-        },
-        "seasonal": {
-            "Spring": "Green-up at soil temps around 60°F. Apply pre-emergent early, begin light fertilization after green-up.",
-            "Summer": "Active growth. Water consistently, mow at proper height, watch for chinch bugs in hot, dry areas.",
-            "Fall": "Reduce fertilization. Last application 6 weeks before frost. Maintain mowing height.",
-            "Winter": "Goes dormant in colder areas, stays semi-green in South Florida. Reduce watering significantly."
-        },
-        "problems": {
-            "Chinch Bugs": "Most common pest! Causes yellow then brown patches, especially in sunny, dry spots. Treat with insecticide.",
-            "Gray Leaf Spot": "Diamond-shaped gray spots on blades. Reduce nitrogen, avoid evening watering, fungicide if severe.",
-            "Take-All Root Rot": "Yellow/brown patches with rotted roots. Improve drainage, reduce stress, apply fungicide.",
-            "SAD (St. Augustine Decline)": "Viral disease causing yellow mottling. No cure — remove and replace affected areas."
-        },
-        "pro_tips": [
-            "Never remove more than 1/3 of blade height at once — St. Augustine scalps easily",
-            "Best grass for shaded Southern lawns, but won't survive deep shade",
-            "Doesn't tolerate heavy foot traffic well — not ideal for play areas",
-            "Floratam variety is most common but has less cold tolerance"
-        ],
-        "image_url": "https://images.unsplash.com/photo-1558635924-5e6f217e5168?w=400"
-    },
-    "Zoysia": {
-        "scientific_name": "Zoysia japonica / Zoysia matrella",
-        "nickname": "The Barefoot Grass",
-        "common_locations": "Transition zone, upper South, residential lawns, golf course fairways",
-        "image_file": "images/zoysia.jpg",
-        "visual_desc": "🌿 Fine-medium STIFF blades that stand upright • Medium-dark green • Creates very DENSE mat • Soft, carpet-like feel",
-        "identification": {
-            "Blade Width": "Fine to medium depending on variety",
-            "Blade Color": "Medium to dark green",
-            "Texture": "Dense, soft, carpet-like — very pleasant underfoot",
-            "Growth Habit": "Slow spreading via stolons and rhizomes",
-            "Blade Feel": "Stiff, wiry blades that stand upright",
-            "Key Identifier": "Very dense, stiff blades that create a thick mat; slow to establish"
-        },
-        "care": {
-            "Mowing Height": "1 - 2.5 inches depending on variety",
-            "Mowing Frequency": "Every 7-14 days (slower growing)",
-            "Watering": "0.75 - 1 inch per week; excellent drought tolerance once established",
-            "Sunlight": "Full sun to partial shade (6+ hours ideal, tolerates 3-4)",
-            "Soil pH": "6.0 - 6.5",
-            "Fertilizer": "2-3 lbs nitrogen per 1,000 sq ft annually; avoid over-fertilizing"
-        },
-        "seasonal": {
-            "Spring": "Slow to green up (soil temps 70°F+). Be patient! Apply pre-emergent, begin fertilization after full green-up.",
-            "Summer": "Steady growth period. Maintain consistent mowing, water during drought, one or two fertilizer applications.",
-            "Fall": "Last fertilizer 6 weeks before dormancy. Maintain mowing until growth stops.",
-            "Winter": "Goes dormant and turns golden-tan. Very cold tolerant. Minimal maintenance needed."
-        },
-        "problems": {
-            "Large Patch": "Brown circular areas in spring/fall. Reduce nitrogen, improve air flow, fungicide if needed.",
-            "Billbugs": "Adults chew notches in blades, larvae damage roots. Apply insecticide in late spring.",
-            "Thatch Buildup": "Zoysia is prone to thatch. Dethatch when layer exceeds 1/2 inch.",
-            "Slow Establishment": "Not really a problem, just requires patience — can take 2-3 years to fully fill in."
-        },
-        "pro_tips": [
-            "Excellent choice for the transition zone where other grasses struggle",
-            "The dense growth crowds out many weeds naturally",
-            "Requires sharp mower blades — dull blades tear the stiff leaves",
-            "Golden winter color is distinctive and considered attractive by many homeowners"
-        ],
-        "image_url": "https://images.unsplash.com/photo-1558635924-5e6f217e5168?w=400"
-    },
-    "Centipede": {
-        "scientific_name": "Eremochloa ophiuroides",
-        "nickname": "The Lazy Man's Grass",
-        "common_locations": "Southeast US, sandy/acidic soils, low-maintenance residential lawns",
-        "image_file": "images/centipede.jpg",
-        "visual_desc": "🌿 Medium width blades • LIGHT apple-green color (distinctive!) • Slower, less aggressive • Single spike seed head like a centipede",
-        "identification": {
-            "Blade Width": "Medium (about 1/4 inch)",
-            "Blade Color": "Light green to yellow-green (distinctive lighter color)",
-            "Texture": "Medium, coarse",
-            "Growth Habit": "Slow spreading via stolons only",
-            "Seed Head": "Single spike resembling a centipede (hence the name!)",
-            "Key Identifier": "Lighter apple-green color; slower, less aggressive than Bermuda"
-        },
-        "care": {
-            "Mowing Height": "1.5 - 2.5 inches",
-            "Mowing Frequency": "Every 10-14 days (slow grower)",
-            "Watering": "1 inch per week; fairly drought tolerant but will go dormant",
-            "Sunlight": "Full sun to light shade (6+ hours preferred)",
-            "Soil pH": "5.0 - 6.0 (prefers acidic soil — important!)",
-            "Fertilizer": "1-2 lbs nitrogen per 1,000 sq ft annually — LESS IS MORE!"
-        },
-        "seasonal": {
-            "Spring": "Green-up at soil temps around 65°F. Apply pre-emergent, minimal fertilizer if any.",
-            "Summer": "Moderate growth. Water during drought, mow as needed. Avoid heavy fertilization.",
-            "Fall": "No fertilizer needed. Continue mowing until dormancy. Check soil pH.",
-            "Winter": "Goes dormant, turns tan/brown. Very little maintenance. Avoid traffic on frozen turf."
-        },
-        "problems": {
-            "Centipede Decline": "Overall thinning and yellowing. Usually caused by over-fertilization or high pH. Test soil!",
-            "Ground Pearls": "Scale insects on roots cause yellow/dead patches. No effective chemical control — maintain lawn health.",
-            "Nematodes": "Microscopic worms damage roots. Symptoms similar to drought stress. Maintain proper care.",
-            "Iron Chlorosis": "Yellowing from high pH soil. Apply iron supplements and sulfur to lower pH."
-        },
-        "pro_tips": [
-            "AVOID over-fertilizing — this is the #1 mistake with Centipede!",
-            "Never apply lime unless soil test confirms it's needed — Centipede hates high pH",
-            "Excellent for low-maintenance lawns that won't be pampered",
-            "The lighter green color is NORMAL — don't try to make it dark green with fertilizer"
-        ],
-        "image_url": "https://images.unsplash.com/photo-1558635924-5e6f217e5168?w=400"
-    },
-    "Bahia": {
-        "scientific_name": "Paspalum notatum",
-        "nickname": "The Tough Survivor",
-        "common_locations": "Florida, Gulf Coast, roadsides, pastures, low-maintenance areas, sandy soils",
-        "image_file": "images/bahia.jpg",
-        "visual_desc": "🌿 COARSE, tough blades • Light-medium green • Distinctive Y-SHAPED or V-shaped seed heads (easy to spot!) • Open growth habit",
-        "identification": {
-            "Blade Width": "Coarse, medium width",
-            "Blade Color": "Light to medium green",
-            "Texture": "Coarse, tough",
-            "Growth Habit": "Deep root system, spreads via short stolons and rhizomes",
-            "Seed Head": "Distinctive Y-shaped or V-shaped seed heads (very recognizable!)",
-            "Key Identifier": "Tall Y-shaped seed heads; coarse texture; open growth habit"
-        },
-        "care": {
-            "Mowing Height": "3 - 4 inches",
-            "Mowing Frequency": "Every 7-14 days; frequent mowing needed to control seed heads",
-            "Watering": "Very drought tolerant; 1 inch per week during establishment, less once mature",
-            "Sunlight": "Full sun required (minimum 6 hours)",
-            "Soil pH": "5.5 - 6.5",
-            "Fertilizer": "2-4 lbs nitrogen per 1,000 sq ft annually; tolerates low fertility"
-        },
-        "seasonal": {
-            "Spring": "Greens up early as soil warms. Apply fertilizer after full green-up. Pre-emergent optional.",
-            "Summer": "Peak growth and seed head production. Mow frequently to control seed heads. Water during severe drought only.",
-            "Fall": "Growth slows. One light fertilizer application early fall. Reduce mowing frequency.",
-            "Winter": "Goes dormant in most areas, may stay semi-green in South Florida. Minimal care needed."
-        },
-        "problems": {
-            "Dollar Spot": "Small tan/brown spots. Increase nitrogen slightly, improve air circulation.",
-            "Mole Crickets": "Major pest! Creates tunnels and damages roots. Apply insecticide in early summer.",
-            "Seed Head Complaints": "Not really a disease — just requires frequent mowing to control. Sharp blades help.",
-            "Thin Turf": "Bahia naturally has an open growth habit. Not ideal if you want a dense, carpet-like lawn."
-        },
-        "pro_tips": [
-            "Best choice for sandy, infertile soils where other grasses struggle",
-            "The deep root system (up to 8 feet!) makes it extremely drought tolerant",
-            "Expect to mow more often in summer just to control seed heads",
-            "Pensacola and Argentine are the two main varieties — Argentine is finer textured",
-            "Great for large, low-maintenance properties but not for manicured lawn lovers"
-        ],
-        "image_url": "https://images.unsplash.com/photo-1558635924-5e6f217e5168?w=400"
-    }
-}
 
 objections = [
     {"id": 1, "category": "Commitment", "surface": "I only need a one-time service", "reason": "They don't want to be locked into a rigid schedule", "rebuttal": "The three cuts are completely flexible — use them whenever you need, no set schedule required. Life happens, and we work around it."},
@@ -283,718 +56,136 @@ objections = [
 dispositions = ["Already Hired A Provider", "Arrival Time", "Broken Address", "Callback", "Dead Air", "Disconnected", "Drop Voicemail", "Duplicate", "Frequency Minimum", "Insufficient Capacity", "Junk Contact", "Less Than 48 Hour Turn-Around", "LGF - Long Grass Fee", "Minimum Cuts Requirement", "No In-Person Quote", "Not DM", "Timing - Unable to Qualify", "Not Qualified - Refuse Contact", "Not Qualified - Telemarketer", "Order Complexity", "Out Of Area", "Oversized Lot", "Pre Paid Card", "Price", "Property Manager", "Provider Inquiry", "Rejected CC", "Rejected CC - Online Signup", "Rejected Subcontracting", "Services Not Offered", "Support Call", "Next Spring", "Test"]
 
 guide_scenarios = {
-    "One-Time Service": {
-        "openings": {
-            "Empathetic": "I totally hear you — a lot of people start out thinking they just need a one-time cleanup.",
-            "Curious": "Got it! Can I ask what's prompting the need right now? Just trying to get a sense of what you're dealing with.",
-            "Direct": "Here's the good news — we actually make it super flexible for exactly that reason."
-        },
-        "points": {
-            "Flexible scheduling": "You can use your three cuts whenever you want — no set schedule, no pressure. Life happens, and we work around it.",
-            "No upfront payment": "You never pay upfront. We only charge three days after each service is done, so you see the work first.",
-            "Pro learns your lawn": "When the same pro comes back, they get to know your lawn and your preferences. Better results every time.",
-            "3-day quality window": "If anything's not right, you have three full days to let us know and we'll fix it before you're ever charged.",
-            "Cancel anytime": "You can cancel up to 48 hours before any scheduled service — no fees, no hassle."
-        },
-        "closes": {
-            "Soft": "Would it help if I saved you a spot on the schedule? No commitment until after the service is done.",
-            "Assumptive": "Let's go ahead and get you set up — what address are we working with?",
-            "Question": "What's the main thing still holding you back?"
-        }
-    },
-    "Price Concern": {
-        "openings": {
-            "Empathetic": "I completely understand — price is always a factor, and I want to make sure you're getting real value.",
-            "Curious": "Totally fair. When you say the price feels high, are you comparing to another quote or just what you expected?",
-            "Direct": "Let me tell you exactly what you're getting for that price, because I think it's actually a great deal."
-        },
-        "points": {
-            "Insured professionals": "Every pro on our platform is verified and insured. You're not gambling on some random person showing up.",
-            "Quality guarantee": "You have a full three days to inspect the work before you're charged. If anything's off, we fix it first.",
-            "Dedicated support team": "We have a whole team whose only job is making sure you're happy with the service.",
-            "No surprise charges": "The price you see is the price you pay — we're upfront about everything, including any potential fees.",
-            "Compare apples to apples": "Make sure you're comparing the full package — insurance, support, and our quality guarantee included."
-        },
-        "closes": {
-            "Soft": "How about this — let's get you on the schedule and you can see the quality for yourself. You won't pay until three days after.",
-            "Assumptive": "I think once you see the quality, the price will make total sense. Let's get you on the schedule.",
-            "Question": "If the quality matches what I'm telling you, would that price feel fair?"
-        }
-    },
-    "Timing / Need It Today": {
-        "openings": {
-            "Empathetic": "I totally get it — when you need it done, you need it done. Let me see what we can do.",
-            "Curious": "Sounds urgent! What's going on — got an event coming up or just hit that breaking point with the yard?",
-            "Direct": "So here's the deal — we have a 48-hour turnaround, but let me tell you why that's actually still the fastest around."
-        },
-        "points": {
-            "Fastest in industry": "48 hours is actually the fastest turnaround in the industry. We price before we arrive, so there's no waiting around.",
-            "Message your crew": "After signup, you can message your crew directly through the app and ask if they can squeeze you in sooner. Worth a shot!",
-            "HOA email": "If you've got an HOA breathing down your neck, we can send you a confirmation email right away that you can forward to them.",
-            "Lock in your spot": "If you grab a spot now, you're guaranteed on the schedule. Wait, and availability might fill up.",
-            "Free cancellation": "You can cancel up to 48 hours before if your situation changes — no penalty."
-        },
-        "closes": {
-            "Soft": "Want me to lock in the earliest available slot? You can always message the crew to see if they can come sooner.",
-            "Assumptive": "Let's get you scheduled for the first available — what's the address?",
-            "Question": "If we can get you in within 48 hours, does that work for your timeline?"
-        }
-    },
-    "Shopping Around": {
-        "openings": {
-            "Empathetic": "That makes total sense — it's smart to know your options before deciding.",
-            "Curious": "Totally fair! Have you already talked to other companies, or are you just starting to look around?",
-            "Direct": "I'd love the chance to show you why we stand out. Can I ask what's most important to you in a lawn service?"
-        },
-        "points": {
-            "Compare protection": "Make sure whoever you go with is insured. If they damage something or don't show, you want to be covered.",
-            "Our reviews": "If you Google us, you'll see we have amazing reviews. People love working with us.",
-            "No risk to try": "You don't pay until three days after service, so you can literally see the quality before any money changes hands.",
-            "Hold your spot": "I can save a spot on the schedule for you while you decide — no commitment, no charge until after service.",
-            "Easy cancellation": "Even after you book, you can cancel up to 48 hours before if you find someone else. Zero pressure."
-        },
-        "closes": {
-            "Soft": "How about I hold a spot for you? No commitment — just keeps your options open while you decide.",
-            "Assumptive": "Let's get you on the schedule. If you find someone better, you can cancel anytime before 48 hours out.",
-            "Question": "What would you need to see from us to feel confident going with us over someone else?"
-        }
-    },
-    "Payment Method": {
-        "openings": {
-            "Empathetic": "I get it — a lot of people ask about that. Let me explain why we do it this way.",
-            "Curious": "Totally fair question! Is there a specific concern with using a card, or is it just preference?",
-            "Direct": "We only accept major credit or debit cards, but here's why that's actually a good thing for you."
-        },
-        "points": {
-            "Bank protection": "With a card, your bank has your back. If anything ever went wrong, you've got that extra layer of protection.",
-            "Crews get paid": "It also means our crews know they're guaranteed payment, so they show up ready to do great work.",
-            "No upfront charge": "Remember, we don't charge until three days after the service — so your card isn't hit until you've seen the work.",
-            "Secure system": "Your card info is stored securely. We take that seriously.",
-            "Industry standard": "Most professional services work this way now. It protects everyone involved."
-        },
-        "closes": {
-            "Soft": "Does that make sense? I promise it's set up to protect you, not complicate things.",
-            "Assumptive": "Let's get you set up — I just need a card on file and we're good to go.",
-            "Question": "If you knew you wouldn't be charged until three days after and could dispute anything with your bank, would that feel okay?"
-        }
-    },
-    "Fees (Long Grass Fee)": {
-        "openings": {
-            "Empathetic": "I totally get the concern — nobody likes surprise fees. Let me explain exactly how this works.",
-            "Curious": "Great question! Do you have a sense of how tall your grass is right now?",
-            "Direct": "So I want to be upfront with you about this — that's actually why I'm mentioning it now."
-        },
-        "points": {
-            "Transparency": "We're telling you NOW so there are no surprises later. That's the whole reason we bring it up.",
-            "Industry standard": "This is actually standard across the industry — overgrown yards take more time and wear on equipment.",
-            "9 inch threshold": "It only applies if the grass is 9 inches or taller. If your lawn is maintained, it won't apply at all.",
-            "Up to 100% of base": "If it does apply, it can be up to 100% of your base mowing price — but only when it's really overgrown.",
-            "One-time situation": "Usually this only comes up on the first cut if it's been a while. After that, regular service keeps it under control."
-        },
-        "closes": {
-            "Soft": "Does that make sense? We just want to be transparent so you know exactly what to expect.",
-            "Assumptive": "Now that you know how it works, let's get you on the schedule. What's the address?",
-            "Question": "Does your lawn sound like it might be in that range, or do you think you're under 9 inches?"
-        }
-    },
-    "Trust / Never Heard of You": {
-        "openings": {
-            "Empathetic": "That's totally fair — I'd want to know who I'm working with too.",
-            "Curious": "Totally understand! What would help you feel more comfortable giving us a shot?",
-            "Direct": "Let me tell you a bit about us and why so many people trust us with their lawns."
-        },
-        "points": {
-            "Amazing reviews": "If you Google us, you'll see we have amazing reviews. Real people, real experiences.",
-            "All pros insured": "Every single pro on our platform is verified and insured. We don't let just anyone on here.",
-            "Quality guarantee": "You have three full days after service to inspect the work before you're charged.",
-            "Dedicated quality team": "We have a whole team whose only job is making things right if anything's ever off.",
-            "No payment until satisfied": "You don't pay until three days after the service, so you see the quality before any money changes hands.",
-            "Fix before you pay": "If there's any issue, we send someone to fix it BEFORE you're ever charged."
-        },
-        "closes": {
-            "Soft": "How about you check out our reviews and let me save you a spot in the meantime? No pressure.",
-            "Assumptive": "I think once you see the quality, you'll be glad you went with us. Let's get you scheduled.",
-            "Question": "What would make you feel confident enough to give us a shot?"
-        }
-    }
+    "One-Time Service": {"openings": {"Empathetic": "I totally hear you — a lot of people start out thinking they just need a one-time cleanup.", "Curious": "Got it! Can I ask what's prompting the need right now? Just trying to get a sense of what you're dealing with.", "Direct": "Here's the good news — we actually make it super flexible for exactly that reason."}, "points": {"Flexible scheduling": "You can use your three cuts whenever you want — no set schedule, no pressure. Life happens, and we work around it.", "No upfront payment": "You never pay upfront. We only charge three days after each service is done, so you see the work first.", "Pro learns your lawn": "When the same pro comes back, they get to know your lawn and your preferences. Better results every time.", "3-day quality window": "If anything's not right, you have three full days to let us know and we'll fix it before you're ever charged.", "Cancel anytime": "You can cancel up to 48 hours before any scheduled service — no fees, no hassle."}, "closes": {"Soft": "Would it help if I saved you a spot on the schedule? No commitment until after the service is done.", "Assumptive": "Let's go ahead and get you set up — what address are we working with?", "Question": "What's the main thing still holding you back?"}},
+    "Price Concern": {"openings": {"Empathetic": "I completely understand — price is always a factor, and I want to make sure you're getting real value.", "Curious": "Totally fair. When you say the price feels high, are you comparing to another quote or just what you expected?", "Direct": "Let me tell you exactly what you're getting for that price, because I think it's actually a great deal."}, "points": {"Insured professionals": "Every pro on our platform is verified and insured. You're not gambling on some random person showing up.", "Quality guarantee": "You have a full three days to inspect the work before you're charged. If anything's off, we fix it first.", "Dedicated support team": "We have a whole team whose only job is making sure you're happy with the service.", "No surprise charges": "The price you see is the price you pay — we're upfront about everything, including any potential fees.", "Compare apples to apples": "Make sure you're comparing the full package — insurance, support, and our quality guarantee included."}, "closes": {"Soft": "How about this — let's get you on the schedule and you can see the quality for yourself. You won't pay until three days after.", "Assumptive": "I think once you see the quality, the price will make total sense. Let's get you on the schedule.", "Question": "If the quality matches what I'm telling you, would that price feel fair?"}},
+    "Timing / Need It Today": {"openings": {"Empathetic": "I totally get it — when you need it done, you need it done. Let me see what we can do.", "Curious": "Sounds urgent! What's going on — got an event coming up or just hit that breaking point with the yard?", "Direct": "So here's the deal — we have a 48-hour turnaround, but let me tell you why that's actually still the fastest around."}, "points": {"Fastest in industry": "48 hours is actually the fastest turnaround in the industry. We price before we arrive, so there's no waiting around.", "Message your crew": "After signup, you can message your crew directly through the app and ask if they can squeeze you in sooner. Worth a shot!", "HOA email": "If you've got an HOA breathing down your neck, we can send you a confirmation email right away that you can forward to them.", "Lock in your spot": "If you grab a spot now, you're guaranteed on the schedule. Wait, and availability might fill up.", "Free cancellation": "You can cancel up to 48 hours before if your situation changes — no penalty."}, "closes": {"Soft": "Want me to lock in the earliest available slot? You can always message the crew to see if they can come sooner.", "Assumptive": "Let's get you scheduled for the first available — what's the address?", "Question": "If we can get you in within 48 hours, does that work for your timeline?"}},
+    "Shopping Around": {"openings": {"Empathetic": "That makes total sense — it's smart to know your options before deciding.", "Curious": "Totally fair! Have you already talked to other companies, or are you just starting to look around?", "Direct": "I'd love the chance to show you why we stand out. Can I ask what's most important to you in a lawn service?"}, "points": {"Compare protection": "Make sure whoever you go with is insured. If they damage something or don't show, you want to be covered.", "Our reviews": "If you Google us, you'll see we have amazing reviews. People love working with us.", "No risk to try": "You don't pay until three days after service, so you can literally see the quality before any money changes hands.", "Hold your spot": "I can save a spot on the schedule for you while you decide — no commitment, no charge until after service.", "Easy cancellation": "Even after you book, you can cancel up to 48 hours before if you find someone else. Zero pressure."}, "closes": {"Soft": "How about I hold a spot for you? No commitment — just keeps your options open while you decide.", "Assumptive": "Let's get you on the schedule. If you find someone better, you can cancel anytime before 48 hours out.", "Question": "What would you need to see from us to feel confident going with us over someone else?"}},
+    "Payment Method": {"openings": {"Empathetic": "I get it — a lot of people ask about that. Let me explain why we do it this way.", "Curious": "Totally fair question! Is there a specific concern with using a card, or is it just preference?", "Direct": "We only accept major credit or debit cards, but here's why that's actually a good thing for you."}, "points": {"Bank protection": "With a card, your bank has your back. If anything ever went wrong, you've got that extra layer of protection.", "Crews get paid": "It also means our crews know they're guaranteed payment, so they show up ready to do great work.", "No upfront charge": "Remember, we don't charge until three days after the service — so your card isn't hit until you've seen the work.", "Secure system": "Your card info is stored securely. We take that seriously.", "Industry standard": "Most professional services work this way now. It protects everyone involved."}, "closes": {"Soft": "Does that make sense? I promise it's set up to protect you, not complicate things.", "Assumptive": "Let's get you set up — I just need a card on file and we're good to go.", "Question": "If you knew you wouldn't be charged until three days after and could dispute anything with your bank, would that feel okay?"}},
+    "Fees (Long Grass Fee)": {"openings": {"Empathetic": "I totally get the concern — nobody likes surprise fees. Let me explain exactly how this works.", "Curious": "Great question! Do you have a sense of how tall your grass is right now?", "Direct": "So I want to be upfront with you about this — that's actually why I'm mentioning it now."}, "points": {"Transparency": "We're telling you NOW so there are no surprises later. That's the whole reason we bring it up.", "Industry standard": "This is actually standard across the industry — overgrown yards take more time and wear on equipment.", "9 inch threshold": "It only applies if the grass is 9 inches or taller. If your lawn is maintained, it won't apply at all.", "Up to 100% of base": "If it does apply, it can be up to 100% of your base mowing price — but only when it's really overgrown.", "One-time situation": "Usually this only comes up on the first cut if it's been a while. After that, regular service keeps it under control."}, "closes": {"Soft": "Does that make sense? We just want to be transparent so you know exactly what to expect.", "Assumptive": "Now that you know how it works, let's get you on the schedule. What's the address?", "Question": "Does your lawn sound like it might be in that range, or do you think you're under 9 inches?"}},
+    "Trust / Never Heard of You": {"openings": {"Empathetic": "That's totally fair — I'd want to know who I'm working with too.", "Curious": "Totally understand! What would help you feel more comfortable giving us a shot?", "Direct": "Let me tell you a bit about us and why so many people trust us with their lawns."}, "points": {"Amazing reviews": "If you Google us, you'll see we have amazing reviews. Real people, real experiences.", "All pros insured": "Every single pro on our platform is verified and insured. We don't let just anyone on here.", "Quality guarantee": "You have three full days after service to inspect the work before you're charged.", "Dedicated quality team": "We have a whole team whose only job is making things right if anything's ever off.", "No payment until satisfied": "You don't pay until three days after the service, so you see the quality before any money changes hands.", "Fix before you pay": "If there's any issue, we send someone to fix it BEFORE you're ever charged."}, "closes": {"Soft": "How about you check out our reviews and let me save you a spot in the meantime? No pressure.", "Assumptive": "I think once you see the quality, you'll be glad you went with us. Let's get you scheduled.", "Question": "What would make you feel confident enough to give us a shot?"}}
 }
 
 attach_guides = {
-    "Lawn Treatment": {
-        "triggers": ["Weeds everywhere", "Grass is turning brown", "Neighbor's lawn looks better", "Lawn looks thin/patchy", "Weeds keep coming back", "Yellow spots"],
-        "openings": {
-            "Empathetic": "I hear that a lot — dealing with weeds and patchy grass can be really frustrating, especially when you feel like you've tried everything.",
-            "Curious": "Have you noticed if it's more weeds, or is the grass itself looking thin and unhealthy? Just trying to get a picture of what you're dealing with.",
-            "Direct": "Sounds like your lawn could really benefit from our lawn treatment program — let me tell you what it includes."
-        },
-        "points": {
-            "Fertilizer for green-up": "It includes fertilizer that helps thicken up your grass and get that green color back.",
-            "Pre-emergent stops new weeds": "There's a pre-emergent that stops weeds before they even start — so you're not constantly fighting new ones.",
-            "Post-emergent kills existing weeds": "It also has post-emergent to knock out the weeds that are already there.",
-            "Results in weeks": "Most people see a real difference within just a few weeks.",
-            "Pro learns your lawn": "And since the same pro comes back, they get to know your lawn and what it needs over time."
-        },
-        "closes": {
-            "Soft": "Want me to add that on so we can start getting your lawn back in shape?",
-            "Assumptive": "Let's go ahead and add the lawn treatment — that way we're tackling the root of the problem, not just mowing over it.",
-            "Question": "Would it help to get the lawn treatment started at the same time so you're not dealing with two separate things?"
-        },
-        "pro_tip": "If they mention weeds, ask if they've noticed them in specific areas or all over. This helps you explain how the pre-emergent prevents new ones while post-emergent handles what's already there."
-    },
-    "Leaf Removal": {
-        "triggers": ["Leaves are piling up", "Yard is covered in leaves", "Can't even see my grass", "Fall cleanup", "Leaves are out of control"],
-        "openings": {
-            "Empathetic": "Yeah, this time of year it feels like you clean them up and they're right back the next day. It's a lot to keep up with.",
-            "Curious": "How bad has it gotten? Are we talking a light layer or is the grass completely buried at this point?",
-            "Direct": "We actually offer leaf removal too — and it's worth doing sooner rather than later."
-        },
-        "points": {
-            "Protects your lawn": "Leaves left too long can actually suffocate your grass and cause dead patches underneath.",
-            "Instant curb appeal": "Once they're cleared out, your whole yard looks cleaner and more cared for right away.",
-            "Saves you time": "It's one of those jobs that takes forever to do yourself but our crew can knock it out quickly.",
-            "Prevents mold and pests": "Wet leaves can also lead to mold and attract pests, so it's good to get ahead of it.",
-            "One crew handles it": "We can do it the same time as your mow so you're not scheduling multiple visits."
-        },
-        "closes": {
-            "Soft": "Want me to add leaf removal to this visit so we can get that taken care of for you?",
-            "Assumptive": "Let's add the leaf removal too — no point mowing over leaves, and it'll protect your grass going into winter.",
-            "Question": "Would it be easier if we just handled the leaves while we're already there?"
-        },
-        "pro_tip": "Mention the lawn health angle — most people don't realize leaves can actually damage grass if left too long. It turns the conversation from 'extra service' to 'protecting your lawn.'"
-    },
-    "Bush Trimming": {
-        "triggers": ["Bushes are overgrown", "Shrubs are out of control", "Everything looks messy", "Curb appeal", "Getting ready to sell", "HOA notice about bushes"],
-        "openings": {
-            "Empathetic": "Overgrown bushes can really make the whole yard feel messy, even when the lawn itself looks good. I totally get it.",
-            "Curious": "How long has it been since they were last trimmed? Sometimes they just need a good reset to look sharp again.",
-            "Direct": "We do bush trimming too, and honestly it's one of the fastest ways to boost your curb appeal."
-        },
-        "points": {
-            "Instant curb appeal": "Trimmed bushes make a huge difference in how the whole property looks from the street.",
-            "Keeps bushes healthy": "Regular trimming actually keeps them healthier and growing the right way.",
-            "HOA compliant": "If you've got an HOA, this keeps you in compliance so you don't have to worry about notices.",
-            "Frames the home nicely": "Well-maintained bushes frame your home and make everything look more polished.",
-            "Same visit convenience": "We can do it during the same visit as your mow, so it's one less thing to coordinate."
-        },
-        "closes": {
-            "Soft": "Want me to add bush trimming so we can get everything looking sharp at once?",
-            "Assumptive": "Let's add the bush trimming — it'll really complete the look and you won't have to think about it.",
-            "Question": "Would it help to have us handle the bushes while we're already out there?"
-        },
-        "pro_tip": "If they mention selling their home or HOA issues, lean into urgency — trimmed bushes are one of the fastest ways to boost curb appeal, and it's often the first thing buyers and HOAs notice."
-    },
-    "Flower Bed Weeding": {
-        "triggers": ["Flower beds are a mess", "Weeds in my beds", "Can't even see my flowers", "Landscaping looks rough", "Beds are overgrown"],
-        "openings": {
-            "Empathetic": "Flower beds can get out of hand so fast — one week they're fine, the next week weeds have taken over. It's a lot to maintain.",
-            "Curious": "Are the weeds the main issue, or is it more just general cleanup and overgrowth in the beds?",
-            "Direct": "We do flower bed weeding too, and honestly it's one of those things that makes a huge visual difference."
-        },
-        "points": {
-            "Shows off your plants": "Once the weeds are out, your actual flowers and plants can finally shine.",
-            "Polished look": "Clean beds make the whole property look more cared for and put-together.",
-            "Finishing touch": "Even a freshly mowed lawn can look incomplete if the beds are messy — this is the finishing touch.",
-            "Low maintenance after": "Once we get them cleaned up, it's way easier to maintain going forward.",
-            "Boosts curb appeal": "It's one of the first things people notice when they pull up to a house."
-        },
-        "closes": {
-            "Soft": "Want me to add flower bed weeding so we can get the whole yard looking great?",
-            "Assumptive": "Let's add the bed weeding — it'll really pull everything together and make the whole property pop.",
-            "Question": "Would it make sense to have us tackle the beds while we're already there?"
-        },
-        "pro_tip": "Use the 'finishing touch' angle — even a freshly mowed lawn can look incomplete if the beds are messy. Frame it as the difference between 'good' and 'wow.'"
-    },
-    "Full Curb Appeal Bundle": {
-        "triggers": ["Getting ready to sell", "Want the whole yard done", "Just moved in", "Event coming up", "Family visiting", "Make it look brand new"],
-        "openings": {
-            "Empathetic": "When you're prepping for something big, the last thing you want is to stress about the yard. I totally get wanting it all handled at once.",
-            "Curious": "What's the occasion? Just want to make sure we set you up with everything you need to get it looking perfect.",
-            "Direct": "If you're going for a full transformation, we can bundle everything together and really make the whole property pop."
-        },
-        "points": {
-            "Complete transformation": "We can do mowing, bush trimming, flower bed weeding, and leaf removal if needed — the whole package.",
-            "One crew handles it all": "Instead of coordinating multiple services, one crew takes care of everything in one visit.",
-            "Saves time and stress": "You don't have to think about it or manage different appointments — we've got it covered.",
-            "Perfect for selling": "If you're selling, this is exactly what gets buyers to say 'wow' when they pull up.",
-            "Great for events": "If you've got family coming or an event, this is the fastest way to get the yard guest-ready."
-        },
-        "closes": {
-            "Soft": "Want me to put together the full bundle so you don't have to worry about any of it?",
-            "Assumptive": "Let's do the full curb appeal package — that way you're covered and the whole property will look amazing.",
-            "Question": "Would it be easier to just bundle it all and knock it out in one visit?"
-        },
-        "pro_tip": "When someone has a big event or is selling, they're already in 'get it done' mode. Don't be shy about suggesting the full bundle — they'll appreciate you making it easy."
-    }
+    "Lawn Treatment": {"triggers": ["Weeds everywhere", "Grass is turning brown", "Neighbor's lawn looks better", "Lawn looks thin/patchy", "Weeds keep coming back", "Yellow spots"], "openings": {"Empathetic": "I hear that a lot — dealing with weeds and patchy grass can be really frustrating, especially when you feel like you've tried everything.", "Curious": "Have you noticed if it's more weeds, or is the grass itself looking thin and unhealthy? Just trying to get a picture of what you're dealing with.", "Direct": "Sounds like your lawn could really benefit from our lawn treatment program — let me tell you what it includes."}, "points": {"Fertilizer for green-up": "It includes fertilizer that helps thicken up your grass and get that green color back.", "Pre-emergent stops new weeds": "There's a pre-emergent that stops weeds before they even start — so you're not constantly fighting new ones.", "Post-emergent kills existing weeds": "It also has post-emergent to knock out the weeds that are already there.", "Results in weeks": "Most people see a real difference within just a few weeks.", "Pro learns your lawn": "And since the same pro comes back, they get to know your lawn and what it needs over time."}, "closes": {"Soft": "Want me to add that on so we can start getting your lawn back in shape?", "Assumptive": "Let's go ahead and add the lawn treatment — that way we're tackling the root of the problem, not just mowing over it.", "Question": "Would it help to get the lawn treatment started at the same time so you're not dealing with two separate things?"}, "pro_tip": "If they mention weeds, ask if they've noticed them in specific areas or all over. This helps you explain how the pre-emergent prevents new ones while post-emergent handles what's already there."},
+    "Leaf Removal": {"triggers": ["Leaves are piling up", "Yard is covered in leaves", "Can't even see my grass", "Fall cleanup", "Leaves are out of control"], "openings": {"Empathetic": "Yeah, this time of year it feels like you clean them up and they're right back the next day. It's a lot to keep up with.", "Curious": "How bad has it gotten? Are we talking a light layer or is the grass completely buried at this point?", "Direct": "We actually offer leaf removal too — and it's worth doing sooner rather than later."}, "points": {"Protects your lawn": "Leaves left too long can actually suffocate your grass and cause dead patches underneath.", "Instant curb appeal": "Once they're cleared out, your whole yard looks cleaner and more cared for right away.", "Saves you time": "It's one of those jobs that takes forever to do yourself but our crew can knock it out quickly.", "Prevents mold and pests": "Wet leaves can also lead to mold and attract pests, so it's good to get ahead of it.", "One crew handles it": "We can do it the same time as your mow so you're not scheduling multiple visits."}, "closes": {"Soft": "Want me to add leaf removal to this visit so we can get that taken care of for you?", "Assumptive": "Let's add the leaf removal too — no point mowing over leaves, and it'll protect your grass going into winter.", "Question": "Would it be easier if we just handled the leaves while we're already there?"}, "pro_tip": "Mention the lawn health angle — most people don't realize leaves can actually damage grass if left too long. It turns the conversation from 'extra service' to 'protecting your lawn.'"},
+    "Bush Trimming": {"triggers": ["Bushes are overgrown", "Shrubs are out of control", "Everything looks messy", "Curb appeal", "Getting ready to sell", "HOA notice about bushes"], "openings": {"Empathetic": "Overgrown bushes can really make the whole yard feel messy, even when the lawn itself looks good. I totally get it.", "Curious": "How long has it been since they were last trimmed? Sometimes they just need a good reset to look sharp again.", "Direct": "We do bush trimming too, and honestly it's one of the fastest ways to boost your curb appeal."}, "points": {"Instant curb appeal": "Trimmed bushes make a huge difference in how the whole property looks from the street.", "Keeps bushes healthy": "Regular trimming actually keeps them healthier and growing the right way.", "HOA compliant": "If you've got an HOA, this keeps you in compliance so you don't have to worry about notices.", "Frames the home nicely": "Well-maintained bushes frame your home and make everything look more polished.", "Same visit convenience": "We can do it during the same visit as your mow, so it's one less thing to coordinate."}, "closes": {"Soft": "Want me to add bush trimming so we can get everything looking sharp at once?", "Assumptive": "Let's add the bush trimming — it'll really complete the look and you won't have to think about it.", "Question": "Would it help to have us handle the bushes while we're already out there?"}, "pro_tip": "If they mention selling their home or HOA issues, lean into urgency — trimmed bushes are one of the fastest ways to boost curb appeal, and it's often the first thing buyers and HOAs notice."},
+    "Flower Bed Weeding": {"triggers": ["Flower beds are a mess", "Weeds in my beds", "Can't even see my flowers", "Landscaping looks rough", "Beds are overgrown"], "openings": {"Empathetic": "Flower beds can get out of hand so fast — one week they're fine, the next week weeds have taken over. It's a lot to maintain.", "Curious": "Are the weeds the main issue, or is it more just general cleanup and overgrowth in the beds?", "Direct": "We do flower bed weeding too, and honestly it's one of those things that makes a huge visual difference."}, "points": {"Shows off your plants": "Once the weeds are out, your actual flowers and plants can finally shine.", "Polished look": "Clean beds make the whole property look more cared for and put-together.", "Finishing touch": "Even a freshly mowed lawn can look incomplete if the beds are messy — this is the finishing touch.", "Low maintenance after": "Once we get them cleaned up, it's way easier to maintain going forward.", "Boosts curb appeal": "It's one of the first things people notice when they pull up to a house."}, "closes": {"Soft": "Want me to add flower bed weeding so we can get the whole yard looking great?", "Assumptive": "Let's add the bed weeding — it'll really pull everything together and make the whole property pop.", "Question": "Would it make sense to have us tackle the beds while we're already there?"}, "pro_tip": "Use the 'finishing touch' angle — even a freshly mowed lawn can look incomplete if the beds are messy. Frame it as the difference between 'good' and 'wow.'"},
+    "Full Curb Appeal Bundle": {"triggers": ["Getting ready to sell", "Want the whole yard done", "Just moved in", "Event coming up", "Family visiting", "Make it look brand new"], "openings": {"Empathetic": "When you're prepping for something big, the last thing you want is to stress about the yard. I totally get wanting it all handled at once.", "Curious": "What's the occasion? Just want to make sure we set you up with everything you need to get it looking perfect.", "Direct": "If you're going for a full transformation, we can bundle everything together and really make the whole property pop."}, "points": {"Complete transformation": "We can do mowing, bush trimming, flower bed weeding, and leaf removal if needed — the whole package.", "One crew handles it all": "Instead of coordinating multiple services, one crew takes care of everything in one visit.", "Saves time and stress": "You don't have to think about it or manage different appointments — we've got it covered.", "Perfect for selling": "If you're selling, this is exactly what gets buyers to say 'wow' when they pull up.", "Great for events": "If you've got family coming or an event, this is the fastest way to get the yard guest-ready."}, "closes": {"Soft": "Want me to put together the full bundle so you don't have to worry about any of it?", "Assumptive": "Let's do the full curb appeal package — that way you're covered and the whole property will look amazing.", "Question": "Would it be easier to just bundle it all and knock it out in one visit?"}, "pro_tip": "When someone has a big event or is selling, they're already in 'get it done' mode. Don't be shy about suggesting the full bundle — they'll appreciate you making it easy."}
 }
 
-SCRIPT_URL = "https://script.google.com/a/macros/lawnstarter.com/s/AKfycbyEGIP63SoZrL5XAAzfpY7NfaThcMIf_R36_YebHHsRkIeUWGfCmzVRHxI1OVs_WFNv/exec"
+upsell_pathways = {
+    "Lawn Mowing": {"icon": "🏡", "desc": "Customer called about mowing service", "paths": {
+        "Lawn Treatment": {"icon": "🧪", "strength": "Strong", "listen_for": ["My yard is full of weeds", "Grass is turning brown / yellow", "Neighbor's lawn looks way better", "Lawn looks thin or patchy", "Weeds keep coming back no matter what"], "bridge": "You know, mowing keeps things neat — but if weeds or brown patches are the real issue, that's actually a lawn health problem. We have a treatment program that tackles that at the root.", "why_it_works": "Mowing customers already care about how their lawn looks. Treatment solves the problems mowing alone can't fix.", "key_points": ["Fertilizer thickens grass and restores color", "Pre-emergent stops new weeds before they start", "Post-emergent kills weeds already there", "Fewer weeds = less overgrowth = potentially lower mowing costs", "Same pro learns their lawn over time"], "transition_line": "Since we're already going to be out there mowing, it's a perfect time to start the treatment too — knocks out two things in one visit."},
+        "Leaf Removal": {"icon": "🍂", "strength": "Seasonal", "listen_for": ["Leaves are everywhere", "Can't even see my grass anymore", "It's that time of year", "My yard is a mess with all the leaves", "I've been raking but can't keep up"], "bridge": "Before we mow, I do want to ask — are there leaves or debris on the lawn right now? If there's a heavy layer, that can actually affect the mow quality.", "why_it_works": "Natural lead-in because excessive leaves literally impact the mowing service.", "key_points": ["Leaves left too long suffocate grass and cause dead patches", "Crew can handle it during the same visit", "If they show up and leaves are excessive, they'd need to quote cleanup anyway", "Instant curb appeal boost", "Prevents mold and pest issues"], "transition_line": "We can bundle the leaf removal with your mow so it's all handled in one shot."},
+        "Bush Trimming": {"icon": "✂️", "strength": "Moderate", "listen_for": ["Everything looks overgrown", "I want the whole yard to look nice", "Getting ready to sell / have guests", "HOA mentioned my bushes too", "Bushes are out of control"], "bridge": "Once the lawn is looking sharp, the bushes can sometimes stand out if they're overgrown. A lot of people add bush trimming to really complete the look.", "why_it_works": "A freshly mowed lawn next to overgrown bushes creates contrast that makes the bushes look worse.", "key_points": ["Trimmed bushes frame the home and boost curb appeal", "Regular trimming keeps bushes healthy", "Same visit convenience — one crew handles it all", "Keeps HOA happy", "The contrast between a clean lawn and messy bushes is noticeable"], "transition_line": "While the crew's already there, they can knock out the bushes too — really makes the whole property pop."},
+        "Flower Bed Weeding": {"icon": "🌺", "strength": "Moderate", "listen_for": ["My flower beds are a mess", "Weeds everywhere, not just the lawn", "I want it to look really polished", "Can't even see my flowers anymore", "The beds look rough"], "bridge": "One thing I always mention — even a perfectly mowed lawn can look incomplete if the flower beds are overrun. It's like the finishing touch.", "why_it_works": "Positions bed weeding as the difference between 'good' and 'wow.'", "key_points": ["Clean beds make the whole property look more cared for", "Shows off the actual flowers and plants", "Once cleaned up, much easier to maintain going forward", "One of the first things people notice from the curb", "Can be done during the same visit"], "transition_line": "If you want the yard to really look complete, adding bed weeding takes it from 'nice lawn' to 'wow, that whole yard looks amazing.'"}}},
+    "Lawn Treatment": {"icon": "🧪", "desc": "Customer called about fertilizer / weed control", "paths": {
+        "Lawn Mowing": {"icon": "🏡", "strength": "Strong", "listen_for": ["I don't have anyone mowing right now", "I've been doing it myself", "My current mower isn't great", "I hate mowing", "Who's going to maintain it between treatments?"], "bridge": "So the treatment will get your lawn healthy and thick — but between applications, you'll want consistent mowing to keep it looking sharp. Do you have someone handling that?", "why_it_works": "Treatment without mowing is incomplete. The lawn will grow faster and healthier with treatment.", "key_points": ["Treatment makes grass grow thicker and faster — needs regular mowing", "Same pro can learn the lawn and maintain it properly", "Mowing, edging, and blowing all included", "3-day quality check before you're charged", "Flexible scheduling — weekly, biweekly, or monthly"], "transition_line": "Since the treatment is going to really boost your lawn's growth, let's get mowing set up too."},
+        "Flower Bed Weeding": {"icon": "🌺", "strength": "Strong", "listen_for": ["The weeds aren't just in the lawn", "My beds are a mess too", "I want to get everything cleaned up", "Weeds are taking over the whole yard", "What about weeds in my flower beds?"], "bridge": "The treatment handles the lawn weeds, but it won't touch what's in your flower beds. If those are looking rough too, we can take care of that separately.", "why_it_works": "Customer is already in 'weed-fighting mode.' Easy to extend that mindset to the beds.", "key_points": ["Lawn treatment only covers the grass — beds need separate attention", "Clean beds complement a treated lawn perfectly", "Once cleared out, easier to maintain", "Boosts overall curb appeal", "Can be done during the same visit window"], "transition_line": "Since we're already fighting weeds in the lawn, let's knock out the beds too."},
+        "Bush Trimming": {"icon": "✂️", "strength": "Moderate", "listen_for": ["I want the whole yard to look good", "Getting the property in shape", "What else do you offer?", "The bushes need work too", "Trying to get curb appeal up"], "bridge": "If you're investing in lawn health, it's worth making sure the rest of the yard matches.", "why_it_works": "Customer is already investing in the yard. Bush trimming completes the picture.", "key_points": ["Protects the curb appeal investment they're already making", "Trimmed bushes frame the home nicely", "Same visit convenience", "Regular trimming keeps bushes healthy long-term", "One less thing to worry about"], "transition_line": "Let's add bush trimming so the whole yard matches the lawn once it starts looking amazing."}}},
+    "Leaf Removal": {"icon": "🍂", "desc": "Customer called about leaf cleanup", "paths": {
+        "Lawn Mowing": {"icon": "🏡", "strength": "Strong", "listen_for": ["The lawn's gotten out of hand", "Haven't been able to keep up with anything", "Need someone to maintain the yard", "It's not just the leaves — everything's a mess", "I need regular help going forward"], "bridge": "Once the leaves are cleared, you'll probably want to keep the lawn looking good going forward. Do you have someone handling the regular mowing?", "why_it_works": "Leaf removal is often a 'breaking point' call — they've fallen behind and need help.", "key_points": ["Once leaves are cleared, regular mowing keeps it maintained", "3-cut minimum is flexible — use whenever you need", "Don't pay until 3 days after service", "Crew already knows the property from the leaf job", "Prevents falling behind again"], "transition_line": "Since the crew will already be out there and know your property, it's a great time to get on a regular mowing schedule too."},
+        "Lawn Treatment": {"icon": "🧪", "strength": "Moderate", "listen_for": ["The lawn looks dead under the leaves", "I'm worried about the grass", "Will my lawn recover?", "Grass looks brown and thin", "Leaves have been sitting there for weeks"], "bridge": "Leaves sitting on the lawn can actually damage the grass underneath — you might notice some thin or brown spots once they're cleared.", "why_it_works": "Connects the leaf problem to potential lawn damage, which treatment solves.", "key_points": ["Leaves suffocate grass and can cause dead patches", "Fertilizer helps grass recover and thicken up", "Pre-emergent prevents weeds from filling in bare spots", "Treatment + removal = complete recovery plan", "Results visible within a few weeks"], "transition_line": "Once the leaves are off, let's get the treatment started so the grass can recover."},
+        "Bush Trimming": {"icon": "✂️", "strength": "Moderate", "listen_for": ["The whole yard is a mess", "I just want everything cleaned up", "It's been neglected for a while", "Getting ready for an event / selling", "What else can you do while you're here?"], "bridge": "If we're doing a full cleanup with the leaves, it might be a good time to get the bushes trimmed too.", "why_it_works": "Customer is already in cleanup mode. Adding bush trimming turns a single service into a full transformation.", "key_points": ["Full cleanup + trimming = complete yard transformation", "One visit handles everything", "Huge curb appeal boost all at once", "Saves time coordinating multiple visits later", "If selling or hosting, this is the fastest path to 'wow'"], "transition_line": "Let's make it a full transformation — leaves cleared, bushes trimmed, whole property looking sharp."}}},
+    "Bush Trimming": {"icon": "✂️", "desc": "Customer called about bush/shrub trimming", "paths": {
+        "Lawn Mowing": {"icon": "🏡", "strength": "Strong", "listen_for": ["The lawn needs work too", "I want the whole yard done", "Don't have a mowing service right now", "Everything's overgrown", "Getting the property in order"], "bridge": "Trimmed bushes will look amazing, but they'll really stand out against a well-maintained lawn. Do you have someone handling the mowing?", "why_it_works": "Trimmed bushes next to an unkempt lawn looks odd. Reps can paint the full picture.", "key_points": ["Trimmed bushes + maintained lawn = complete curb appeal", "Crew is already on site and knows the property", "Flexible 3-cut minimum with no upfront payment", "3-day quality check on every service", "One company handles everything"], "transition_line": "While the crew is there for the bushes, let's get the lawn on a regular schedule too."},
+        "Flower Bed Weeding": {"icon": "🌺", "strength": "Strong", "listen_for": ["The beds around the bushes are messy", "Weeds are growing up around everything", "I want it all cleaned up", "The area around the bushes looks bad", "Can you do the beds too?"], "bridge": "When we're trimming the bushes, we'll probably notice if the beds around them need attention. Want us to handle the weeding at the same time?", "why_it_works": "Bushes and flower beds are usually right next to each other.", "key_points": ["Bushes and beds are right next to each other — do both for the full effect", "Clean beds make the fresh trim look even better", "One visit, one crew, everything handled", "Shows off your landscaping properly", "The finishing touch that ties it all together"], "transition_line": "Since the crew's already working right around the beds, let's have them weed those too."},
+        "Lawn Treatment": {"icon": "🧪", "strength": "Light", "listen_for": ["My lawn doesn't look great either", "Weeds are taking over the grass too", "I want the whole property to look nice", "The grass is thin / brown", "Any way to improve the actual lawn?"], "bridge": "If the lawn itself isn't looking its best, we have a treatment program that can really transform it.", "why_it_works": "Lighter connection, but works when the customer is in 'whole property improvement' mode.", "key_points": ["Treatment tackles lawn health — thickness, color, weeds", "Complements the polished look from trimmed bushes", "Results in just a few weeks", "7-8 rounds per year keeps it looking great year-round", "Fewer weeds = less overgrowth overall"], "transition_line": "If you want the lawn to match how great the bushes will look, the treatment program is the way to go."}}},
+    "Flower Bed Weeding": {"icon": "🌺", "desc": "Customer called about flower bed maintenance", "paths": {
+        "Lawn Mowing": {"icon": "🏡", "strength": "Strong", "listen_for": ["The lawn needs help too", "I want the whole yard looking good", "Everything's gotten away from me", "Don't have a regular service", "Just moved in and need everything done"], "bridge": "Clean beds are going to look great — but they'll really shine when the lawn around them is maintained too. Do you have mowing set up?", "why_it_works": "Clean beds next to an unkempt lawn doesn't complete the look.", "key_points": ["Clean beds + maintained lawn = polished property", "Crew already knows the property layout", "Flexible scheduling with no upfront payment", "3-day quality guarantee on every service", "One point of contact for everything"], "transition_line": "Let's get the mowing going too so the whole yard matches those clean beds."},
+        "Bush Trimming": {"icon": "✂️", "strength": "Strong", "listen_for": ["The bushes next to the beds are overgrown too", "Everything in the front looks messy", "I want the landscaping to look nice", "The bushes are growing into the beds", "Can you trim while you're at it?"], "bridge": "If the bushes near the beds are overgrown too, we can trim those at the same time.", "why_it_works": "Bushes and beds live in the same space. Cleaning one without the other is only half the job.", "key_points": ["Bushes and beds together create the landscaping look", "Overgrown bushes can shade out flowers and plants", "One visit handles both", "Huge curb appeal impact", "Keeps everything proportional and tidy"], "transition_line": "Let's do both — beds weeded and bushes trimmed. That's going to completely transform the front of the house."},
+        "Lawn Treatment": {"icon": "🧪", "strength": "Moderate", "listen_for": ["Weeds are everywhere, not just the beds", "The lawn has weeds too", "I want to stop the weed problem", "Grass looks bad around the beds", "Is there something for the lawn weeds?"], "bridge": "If weeds are an issue in the beds AND the lawn, our treatment program can handle the lawn side.", "why_it_works": "Customer already has a weed problem mindset. Treatment extends the solution to the whole yard.", "key_points": ["Tackles weeds at the source across the whole lawn", "Pre-emergent prevents new weeds from spreading into beds", "Healthier lawn = less weed migration into beds", "Comprehensive approach to the weed problem", "Results visible in weeks"], "transition_line": "Since weeds are the main issue, let's hit them from both sides — bed weeding for the beds, treatment for the lawn."}}}
+}
 
-st.markdown('<div class="main-header"><h1>🌱 The <span class="highlight">Cutting Edge</span></h1></div>', unsafe_allow_html=True)
+disposition_guide = {
+    "Already Hired A Provider": {"category": "Customer Not Interested", "icon": "🏢", "short": "Customer already has another lawn service provider.", "when": "The customer tells you they've already signed up with or hired someone else.", "examples": ["I just signed up with another lawn service yesterday.", "I already have a guy who does my lawn.", "We went with a different company last week."], "not_this": ["If they're comparing quotes but haven't committed → Keep selling", "If they had a provider but are looking to switch → This is a lead, not a loss"], "confused_with": ["Not Qualified - Refuse Contact"]},
+    "Arrival Time": {"category": "Scheduling Issue", "icon": "⏰", "short": "Customer requires a specific time of day for service.", "when": "The customer insists on a particular arrival time that we can't guarantee due to our two-day service window.", "examples": ["Can you come at exactly 3 PM on Friday?", "I need the crew here before 9 AM.", "It has to be done in the afternoon only."], "not_this": ["If they need it within 48 hours → Less Than 48 Hour Turn-Around", "If they're flexible on time but want specific days → Keep selling"], "confused_with": ["Less Than 48 Hour Turn-Around"]},
+    "Broken Address": {"category": "System / Technical", "icon": "📍", "short": "System can't generate a price — address isn't recognized.", "when": "You enter the address and the system doesn't recognize it — usually new construction or new development.", "examples": ["The system can't find your address.", "It's a brand new build.", "My street doesn't show up in your system."], "not_this": ["If the address IS recognized but outside our area → Out Of Area", "If the customer gave the wrong address → Junk Contact"], "confused_with": ["Out Of Area"]},
+    "Callback": {"category": "Follow-Up Needed", "icon": "📞", "short": "Customer is interested but wants a callback at a specific later date.", "when": "They're interested but not ready NOW — they give you a specific time or date to call back.", "examples": ["Can you call me back next month?", "I'm interested but not until after I move in.", "Let me think about it, try me again Friday."], "not_this": ["If they're rushed and you can't qualify → Timing - Unable to Qualify", "If they say 'call me next spring' → Still use Callback, note the timeframe", "If they say 'don't call me again' → Not Qualified - Refuse Contact"], "confused_with": ["Timing - Unable to Qualify", "Next Spring"]},
+    "Dead Air": {"category": "No Contact Made", "icon": "🔇", "short": "Call connects but nobody responds — complete silence.", "when": "The call connects (not voicemail) but there's complete silence. You've repeated your opening at least twice with no response.", "examples": ["Hello? Is anyone there? (silence)"], "not_this": ["If the call cuts off mid-conversation → Disconnected", "If you reach voicemail → Drop Voicemail"], "confused_with": ["Disconnected", "Drop Voicemail"]},
+    "Disconnected": {"category": "No Contact Made", "icon": "📵", "short": "Call drops mid-conversation. Triggers auto-callback in 1 min.", "when": "You WERE talking to someone and the call suddenly drops. Note: this triggers an auto-callback within 1 minute.", "examples": ["We were discussing the 3-cut minimum and the line went dead.", "Customer was mid-sentence and the call dropped."], "not_this": ["If nobody ever responded → Dead Air", "If they intentionally hung up after saying no → Not Qualified - Refuse Contact"], "confused_with": ["Dead Air"]},
+    "Drop Voicemail": {"category": "No Contact Made", "icon": "📧", "short": "Reached voicemail — system auto-drops a message.", "when": "You call and get their voicemail. Selecting this auto-drops a voicemail — no need to leave one manually.", "examples": ["Went straight to voicemail.", "Rang several times, then voicemail picked up."], "not_this": ["If the call connects to a live person with silence → Dead Air", "If someone answers but it's the wrong number → Junk Contact"], "confused_with": ["Dead Air"]},
+    "Duplicate": {"category": "System / Technical", "icon": "👥", "short": "Customer already signed up or spoke with another agent.", "when": "They tell you they've already spoken with an agent, already got a quote from us, or already completed signup.", "examples": ["I already spoke with someone about this.", "I signed up online yesterday.", "I already have a quote from you guys."], "not_this": ["If they signed up with a DIFFERENT company → Already Hired A Provider", "If they're an existing customer needing help → Support Call"], "confused_with": ["Already Hired A Provider", "Support Call"]},
+    "Frequency Minimum": {"category": "Service Objection", "icon": "📅", "short": "Customer wants service LESS often than monthly.", "when": "They want to mow less often than monthly — like 'just call when I need it' or 'every 6 weeks.'", "examples": ["I only want it mowed every 6 weeks.", "Can I just call when I need it?", "Monthly is too often for me."], "not_this": ["If they object to the 3-cut minimum (number of cuts) → Minimum Cuts Requirement"], "confused_with": ["Minimum Cuts Requirement"]},
+    "Insufficient Capacity": {"category": "System / Technical", "icon": "🚫", "short": "We service their area but have NO available crews right now.", "when": "The system generates a price but the calendar shows ALL red days — no availability.", "examples": ["Calendar is completely red — no open slots."], "not_this": ["If the system can't generate a price at all → Out Of Area or Broken Address", "If there IS availability but not within 48 hours → Less Than 48 Hour Turn-Around"], "confused_with": ["Out Of Area"]},
+    "Junk Contact": {"category": "Invalid Lead", "icon": "🗑️", "short": "Wrong number, wrong address, wrong branding, or job applicant.", "when": "Wrong number, incorrect address, wrong brand used, or caller asking about a job application.", "examples": ["You've called the wrong number.", "I never requested lawn service.", "I'm calling about my job application."], "not_this": ["If it's a telemarketer calling us → Not Qualified - Telemarketer", "If the address doesn't work in the system → Broken Address"], "confused_with": ["Not Qualified - Telemarketer", "Broken Address"]},
+    "Less Than 48 Hour Turn-Around": {"category": "Scheduling Issue", "icon": "⚡", "short": "Customer needs service within 48 hours and won't wait.", "when": "They need it TODAY or TOMORROW and refuse to wait, even after you've tried to handle the objection.", "examples": ["I need it done today, no exceptions.", "I can't wait 48 hours.", "If you can't come today, I'll find someone else."], "not_this": ["If they want a specific TIME of day → Arrival Time", "If they're open to waiting after you explain → Keep selling!"], "confused_with": ["Arrival Time"]},
+    "LGF - Long Grass Fee": {"category": "Service Objection", "icon": "🌿", "short": "Customer refuses the long grass fee.", "when": "You've explained the fee and they flat-out refuse to proceed because of it.", "examples": ["I don't want to pay extra for long grass.", "That fee is ridiculous.", "No way I'm paying double."], "not_this": ["If they have questions but are still open → Handle the objection", "If their concern is overall price → Price"], "confused_with": ["Price"]},
+    "Minimum Cuts Requirement": {"category": "Service Objection", "icon": "3️⃣", "short": "Customer refuses the 3-cut minimum commitment.", "when": "They only want 1 or 2 cuts and won't agree to 3 after you've tried the objection.", "examples": ["I only want two cuts.", "I just need one mow — that's it.", "Three cuts is too many."], "not_this": ["If they want service less often than monthly → Frequency Minimum", "If they say 'one-time' but you haven't tried to overcome it → Try first!"], "confused_with": ["Frequency Minimum"]},
+    "No In-Person Quote": {"category": "Service Objection", "icon": "👀", "short": "Customer insists on an in-person walkthrough before getting a quote.", "when": "They want someone to physically come to their property before they'll consider a price.", "examples": ["Can someone come look at my yard first?", "I won't agree without someone seeing it in person."], "not_this": ["If they just want to know how we price → Explain satellite pricing", "If the property is too complex → Order Complexity"], "confused_with": ["Order Complexity"]},
+    "Not DM": {"category": "Decision Maker Issue", "icon": "🙋", "short": "Person on the call isn't the decision maker.", "when": "They're gathering info for a spouse, parent, roommate, boss, or homeowner. You MUST offer to hold a spot.", "examples": ["I'm just gathering information for my husband.", "My mom owns the house.", "Let me check with my wife first."], "not_this": ["If they say 'talk to spouse' as a stall → Try the objection first", "If they say 'stop calling' → Not Qualified - Refuse Contact"], "confused_with": ["Not Qualified - Refuse Contact", "Callback"]},
+    "Timing - Unable to Qualify": {"category": "Follow-Up Needed", "icon": "⏳", "short": "Customer is in a rush — can't properly qualify them.", "when": "They don't have time for the full process. Always ask about a callback first (if yes → use Callback).", "examples": ["I'm in a hurry, just give me a price.", "I only have 30 seconds.", "I gotta go."], "not_this": ["If they agree to a callback → Callback", "If they had time but aren't interested → Not Qualified - Refuse Contact"], "confused_with": ["Callback", "Less Than 48 Hour Turn-Around"]},
+    "Not Qualified - Refuse Contact": {"category": "Customer Not Interested", "icon": "🚫", "short": "Customer says don't contact them again.", "when": "They clearly say stop calling, take them off the list, or refuse any further discussion.", "examples": ["Please take me off your list.", "Don't call me again.", "I'm not interested — stop calling."], "not_this": ["If they're just not interested RIGHT NOW → Callback", "If they already have a provider → Already Hired A Provider"], "confused_with": ["Already Hired A Provider", "Junk Contact"]},
+    "Not Qualified - Telemarketer": {"category": "Invalid Lead", "icon": "📢", "short": "The caller is trying to sell US something.", "when": "Caller is a telemarketer, pitching sponsorships, or selling products/services.", "examples": ["I'm looking to speak to the owner about a sponsorship.", "We offer marketing services for lawn companies."], "not_this": ["If they want to become a provider for us → Provider Inquiry", "If it's a wrong number → Junk Contact"], "confused_with": ["Provider Inquiry", "Junk Contact"]},
+    "Order Complexity": {"category": "System / Technical", "icon": "🔧", "short": "Too complex — can't use app, no email, needs home access, or flagged account.", "when": "They can't use the app, don't have email, find the system too difficult, need crew to enter through their home, or account is flagged.", "examples": ["I can't figure out how to use your app.", "I don't have an email address.", "The crew would need to go through my garage."], "not_this": ["If the system can't find their address → Broken Address", "If they want an in-person quote → No In-Person Quote"], "confused_with": ["Broken Address", "No In-Person Quote"]},
+    "Out Of Area": {"category": "System / Technical", "icon": "🗺️", "short": "Customer's address is outside our service area.", "when": "Calendar shows all red days AND no pricing available — we don't service their area.", "examples": ["I'm in a neighboring town; do you service here?"], "not_this": ["If system gives a price but no availability → Insufficient Capacity", "If the address isn't recognized → Broken Address"], "confused_with": ["Insufficient Capacity", "Broken Address"]},
+    "Oversized Lot": {"category": "Property Issue", "icon": "🏞️", "short": "Property exceeds 160,000 sq ft / 3.67 acres.", "when": "The lot is bigger than our max of 160,000 sq ft or 3.67 acres.", "examples": ["My property is over four acres.", "I have a 5-acre lot."], "not_this": ["If the property is large but under 160k sq ft → Normal order"], "confused_with": ["Services Not Offered"]},
+    "Pre Paid Card": {"category": "Payment Issue", "icon": "💳", "short": "Customer only has a prepaid card, or their card was declined.", "when": "They only have a prepaid card, or their credit/debit card gets declined.", "examples": ["I'd like to pay with my prepaid card.", "My card keeps getting declined."], "not_this": ["If they refuse to put ANY card on file → Rejected CC"], "confused_with": ["Rejected CC"]},
+    "Price": {"category": "Service Objection", "icon": "💰", "short": "Overall price is too high for their budget.", "when": "They can't afford or don't want to pay our price — budget or value concern.", "examples": ["Your services are too expensive.", "That's way more than I expected.", "I can't afford that."], "not_this": ["If they're objecting to the LONG GRASS fee specifically → LGF", "If they say it's expensive but are still listening → Handle the objection!"], "confused_with": ["LGF - Long Grass Fee"]},
+    "Property Manager": {"category": "Special Caller", "icon": "🏘️", "short": "Property manager / realtor calling about a client's property — couldn't close.", "when": "Caller manages properties for someone else. Always use this for property managers regardless of the objection.", "examples": ["I'm managing a client's property.", "I'm a realtor needing service for a listing."], "not_this": ["If it's a regular homeowner → Use their specific objection disposition"], "confused_with": ["Services Not Offered"]},
+    "Provider Inquiry": {"category": "Special Caller", "icon": "🤝", "short": "Caller wants to become a service provider / join our network.", "when": "They want to work FOR us, not hire us.", "examples": ["How can I become a provider?", "I have a lawn care business and want to partner."], "not_this": ["If they're trying to sell us something → Not Qualified - Telemarketer"], "confused_with": ["Not Qualified - Telemarketer"]},
+    "Rejected CC": {"category": "Payment Issue", "icon": "💵", "short": "Customer refuses to put any card on file — wants cash or check.", "when": "They flat-out refuse to provide any card and insist on cash, check, or other methods.", "examples": ["I'd rather pay with cash.", "I'm not putting my card on file.", "I don't trust online payments."], "not_this": ["If they won't give card on phone but will sign up online → Rejected CC - Online Signup", "If they have a prepaid card or card was declined → Pre Paid Card"], "confused_with": ["Rejected CC - Online Signup", "Pre Paid Card"]},
+    "Rejected CC - Online Signup": {"category": "Payment Issue", "icon": "🖥️", "short": "Won't give card on phone but says they'll complete signup online.", "when": "They're interested but don't want to give payment on the call — they'll do it online.", "examples": ["I'd prefer not to give my card over the phone. I'll sign up online.", "Just send me the link."], "not_this": ["If they refuse card at all (not even online) → Rejected CC"], "confused_with": ["Rejected CC"]},
+    "Rejected Subcontracting": {"category": "Service Objection", "icon": "👷", "short": "Customer refuses service because we use subcontractors.", "when": "They specifically say they don't want subcontractors — only direct employees.", "examples": ["I only want employees, not subcontractors.", "I don't trust subcontractors."], "not_this": ["If they have general trust concerns → Handle the trust objection"], "confused_with": ["Already Hired A Provider"]},
+    "Services Not Offered": {"category": "Service Objection", "icon": "❌", "short": "Customer wants something we don't provide.", "when": "They want services, features, or payment methods we don't offer.", "examples": ["Can you build me a retaining wall?", "I just need sod installation.", "Do you accept ACH payments?"], "not_this": ["If they want a service we offer but in the wrong region → Out Of Area"], "confused_with": ["Out Of Area", "Oversized Lot"]},
+    "Support Call": {"category": "Special Caller", "icon": "🎧", "short": "Existing customer calling about their current account.", "when": "Already a customer — needs help, wants to cancel, billing question, or pending account within 12 hours.", "examples": ["I need help canceling my account.", "I have a question about my last bill."], "not_this": ["If they're a new lead → Regular sales process", "If they spoke with an agent but aren't signed up → Duplicate"], "confused_with": ["Duplicate"]},
+    "Next Spring": {"category": "Follow-Up Needed", "icon": "🌸", "short": "⚠️ DO NOT USE — use Callback instead.", "when": "NEVER. If a customer says 'call me next spring,' use Callback and note the timeframe.", "examples": ["I'm not interested now, but call me next spring."], "not_this": ["Always use Callback instead"], "confused_with": ["Callback"]},
+    "Test": {"category": "Internal", "icon": "🧪", "short": "Only for system tests and QA checks.", "when": "You're doing a number test or QA check. Never for real calls.", "examples": ["This is a test call."], "not_this": ["Never use for real customer interactions"], "confused_with": []},
+    "PF Closed Won": {"category": "Payment Issue", "icon": "✅", "short": "Payment link had issues but customer completed payment after retrying.", "when": "Payment link failed initially but customer got it to work after multiple attempts.", "examples": ["I got it to work after a few tries."], "not_this": ["If it never worked → PF Closed Loss", "If payment went smoothly → Close Won"], "confused_with": ["PF Closed Loss"]},
+    "PF Closed Loss": {"category": "Payment Issue", "icon": "⛔", "short": "Lost the sale because the payment link failed.", "when": "Payment link didn't work and customer gave up.", "examples": ["I'm not receiving any links.", "The link is not working."], "not_this": ["If they got it to work → PF Closed Won", "If they refused to give card (not tech) → Rejected CC"], "confused_with": ["PF Closed Won", "Rejected CC"]}
+}
 
+disposition_wizard = [
+    {"question": "Did you actually talk to the customer?", "options": {"No — voicemail": "Drop Voicemail", "No — dead air / silence": "Dead Air", "No — call dropped mid-conversation": "Disconnected", "Yes — we had a conversation": "next_2"}},
+    {"question": "Was it a real potential customer?", "options": {"Wrong number / bad contact info": "Junk Contact", "Telemarketer trying to sell us something": "Not Qualified - Telemarketer", "They want to become a provider for us": "Provider Inquiry", "Existing customer needing support": "Support Call", "Already signed up / spoke with another agent": "Duplicate", "Test / QA call": "Test", "Yes — real potential customer": "next_3"}},
+    {"question": "Were you able to have a full conversation?", "options": {"No — they were in a rush, couldn't qualify": "Timing - Unable to Qualify", "No — they want a callback at a later date": "Callback", "No — they said don't contact me again": "Not Qualified - Refuse Contact", "No — not the decision maker": "Not DM", "Yes — full conversation": "next_4"}},
+    {"question": "Was there a system or property issue?", "options": {"Address not recognized in system": "Broken Address", "Outside our service area (no price, all red)": "Out Of Area", "We service the area but no crews (price but all red)": "Insufficient Capacity", "Property over 160k sq ft / 3.67 acres": "Oversized Lot", "Can't use app / no email / too complex": "Order Complexity", "No system issues — sales conversation": "next_5"}},
+    {"question": "What was the main reason they didn't close?", "options": {"Already hired someone else": "Already Hired A Provider", "Overall price too high": "Price", "Objected to long grass fee": "LGF - Long Grass Fee", "Wants service less often than monthly": "Frequency Minimum", "Won't commit to 3-cut minimum": "Minimum Cuts Requirement", "Needs it within 48 hours, won't wait": "Less Than 48 Hour Turn-Around", "Wants specific arrival time": "Arrival Time", "Wants in-person quote first": "No In-Person Quote", "Doesn't want subcontractors": "Rejected Subcontracting", "Wants services we don't offer": "Services Not Offered", "Property manager — couldn't close": "Property Manager", "Payment issue — next step": "next_6"}},
+    {"question": "What was the payment issue?", "options": {"Refused any card (wants cash/check)": "Rejected CC", "Won't give card on phone, will sign up online": "Rejected CC - Online Signup", "Only has prepaid card / card declined": "Pre Paid Card", "Payment link failed but completed after retries": "PF Closed Won", "Payment link failed — lost the sale": "PF Closed Loss"}}
 qa_questions = [
-    {
-        "category": "Greeting & Opening",
-        "scenario": "A customer calls in. What's the FIRST thing you should do?",
-        "options": {
-            "A": "Ask for their address right away to check availability",
-            "B": "Give the standard greeting and ask what they're looking for",
-            "C": "Tell them about current promotions",
-            "D": "Ask if they've used LawnStarter before"
-        },
-        "correct": "B",
-        "explanation": "Always start with the standard greeting: 'Hello, this is [NAME] and thank you for calling LawnStarter. Would you mind sharing a bit about what you're looking for?' This sets a professional tone and lets the customer lead with their needs."
-    },
-    {
-        "category": "Greeting & Opening",
-        "scenario": "You're calling a customer who was texting with a colleague. What's the correct SMS greeting?",
-        "options": {
-            "A": "Hi, I'm calling about your lawn service inquiry",
-            "B": "Hi, this is ___ with LawnStarter, you were just texting my colleague and they asked me to give you a call. How can I help?",
-            "C": "Hello, is this the homeowner?",
-            "D": "Hi, are you still interested in lawn service?"
-        },
-        "correct": "B",
-        "explanation": "The SMS greeting should reference that they were texting a colleague: 'Hi, this is ___ with LawnStarter, you were just texting my colleague and they asked me to give you a call. How can I help?' This provides context and a smooth transition."
-    },
-    {
-        "category": "Price Presentation",
-        "scenario": "When presenting the price, what fee must ALWAYS be mentioned separately?",
-        "options": {
-            "A": "Long grass fee",
-            "B": "Tax fee",
-            "C": "$3.99 Trust and Safety fee",
-            "D": "Cancellation fee"
-        },
-        "correct": "C",
-        "explanation": "Always present: Base Price + $3.99 Trust and Safety fee. This fee helps cover pro vetting and potential property damage mediation. We itemize it for transparency rather than rolling it into the price."
-    },
-    {
-        "category": "3-Cut Minimum",
-        "scenario": "A customer says 'I only need a one-time mow.' What should you do FIRST?",
-        "options": {
-            "A": "Tell them about the 3-cut minimum immediately",
-            "B": "Acknowledge and find out WHY they only want one mow",
-            "C": "Offer them a discount to commit to 3 cuts",
-            "D": "Transfer them to a supervisor"
-        },
-        "correct": "B",
-        "explanation": "FIRST acknowledge and probe to find out why. Are they selling? Seasonal need? HOA notice? Understanding the reason helps you address their specific concern before discussing the 3-cut minimum."
-    },
-    {
-        "category": "Long Grass Fee",
-        "scenario": "At what height does the long grass fee potentially apply?",
-        "options": {
-            "A": "Over 6 inches",
-            "B": "Over 9 inches",
-            "C": "Over 12 inches",
-            "D": "Over 15 inches"
-        },
-        "correct": "B",
-        "explanation": "If grass is over 9 inches, a fee up to the full base mowing price may apply. If over 15 inches, the crew submits a quote for approval before servicing. Always mention this so there are no surprises!"
-    }
-]
-
-faq_data = {
-    "Pricing & Fees": [
-        {
-            "question": "What's included in the base mowing price?",
-            "answer": "Mowing, trimming edges, and blowing off paved surfaces.",
-            "phrasing": "Your mowing service covers the full package — we'll mow the lawn, trim up the edges, and blow off any grass clippings from your driveway and walkways."
-        },
-        {
-            "question": "What is the Trust & Safety fee?",
-            "answer": "$3.99 fee that covers pro vetting and helps mediate potential property damage. Most companies roll it into their price; we itemize for transparency.",
-            "phrasing": "There's a small Trust and Safety fee that helps us vet all our pros and covers you in case of any property issues. Most companies just hide it in their price — we like to be upfront about it."
-        },
-        {
-            "question": "Are taxes included in the price?",
-            "answer": "No. Taxes are based on local laws and will be added based on your area.",
-            "phrasing": "The price I quoted doesn't include taxes — those vary depending on where you're located, so they'll be calculated based on your local rates."
-        }
-    ],
-    "Scheduling & Service Windows": [
-        {
-            "question": "How does the two-day service window work?",
-            "answer": "Service is scheduled within a two-day window (e.g., Wednesday or Thursday). Always provide both days AND dates.",
-            "phrasing": "We schedule within a two-day window — so for example, your crew would come either Wednesday the 20th or Thursday the 21st. It gives us flexibility for weather and routing."
-        },
-        {
-            "question": "Why do I have to wait 48 hours for the first service?",
-            "answer": "Routes are planned in advance and it gives time to find a pro. This is still the fastest turnaround in the industry.",
-            "phrasing": "The 48-hour window lets us get you matched with a great pro and fit you into the route. It's actually the fastest turnaround you'll find — most companies take way longer."
-        }
-    ],
-    "Payment & Billing": [
-        {
-            "question": "When do I get charged?",
-            "answer": "3 days after service is completed. This allows time to address any issues before being charged.",
-            "phrasing": "You won't be charged until three days after the service is done. That gives you time to check everything out and let us know if anything needs fixing before your card is charged."
-        },
-        {
-            "question": "Why do I need a card on file?",
-            "answer": "Allows contactless service (no need to be home), 3-day billing delay for quality assurance, and notifications when service is complete.",
-            "phrasing": "It just makes everything easier — you don't have to be home, we don't charge until three days after so you can inspect the work first, and you'll get notifications as soon as the job's done."
-        }
-    ]
-}
-
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["📚 Flashcards", "📉 Loss Tracker", "🛠️ Guide Builder", "🎯 Attach Builder", "🎮 QA Game Show", "🔍 FAQ Search", "🌿 Grass Guide"])
-
-with tab1:
-    st.markdown('<p style="text-align:center;color:#e8f5e6;">Identify the WHY, then match the right response!</p>', unsafe_allow_html=True)
-    if 'card_index' not in st.session_state:
-        st.session_state.card_index = 0
-    if 'show_answer' not in st.session_state:
-        st.session_state.show_answer = False
-    if 'completed' not in st.session_state:
-        st.session_state.completed = []
-    categories = ["All"] + list(set([o["category"] for o in objections]))
-    selected_cat = st.selectbox("Filter by category:", categories)
-    filtered = objections if selected_cat == "All" else [o for o in objections if o["category"] == selected_cat]
-    if st.session_state.card_index >= len(filtered):
-        st.session_state.card_index = 0
-    current = filtered[st.session_state.card_index]
-    progress = len([c for c in st.session_state.completed if c in [o["id"] for o in filtered]])
-    st.progress(progress / len(filtered))
-    st.markdown(f'<p style="text-align:right;color:#e8f5e6;">{progress} / {len(filtered)} reviewed</p>', unsafe_allow_html=True)
-    st.markdown(f'''
-    <div class="card">
-        <span class="category-badge">{current["category"]}</span>
-        <span style="float:right;color:#888;">{st.session_state.card_index + 1} of {len(filtered)}</span>
-        <div class="surface-text">"{current["surface"]}"</div>
-        <p class="reason-label">🎯 THE REAL REASON</p>
-        <p class="reason-text">{current["reason"]}</p>
-    </div>
-    ''', unsafe_allow_html=True)
-    if st.session_state.show_answer:
-        st.markdown(f'''
-        <div class="card" style="background: linear-gradient(135deg, #e8f5e6, #d4edda);">
-            <p class="approach-label">✅ BEST APPROACH</p>
-            <p class="approach-text">{current["rebuttal"]}</p>
-        </div>
-        ''', unsafe_allow_html=True)
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        if st.button("🔄 Flip Card", use_container_width=True):
-            st.session_state.show_answer = not st.session_state.show_answer
-            st.rerun()
-    with col2:
-        if st.button("➡️ Next Card", use_container_width=True):
-            if current["id"] not in st.session_state.completed:
-                st.session_state.completed.append(current["id"])
-            st.session_state.card_index = (st.session_state.card_index + 1) % len(filtered)
-            st.session_state.show_answer = False
-            st.rerun()
-    with col3:
-        if st.button("🔁 Reset", use_container_width=True):
-            st.session_state.completed = []
-            st.session_state.card_index = 0
-            st.session_state.show_answer = False
-            st.rerun()
-
-with tab2:
-    st.markdown('<p style="text-align:center;color:#e8f5e6;">Track dispositions. Find patterns. Coach smarter.</p>', unsafe_allow_html=True)
-    st.markdown('<div class="card"><h3 style="color:#2d5a27;">Log a Loss</h3>', unsafe_allow_html=True)
-    agent_name = st.text_input("Agent Name")
-    agent_id = st.text_input("Agent ID")
-    disposition = st.selectbox("Disposition", ["Select disposition..."] + dispositions)
-    if st.button("📤 Log & Send to Sheet", use_container_width=True):
-        if agent_name and agent_id and disposition != "Select disposition...":
-            timestamp = datetime.now().strftime("%m/%d/%Y, %I:%M:%S %p")
-            params = urllib.parse.urlencode({"agentName": agent_name, "agentId": agent_id, "disposition": disposition, "timestamp": timestamp})
-            full_url = f"{SCRIPT_URL}?{params}"
-            st.markdown(f'<div class="success-box">✓ Logged: {disposition}</div>', unsafe_allow_html=True)
-            st.markdown(f'<a href="{full_url}" target="_blank"><button style="width:100%;padding:10px;margin-top:10px;background:#4a9c3d;color:white;border:none;border-radius:10px;font-weight:bold;cursor:pointer;">Click here to send to Google Sheet</button></a>', unsafe_allow_html=True)
-        else:
-            st.warning("Please fill in all fields!")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with tab3:
-    st.markdown('<p style="text-align:center;color:#e8f5e6;">Build your own approach — your words, your style!</p>', unsafe_allow_html=True)
-    st.markdown('<div class="card"><h3 style="color:#2d5a27;">🛠️ Build Your Guide</h3>', unsafe_allow_html=True)
-    scenario = st.selectbox("What objection are you handling?", ["Select a scenario..."] + list(guide_scenarios.keys()))
-    if scenario != "Select a scenario...":
-        data = guide_scenarios[scenario]
-        st.markdown("---")
-        st.markdown("**Step 1: How do you want to open?**")
-        opening_style = st.radio("Choose your style:", list(data["openings"].keys()), horizontal=True, key="guide_opening")
-        st.markdown("---")
-        st.markdown("**Step 2: Which points do you want to hit?**")
-        selected_points = []
-        for point_name, point_text in data["points"].items():
-            if st.checkbox(point_name, key=f"guide_{scenario}_{point_name}"):
-                selected_points.append(point_text)
-        st.markdown("---")
-        st.markdown("**Step 3: How do you want to close?**")
-        close_style = st.radio("Choose your close:", list(data["closes"].keys()), horizontal=True, key="guide_close")
-        if selected_points:
-            st.markdown("---")
-            st.markdown("### 📋 Your Custom Guide")
-            guide_html = f'''
-            <div class="guide-output">
-                <div class="guide-section">
-                    <p class="guide-label">🎯 Your Opening</p>
-                    <p class="guide-text">"{data["openings"][opening_style]}"</p>
-                </div>
-                <div class="guide-section">
-                    <p class="guide-label">💡 Key Points to Hit</p>
-                    <ul style="color:#2d5a27; line-height: 1.8;">
-            '''
-            for point in selected_points:
-                guide_html += f'<li style="margin-bottom:10px;">{point}</li>'
-            guide_html += f'''
-                    </ul>
-                </div>
-                <div class="guide-section">
-                    <p class="guide-label">🎬 Your Close</p>
-                    <p class="guide-text">"{data["closes"][close_style]}"</p>
-                </div>
-            </div>
-            '''
-            st.markdown(guide_html, unsafe_allow_html=True)
-        else:
-            st.info("👆 Select at least one key point to see your guide!")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with tab4:
-    st.markdown('<p style="text-align:center;color:#e8f5e6;">Build your attach pitch — your words, your style!</p>', unsafe_allow_html=True)
-    st.markdown('<div class="card"><h3 style="color:#2d5a27;">🎯 Build Your Attach Pitch</h3>', unsafe_allow_html=True)
-    attach_service = st.selectbox("What service do you want to attach?", ["Select a service..."] + list(attach_guides.keys()))
-    if attach_service != "Select a service...":
-        adata = attach_guides[attach_service]
-        triggers_display = " • ".join([f'"{t}"' for t in adata["triggers"]])
-        st.markdown(f'<div style="background:#e8f5e6; padding:12px; border-radius:10px; margin:10px 0;"><p style="color:#2d5a27; margin:0; font-size:0.85rem;"><strong>🎧 Listen for:</strong> {triggers_display}</p></div>', unsafe_allow_html=True)
-        st.markdown("---")
-        st.markdown("**Step 1: How do you want to open?**")
-        attach_opening = st.radio("Choose your style:", list(adata["openings"].keys()), horizontal=True, key="attach_opening")
-        st.markdown("---")
-        st.markdown("**Step 2: Which points do you want to hit?**")
-        selected_attach_points = []
-        for point_name, point_text in adata["points"].items():
-            if st.checkbox(point_name, key=f"attach_{attach_service}_{point_name}"):
-                selected_attach_points.append(point_text)
-        st.markdown("---")
-        st.markdown("**Step 3: How do you want to close?**")
-        attach_close = st.radio("Choose your close:", list(adata["closes"].keys()), horizontal=True, key="attach_close")
-        if selected_attach_points:
-            st.markdown("---")
-            st.markdown("### 📋 Your Attach Pitch")
-            attach_html = f'<div class="guide-output"><div class="guide-section"><p class="guide-label">🎯 Your Opening</p><p class="guide-text">"{adata["openings"][attach_opening]}"</p></div><div class="guide-section"><p class="guide-label">💡 Key Points to Hit</p><ul style="color:#2d5a27; line-height: 1.8;">'
-            for point in selected_attach_points:
-                attach_html += f'<li style="margin-bottom:10px;">{point}</li>'
-            attach_html += f'</ul></div><div class="guide-section"><p class="guide-label">🎬 Your Close</p><p class="guide-text">"{adata["closes"][attach_close]}"</p></div></div>'
-            st.markdown(attach_html, unsafe_allow_html=True)
-            st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none; margin-top:15px;"><h4 style="color:#2d5a27; margin-bottom:10px;">💡 Pro Tip for {attach_service}</h4><p style="color:#2d5a27; margin:0;">{adata["pro_tip"]}</p></div>', unsafe_allow_html=True)
-        else:
-            st.info("👆 Select at least one key point to see your pitch!")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with tab5:
-    st.markdown('<p style="text-align:center;color:#e8f5e6;">Test your QA knowledge — game show style! 🎯</p>', unsafe_allow_html=True)
-    if 'qa_index' not in st.session_state: st.session_state.qa_index = 0
-    if 'qa_score' not in st.session_state: st.session_state.qa_score = 0
-    if 'qa_answered' not in st.session_state: st.session_state.qa_answered = False
-    if 'qa_selected' not in st.session_state: st.session_state.qa_selected = None
-    if 'qa_history' not in st.session_state: st.session_state.qa_history = []
-    total_questions = len(qa_questions)
-    current_q = qa_questions[st.session_state.qa_index]
-    st.markdown(f'<div style="display:flex; justify-content:space-between; margin-bottom:15px;"><div style="background:#f5a623; padding:10px 20px; border-radius:10px;"><p style="margin:0; color:#2d5a27; font-weight:bold;">🏆 Score: {st.session_state.qa_score}/{len(st.session_state.qa_history)}</p></div><div style="background:rgba(255,255,255,0.2); padding:10px 20px; border-radius:10px;"><p style="margin:0; color:white; font-weight:bold;">Question {st.session_state.qa_index + 1} of {total_questions}</p></div></div>', unsafe_allow_html=True)
-    st.progress((st.session_state.qa_index + 1) / total_questions)
-    st.markdown(f'<div class="card"><span class="category-badge">{current_q["category"]}</span><p style="color:#2d5a27; font-size:1.2rem; font-weight:bold; margin-top:15px; line-height:1.5;">{current_q["scenario"]}</p></div>', unsafe_allow_html=True)
-    if not st.session_state.qa_answered:
-        for letter, text in current_q["options"].items():
-            if st.button(f"{letter}) {text}", key=f"qa_opt_{letter}", use_container_width=True):
-                st.session_state.qa_selected = letter
-                st.session_state.qa_answered = True
-                if letter == current_q["correct"]: st.session_state.qa_score += 1
-                st.session_state.qa_history.append({"question": current_q["scenario"], "selected": letter, "correct": current_q["correct"], "got_it": letter == current_q["correct"]})
-                st.rerun()
-    else:
-        for letter, text in current_q["options"].items():
-            if letter == current_q["correct"]:
-                st.markdown(f'<div style="background:#d4edda; padding:15px; border-radius:10px; margin:5px 0; border-left:5px solid #28a745;"><p style="margin:0; color:#2d5a27;"><strong>✅ {letter}) {text}</strong></p></div>', unsafe_allow_html=True)
-            elif letter == st.session_state.qa_selected:
-                st.markdown(f'<div style="background:#f8d7da; padding:15px; border-radius:10px; margin:5px 0; border-left:5px solid #dc3545;"><p style="margin:0; color:#721c24;"><strong>❌ {letter}) {text}</strong></p></div>', unsafe_allow_html=True)
-            else:
-                st.markdown(f'<div style="background:#e9ecef; padding:15px; border-radius:10px; margin:5px 0;"><p style="margin:0; color:#6c757d;">{letter}) {text}</p></div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="card" style="background: linear-gradient(135deg, #d4edda, #c3e6cb); border-top: 5px solid #28a745;"><h4 style="color:#155724; margin-bottom:10px;">{"🎉 Correct!" if st.session_state.qa_selected == current_q["correct"] else "Not quite!"}</h4><p style="color:#155724; margin:0;">{current_q["explanation"]}</p></div>', unsafe_allow_html=True)
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.session_state.qa_index < total_questions - 1:
-                if st.button("➡️ Next Question", use_container_width=True):
-                    st.session_state.qa_index += 1
-                    st.session_state.qa_answered = False
-                    st.session_state.qa_selected = None
-                    st.rerun()
-        with col2:
-            if st.button("🔁 Start Over", use_container_width=True):
-                st.session_state.qa_index = 0
-                st.session_state.qa_score = 0
-                st.session_state.qa_answered = False
-                st.session_state.qa_selected = None
-                st.session_state.qa_history = []
-                st.rerun()
-
-with tab6:
-    st.markdown('<p style="text-align:center;color:#e8f5e6;">Find answers fast — search or browse by category!</p>', unsafe_allow_html=True)
-    search_query = st.text_input("🔍 Search FAQs", placeholder="Type keywords like 'long grass' or 'payment'...")
-    st.markdown("**Or browse by category:**")
-    categories = ["All Categories"] + list(faq_data.keys())
-    selected_faq_cat = st.selectbox("Select a category", categories, label_visibility="collapsed")
-    def search_faqs(query):
-        results = []
-        query_lower = query.lower()
-        for category, faqs in faq_data.items():
-            for faq in faqs:
-                if query_lower in faq["question"].lower() or query_lower in faq["answer"].lower() or query_lower in faq["phrasing"].lower():
-                    results.append({"category": category, **faq})
-        return results
-    if search_query:
-        results = search_faqs(search_query)
-        if results:
-            st.markdown(f'<p style="color:#e8f5e6;">Found {len(results)} result(s) for "{search_query}"</p>', unsafe_allow_html=True)
-            for r in results:
-                with st.expander(f"📌 {r['question']}"):
-                    st.markdown(f"**📋 The Facts:** {r['answer']}")
-                    st.markdown(f'**💬 How to say it:** <div style="background:#fffef5; padding:15px; border-radius:10px; border-left:4px solid #4a9c3d;"><em>"{r["phrasing"]}"</em></div>', unsafe_allow_html=True)
-        else:
-            st.warning(f'No results found for "{search_query}". Try different keywords!')
-    elif selected_faq_cat != "All Categories":
-        faqs = faq_data[selected_faq_cat]
-        for faq in faqs:
-            with st.expander(f"📌 {faq['question']}"):
-                st.markdown(f"**📋 The Facts:** {faq['answer']}")
-                st.markdown(f'**💬 How to say it:** <div style="background:#fffef5; padding:15px; border-radius:10px; border-left:4px solid #4a9c3d;"><em>"{faq["phrasing"]}"</em></div>', unsafe_allow_html=True)
-    else:
-        for category, faqs in faq_data.items():
-            st.markdown(f"### {category}")
-            for faq in faqs:
-                with st.expander(f"📌 {faq['question']}"):
-                    st.markdown(f"**📋 The Facts:** {faq['answer']}")
-                    st.markdown(f'**💬 How to say it:** <div style="background:#fffef5; padding:15px; border-radius:10px; border-left:4px solid #4a9c3d;"><em>"{faq["phrasing"]}"</em></div>', unsafe_allow_html=True)
-
-with tab7:
-    st.markdown('<p style="text-align:center;color:#e8f5e6;">Learn to identify and care for Southern grasses!</p>', unsafe_allow_html=True)
-    
-    grass_names = list(grass_guide.keys())
-    selected_grass = st.selectbox("Select a grass type to learn about:", ["Overview - All Grasses"] + grass_names)
-    
-    if selected_grass == "Overview - All Grasses":
-        st.markdown("### 🌿 Quick Comparison Guide")
-        st.markdown('<div class="card">', unsafe_allow_html=True)
-        comparison_data = {
-            "Grass": grass_names,
-            "Blade Width": ["Fine-Medium", "Wide (Widest)", "Fine-Medium", "Medium", "Coarse"],
-            "Shade Tolerance": ["Poor", "Good", "Moderate", "Moderate", "Poor"],
-            "Drought Tolerance": ["Excellent", "Moderate", "Excellent", "Good", "Excellent"],
-            "Maintenance": ["High", "Medium", "Low-Medium", "Low", "Low"],
-            "Traffic Tolerance": ["Excellent", "Poor", "Good", "Poor", "Good"]
-        }
-        st.table(comparison_data)
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        st.markdown("### 🔍 Quick ID Tips")
-        for name in grass_names:
-            g = grass_guide[name]
-            col1, col2 = st.columns([1, 2])
-            with col1:
-                try:
-                    st.image(g["image_file"], use_container_width=True)
-                except:
-                    st.markdown(f'<div style="background:#e8f5e6; padding:30px; border-radius:10px; text-align:center;"><p style="font-size:2rem; margin:0;">🌿</p></div>', unsafe_allow_html=True)
-            with col2:
-                st.markdown(f'''
-                <div style="padding:10px;">
-                    <h4 style="color:#2d5a27; margin:0;">{name}</h4>
-                    <p style="color:#666; font-style:italic; margin:5px 0;">{g["nickname"]}</p>
-                    <p style="color:#2d5a27; font-size:0.95rem; line-height:1.6; margin:10px 0;">{g["visual_desc"]}</p>
-                </div>
-                ''', unsafe_allow_html=True)
-            st.markdown("---")
-    
-    else:
-        g = grass_guide[selected_grass]
-        
-        # Header with image
-        st.markdown(f'''
-        <div class="grass-card">
-            <p class="grass-title">{selected_grass}</p>
-            <p class="grass-subtitle">{g["nickname"]} • {g["scientific_name"]}</p>
-            <p style="color:#666; margin:0;"><strong>Common Locations:</strong> {g["common_locations"]}</p>
-        </div>
-        ''', unsafe_allow_html=True)
-        
-        # Display grass visual identification
-        st.markdown("### 📸 Visual Identification")
-        col_img, col_desc = st.columns([1, 1])
-        with col_img:
-            try:
-                st.image(g["image_file"], use_container_width=True)
-            except:
-                st.markdown(f'<div style="background:#e8f5e6; padding:40px; border-radius:10px; text-align:center;"><p style="font-size:3rem; margin:0;">🌿</p><p style="color:#2d5a27;">Image: {g["image_file"]}</p></div>', unsafe_allow_html=True)
-        with col_desc:
-            st.markdown(f'''
-            <div style="background:#e8f5e6; padding:20px; border-radius:15px; height:100%;">
-                <p style="color:#2d5a27; font-size:1.1rem; font-weight:bold; margin-bottom:15px;">👁️ What to Look For:</p>
-                <p style="color:#2d5a27; font-size:1rem; line-height:1.8;">{g["visual_desc"]}</p>
-            </div>
-            ''', unsafe_allow_html=True)
-        
-        # Identification
-        st.markdown("### 🔍 How to Identify")
-        st.markdown('<div class="card">', unsafe_allow_html=True)
-        for key, value in g["identification"].items():
-            if key == "Key Identifier":
-                st.markdown(f'<div class="id-box"><strong style="color:#f5a623;">⭐ {key}:</strong> <span style="color:#2d5a27;">{value}</span></div>', unsafe_allow_html=True)
-            else:
-                st.markdown(f"**{key}:** {value}")
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        # Care Requirements
-        st.markdown("### 🌱 Care Requirements")
-        st.markdown('<div class="card">', unsafe_allow_html=True)
-        care_items = list(g["care"].items())
-        cols = st.columns(2)
-        for i, (key, value) in enumerate(care_items):
-            with cols[i % 2]:
-                st.markdown(f'''
-                <div style="background:#f8f9fa; padding:10px; border-radius:8px; margin:5px 0;">
-                    <p style="color:#4a9c3d; font-size:0.75rem; font-weight:bold; margin:0;">{key.upper()}</p>
-                    <p style="color:#2d5a27; font-weight:bold; margin:0;">{value}</p>
-                </div>
-                ''', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        # Seasonal Care
-        st.markdown("### 📅 Seasonal Care Calendar")
-        st.markdown('<div class="card">', unsafe_allow_html=True)
-        for season, care in g["seasonal"].items():
-            emoji = {"Spring": "🌸", "Summer": "☀️", "Fall": "🍂", "Winter": "❄️"}[season]
-            st.markdown(f'''
-            <div style="background:#e8f5e6; padding:12px; border-radius:8px; margin:8px 0;">
-                <p style="color:#4a9c3d; font-weight:bold; margin:0;">{emoji} {season}</p>
-                <p style="color:#2d5a27; margin:5px 0 0 0;">{care}</p>
-            </div>
-            ''', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        # Common Problems
-        st.markdown("### ⚠️ Common Problems & Solutions")
-        st.markdown('<div class="card">', unsafe_allow_html=True)
-        for problem, solution in g["problems"].items():
-            st.markdown(f'''
-            <div class="problem-item">
-                <p style="color:#856404; font-weight:bold; margin:0;">🔸 {problem}</p>
-                <p style="color:#2d5a27; margin:5px 0 0 0;">{solution}</p>
-            </div>
-            ''', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-        # Pro Tips
-        st.markdown("### 💡 Pro Tips")
-        st.markdown(f'''
-        <div class="card" style="background: linear-gradient(135deg, #f5a623, #f7b942); border-top: none;">
-        ''', unsafe_allow_html=True)
-        for tip in g["pro_tips"]:
-            st.markdown(f'<p style="color:#2d5a27; margin:8px 0;">✓ {tip}</p>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+    {"category": "Greeting & Opening", "scenario": "A customer calls in. What's the FIRST thing you should do?", "options": {"A": "Ask for their address right away to check availability", "B": "Give the standard greeting and ask what they're looking for", "C": "Tell them about current promotions", "D": "Ask if they've used LawnStarter before"}, "correct": "B", "explanation": "Always start with the standard greeting: 'Hello, this is [NAME] and thank you for calling LawnStarter. Would you mind sharing a bit about what you're looking for?' This sets a professional tone and lets the customer lead with their needs."},
+    {"category": "Greeting & Opening", "scenario": "You're calling a customer who was texting with a colleague. What's the correct SMS greeting?", "options": {"A": "Hi, I'm calling about your lawn service inquiry", "B": "Hi, this is ___ with LawnStarter, you were just texting my colleague and they asked me to give you a call. How can I help?", "C": "Hello, is this the homeowner?", "D": "Hi, are you still interested in lawn service?"}, "correct": "B", "explanation": "The SMS greeting should reference that they were texting a colleague: 'Hi, this is ___ with LawnStarter, you were just texting my colleague and they asked me to give you a call. How can I help?' This provides context and a smooth transition."},
+    {"category": "Greeting & Opening", "scenario": "After the customer shares what they're looking for, what's a good way to acknowledge their response?", "options": {"A": "Okay, let me transfer you", "B": "Yes! We can take care of all of that! / I can help you with that / Let me look into that for you", "C": "That's not really what we do", "D": "Can you repeat that?"}, "correct": "B", "explanation": "Acknowledge positively and focus on their main interest. Examples: 'Yes! We can take care of all of that!' or 'I can help you with that' or 'Let me look into that for you.' Then ask if they need anything else while we're out there."},
+    {"category": "Verification", "scenario": "You need to verify a customer's information. What three things MUST you confirm?", "options": {"A": "Name, email, and credit card", "B": "Address, phone number, and email", "C": "Name, address (with zip), and phone number", "D": "Phone number, frequency preference, and budget"}, "correct": "C", "explanation": "Verification requires: Phone number (mobile or landline), Address (street number, name AND zip), and Name. Email comes later during final verification."},
+    {"category": "Verification", "scenario": "When verifying the customer's email at the end of the call, how should you read it back?", "options": {"A": "Just say the email quickly", "B": "Spell it out phonetically (PHONETICALLYSPELLEDOUT@ALWAYS.com)", "C": "Ask them to spell it for you", "D": "Send a confirmation text instead"}, "correct": "B", "explanation": "Always read the email back phonetically to avoid errors. For example: 'I have your email J-O-H-N-D-O-E at G-M-A-I-L dot com.' This prevents miscommunication and ensures accuracy."},
+    {"category": "Price Presentation", "scenario": "When presenting the price, what fee must ALWAYS be mentioned separately?", "options": {"A": "Long grass fee", "B": "Tax fee", "C": "$3.99 Trust and Safety fee", "D": "Cancellation fee"}, "correct": "C", "explanation": "Always present: Base Price + $3.99 Trust and Safety fee. This fee helps cover pro vetting and potential property damage mediation. We itemize it for transparency rather than rolling it into the price."},
+    {"category": "Price Presentation", "scenario": "A customer asks 'Does the price include taxes?' What should you say?", "options": {"A": "Yes, taxes are included", "B": "This price does not include taxes. Taxes are based on the local laws in your area.", "C": "There are no taxes on lawn services", "D": "I don't know, you'll have to check your bill"}, "correct": "B", "explanation": "Always clarify: 'This price does not include taxes. Taxes are based on the local laws in your area.' Be transparent so there are no surprises on their bill."},
+    {"category": "Price Presentation", "scenario": "What services are included in the base lawn mowing price?", "options": {"A": "Just mowing", "B": "Mowing, trimming edges, and blowing off paved surfaces", "C": "Mowing, fertilizing, and weed control", "D": "Mowing and leaf removal"}, "correct": "B", "explanation": "The base mowing service includes: mowing, trimming edges, and blowing off paved surfaces. Also mention the free mobile app and web login for requesting additional services, making account changes, and contacting support."},
+    {"category": "3-Cut Minimum", "scenario": "A customer says 'I only need a one-time mow.' What should you do FIRST?", "options": {"A": "Tell them about the 3-cut minimum immediately", "B": "Acknowledge and find out WHY they only want one mow", "C": "Offer them a discount to commit to 3 cuts", "D": "Transfer them to a supervisor"}, "correct": "B", "explanation": "FIRST acknowledge and probe to find out why. Are they selling? Seasonal need? HOA notice? Understanding the reason helps you address their specific concern before discussing the 3-cut minimum."},
+    {"category": "3-Cut Minimum", "scenario": "A customer says they're selling their home and only need one mow. What's a good response?", "options": {"A": "Sorry, we can't help with that", "B": "Identify when they're moving, mention single mows elsewhere cost the same, emphasize short-term commitment and getting on schedule now", "C": "We can waive the 3-cut minimum for you", "D": "You should hire a neighbor instead"}, "correct": "B", "explanation": "For selling/moving: Identify when (have they moved already?), note that single mows with other companies are often the same price, emphasize short-term commitment, and create urgency to get on the schedule now."},
+    {"category": "3-Cut Minimum", "scenario": "A customer got an HOA notice and says they just need one mow. How should you respond?", "options": {"A": "We only do 3 cuts, sorry", "B": "Long grass means recurring service can help restore the lawn, use us as backup if it happens again, get on schedule now for urgency", "C": "You should call your HOA", "D": "We can come today if you pay extra"}, "correct": "B", "explanation": "For HOA situations: Explain that recurring service helps restore the lawn's look, they can use us as backup if it happens again, and create urgency to get on the schedule now before it gets worse."},
+    {"category": "3-Cut Minimum", "scenario": "How should you explain the 48-hour rescheduling policy?", "options": {"A": "You can never change your schedule", "B": "Just let us know 48 hours before the next scheduled cut if you want to make changes", "C": "You have to call to cancel each time", "D": "Changes require a fee"}, "correct": "B", "explanation": "Explain it simply: 'If at any point you would like to make changes to your schedule, just let us know 48 hours before the next scheduled cut.' This emphasizes flexibility while setting clear expectations."},
+    {"category": "Scheduling", "scenario": "When providing the service window, what must you always include?", "options": {"A": "Just the days (Wednesday or Thursday)", "B": "Just the dates (July 20th or 21st)", "C": "Days AND dates (Wednesday or Thursday, July 20th or 21st)", "D": "An exact arrival time"}, "correct": "C", "explanation": "Always provide the two-day window with BOTH days AND dates: 'Wednesday or Thursday, starting July 20th or 21st.' Never promise exact times."},
+    {"category": "Scheduling", "scenario": "A customer says 'I don't want to wait around all day for the crew.' What should you tell them?", "options": {"A": "You have to be home for the service", "B": "It's contactless - no need to be home. The two-day window allows for weather and routing adjustments.", "C": "We can give you an exact time", "D": "You can call the day before to find out"}, "correct": "B", "explanation": "Emphasize: It's contactless, so no need to be home. The two-day window allows for adjustments due to weather and routing. Also mention the delayed billing/quality check (3-4 days after service)."},
+    {"category": "Scheduling", "scenario": "A customer says they need to be home to provide access. What solutions should you offer?", "options": {"A": "We can't service properties that need access", "B": "Can leave notes for gate codes or instructions, and message the pro in advance", "C": "You'll have to take the day off work", "D": "We only service properties with no gates"}, "correct": "B", "explanation": "Offer solutions: They can leave notes with gate codes or special instructions, and message the pro in advance once assigned. This addresses their concern while keeping the flexible window."},
+    {"category": "Scheduling", "scenario": "If a customer expresses flexibility with early or late service windows, what should you do?", "options": {"A": "Only mark one option", "B": "Acknowledge their agreement, mark BOTH options, and proceed accordingly", "C": "Tell them to decide later", "D": "Mark neither and let the pro decide"}, "correct": "B", "explanation": "If the customer is flexible, acknowledge their agreement, mark BOTH early and late options, and proceed. This gives more scheduling flexibility while honoring their preferences."},
+    {"category": "Long Grass Fee", "scenario": "At what height does the long grass fee potentially apply?", "options": {"A": "Over 6 inches", "B": "Over 9 inches", "C": "Over 12 inches", "D": "Over 15 inches"}, "correct": "B", "explanation": "If grass is over 9 inches, a fee up to the full base mowing price may apply. If over 15 inches, the crew submits a quote for approval before servicing. Always mention this so there are no surprises!"},
+    {"category": "Long Grass Fee", "scenario": "What happens if the grass is over 15 inches?", "options": {"A": "We refuse to service it", "B": "The crew will submit a quote for you to approve before servicing", "C": "We charge triple the base price automatically", "D": "We mow it but charge later"}, "correct": "B", "explanation": "If grass is over 15 inches, the crew will submit a quote for the customer to approve BEFORE servicing. This ensures transparency and customer approval for heavily overgrown lawns."},
+    {"category": "Long Grass Fee", "scenario": "A customer asks 'How do I know you aren't just charging extra for long grass?' What's the BEST response?", "options": {"A": "You'll just have to trust us", "B": "Pros must submit photos, you get an email when it's assessed, and you can dispute during the 3-day quality check", "C": "We never charge extra unfairly", "D": "You can call support if you disagree"}, "correct": "B", "explanation": "Address with specifics: Pros must supply photos, you get an email immediately, there's a 3-day quality check before charging, and you can dispute with photo review. This builds trust through transparency."},
+    {"category": "Long Grass Fee", "scenario": "A customer asks 'Why should I pay extra for long grass?' What's the BEST response?", "options": {"A": "Because that's our policy", "B": "We compensate our pros for additional work. Overgrown lawns take more time and create more wear and tear on equipment.", "C": "Everyone charges this", "D": "You can refuse and we won't mow"}, "correct": "B", "explanation": "Explain the VALUE: We compensate our pros for additional work. Overgrown lawns take more time and create more wear and tear on equipment. This helps them understand it's fair, not arbitrary."},
+    {"category": "Objection Handling", "scenario": "What's the correct ORDER for handling objections?", "options": {"A": "Lead with policies, then explain benefits", "B": "Acknowledge, clarify/probe why, then address with value", "C": "Offer a discount immediately, then explain", "D": "Transfer to a supervisor for approval"}, "correct": "B", "explanation": "The correct order: 1) Acknowledge or show understanding, 2) Clarify or probe to find out why, 3) Address with value (what's the benefit?). Never lead with limitations and policies!"},
+    {"category": "Objection Handling", "scenario": "What should you NEVER do when handling objections?", "options": {"A": "Show understanding", "B": "Lead with limitations and policies", "C": "Probe to find out why", "D": "Address with value"}, "correct": "B", "explanation": "NEVER lead with limitations and policies. This puts the customer on the defensive. Instead, acknowledge, probe, then address with value and benefits. Policies should support your solution, not lead it."},
+    {"category": "48-Hour Window", "scenario": "A customer says 'I have an HOA notice and need service TODAY.' What should you tell them?", "options": {"A": "Sorry, we can't help with urgent requests", "B": "We have the fastest turnaround, and once assigned you can message your pro about availability", "C": "I'll see if I can get a supervisor to approve same-day service", "D": "You should try a different company"}, "correct": "B", "explanation": "Emphasize we have the fastest turnaround time in the industry. Once a pro is assigned, they can message them directly about availability. Also mention we can send a confirmation email they can forward to their HOA."},
+    {"category": "48-Hour Window", "scenario": "A customer asks 'Why do I have to wait 48 hours?' What should you explain?", "options": {"A": "Because that's just how it works", "B": "Routes are planned in advance and it gives us time to find a pro. Want me to hold a spot?", "C": "Our pros are lazy", "D": "We're understaffed"}, "correct": "B", "explanation": "Explain: Routes are planned in advance and it gives us time to find a pro in your area. Then offer to hold a spot. This turns a limitation into an action step."},
+    {"category": "Cross-Selling", "scenario": "When offering Lawn Treatment, what should you highlight about the service?", "options": {"A": "It's required for all customers", "B": "It includes fertilizer, weed control, and pre-emergent with 7-8 rounds per year", "C": "It replaces the need for mowing", "D": "It's only available in the summer"}, "correct": "B", "explanation": "Lawn Treatment includes fertilizer, weed control, and pre-emergent. For best results: 7-8 rounds per year, every 4-6 weeks. They won't be charged until service is complete. Mention that weed-free lawns can reduce mowing costs!"},
+    {"category": "Cross-Selling", "scenario": "What should you tell New York customers about Lawn Treatment?", "options": {"A": "It's not available in New York", "B": "We currently only offer fertilization in your area", "C": "It's the same as everywhere else", "D": "They get a discount"}, "correct": "B", "explanation": "For New York customers specifically: 'We currently only offer fertilization in your area.' This sets correct expectations about what's available in their region."},
+    {"category": "Cross-Selling", "scenario": "If a customer says NO to an additional service, what should you do?", "options": {"A": "Keep pushing until they say yes", "B": "Just move on without saying anything", "C": "Remind them it can be added anytime via the app/portal", "D": "Offer a bigger discount"}, "correct": "C", "explanation": "If they say no, remind them they can always add services anytime via the app or portal, or contact support for services not available there. Don't push, but leave the door open!"},
+    {"category": "Cross-Selling", "scenario": "When cross-selling Leaf Removal, what should you ask to identify the need?", "options": {"A": "Do you want leaf removal?", "B": "Are there any leaves or small twigs on your lawn?", "C": "Is it fall time?", "D": "Do you have trees?"}, "correct": "B", "explanation": "Ask specifically: 'Are there any leaves or small twigs on your lawn?' This identifies the actual need. If yes, offer the IQ Cleanup quote and set expectations about what happens if excessive leaves are found at service time."},
+    {"category": "Cross-Selling", "scenario": "What expectation should you set about leaves and mowing?", "options": {"A": "We always mow over leaves", "B": "If excessive leaves need to be picked up before mowing, we'll quote for cleanup which could delay service completion", "C": "We never mow if there are leaves", "D": "Leaves don't affect mowing"}, "correct": "B", "explanation": "Set the expectation: 'If the crew arrives and there's an excessive amount of leaves that need picked up before we can mow, we'll need to quote you for the cleanup, wait for your approval, which could prolong your service completion.'"},
+    {"category": "Cross-Selling", "scenario": "When pitching Lawn Treatment, what optional benefit can you mention about weeds and mowing?", "options": {"A": "Weeds make lawns look nicer", "B": "Weeds grow first, make lawns appear overgrown, and controlling them can reduce mowing frequency and costs", "C": "Weeds have no effect on mowing", "D": "We charge less if you have weeds"}, "correct": "B", "explanation": "Optional context: Weeds are the first to grow, making the lawn appear overgrown or warrant additional fees. Keeping weeds in check minimizes overall growth, reducing the need for more frequent mowing."},
+    {"category": "Property Details", "scenario": "A customer has outdoor pets. What TWO things should you tell them?", "options": {"A": "We can't service properties with pets", "B": "Pets should be secured during service AND please pick up pet waste", "C": "The pro will handle the pets", "D": "They need to pay an extra pet fee"}, "correct": "B", "explanation": "Two requirements: 1) Pets should be secured during service time, 2) Please pick up any pet waste on the property. If excessive waste is found, the crew will mow around it."},
+    {"category": "Property Details", "scenario": "A customer has a property gate. What should you ask?", "options": {"A": "Just ask if they have a gate", "B": "Ask if it's wide enough for a riding mower, if it's a gated community, and if there's a code or special instructions", "C": "Tell them we can't service gated properties", "D": "Ask them to leave it open forever"}, "correct": "B", "explanation": "For property gates: Is it wide enough for a riding mower? For community gates: Is there a gate code or special instructions? Include access details in the 'Special Neighborhood Access' field. Be concise!"},
+    {"category": "Property Details", "scenario": "Where should you include special access details?", "options": {"A": "Just tell the customer verbally", "B": "In the 'Special Neighborhood Access' field on the work order", "C": "In an email to the pro", "D": "Nowhere, the pro will figure it out"}, "correct": "B", "explanation": "Include special access details in the 'Special Neighborhood Access' field on the work order. Keep in mind the importance of being concise so the information is clear and usable."},
+    {"category": "Payment", "scenario": "A customer asks 'Why do I have to put a card on file?' What's the BEST response?", "options": {"A": "It's just our policy", "B": "You don't need to be home, we charge 3 days AFTER service so you can address any issues first", "C": "We need it for security purposes", "D": "You can pay cash if you prefer"}, "correct": "B", "explanation": "Focus on benefits: No need to be home when service happens, and we charge 3 days AFTER completion — giving time to address any service issues before being charged. We send notifications when service is complete."},
+    {"category": "Payment", "scenario": "When collecting payment info, what do you tell the customer?", "options": {"A": "Give me your card number", "B": "I'm sending a secure link via text and email since we don't have access to payment info on our end", "C": "You can pay after the first service", "D": "We'll call back later for payment"}, "correct": "B", "explanation": "Always say: 'I'm sending over a secure link for you to add your payment info directly, since we don't have access to that on our end. This will go through text and email.' We never take card info verbally!"},
+    {"category": "Payment", "scenario": "A customer is worried about security with online payment. What can you tell them about Stripe?", "options": {"A": "I don't know anything about it", "B": "Stripe is highly secure and used by large businesses like Walmart and Amazon, used by millions", "C": "It's pretty safe I guess", "D": "You can mail a check instead"}, "correct": "B", "explanation": "Reassure them: Stripe is highly secure and used by large businesses like Walmart and Amazon — used by millions. Also remind them we charge 3 days after completion and send notifications when service is done."},
+    {"category": "Payment", "scenario": "A customer says 'I don't like recurring charges.' What should you emphasize?", "options": {"A": "You have to accept them", "B": "We only charge if a service is completed, send notifications when done, and charge 3 days AFTER service", "C": "You can cancel anytime", "D": "Everyone does recurring charges"}, "correct": "B", "explanation": "Emphasize: We only charge if a service is completed. We send email and app notifications as soon as service is done. We only charge 3 days AFTER the service. This gives them control and transparency."},
+    {"category": "Closing", "scenario": "What should you tell the customer to expect AFTER the call?", "options": {"A": "Nothing, just say goodbye", "B": "Email when a pro picks up the job, text with app link and temp password, and they can message the pro directly", "C": "A pro will call them back", "D": "They need to call back to confirm"}, "correct": "B", "explanation": "Set expectations: 1) Email confirming a pro picked up the job + their two-day window, 2) Text with app link and temporary password (email is username), 3) They can message their pro directly once assigned!"},
+    {"category": "Closing", "scenario": "What's the LAST thing you should do before ending the call?", "options": {"A": "Hang up quickly to take the next call", "B": "Ask 'Any other questions before I let you go?' and direct them to support via app/portal", "C": "Try to sell one more service", "D": "Transfer them to QA"}, "correct": "B", "explanation": "Always ask 'Any other questions before I let you go?' Then direct them to the Support Team via app or portal for future questions. End with 'Thank you for choosing LawnStarter. Have a great day!'"},
+    {"category": "Closing", "scenario": "For landline-only customers, how should you explain logging into the website?", "options": {"A": "They can't use the website", "B": "Enter email address, click forgot password, receive temp password via email, change password once logged in", "C": "Call support for help", "D": "They have to use the app instead"}, "correct": "B", "explanation": "For landline customers: 'Enter your email address and click the forgot your password option. You'll receive an email with a temporary password. Make sure to change the password once you log in.' This helps non-app users access their account."},
+    {"category": "Closing", "scenario": "What referral opportunity should you mention in the introduction email?", "options": {"A": "There's no referral program", "B": "Recommend us on NextDoor and receive a $20 credit to your account", "C": "Refer friends for a discount", "D": "Leave a Google review for $50"}, "correct": "B", "explanation": "Mention: 'In your introduction email, you will see a button about recommending us on NextDoor. Do this and receive a $20 credit to your account.' This encourages referrals and rewards the customer."},
+    {"category": "Not DM", "scenario": "You're speaking with someone who ISN'T the decision maker. What's REQUIRED before ending the call?", "options": {"A": "Just say goodbye and call back later", "B": "Educate on value and offer to hold a spot", "C": "Ask them to have the DM call back", "D": "Send an email to the DM"}, "correct": "B", "explanation": "When speaking with non-DM: Probe if DM is available, educate on value (flexibility, app benefits, quality check), and ALWAYS offer to hold a spot. Holding a spot is REQUIRED for non-DM calls."},
+    {"category": "Not DM", "scenario": "If the decision maker IS available when you're speaking with a non-DM, what should you do?", "options": {"A": "Just continue with the non-DM", "B": "Offer to speak with the decision maker", "C": "Ask them to call back", "D": "End the call"}, "correct": "B", "explanation": "If the DM is available, offer to speak with them directly. This gives you the best chance of closing the sale with the person who can actually make the decision."},
+    {"category": "Not DM", "scenario": "If the DM is NOT available, what should you ask the non-DM?", "options": {"A": "When will they be back?", "B": "Does the DM have specific needs or concerns?", "C": "Can they make the decision instead?", "D": "Should we call back tomorrow?"}, "correct": "B", "explanation": "Ask: 'Does [DM] have specific needs or concerns?' This helps you understand what's important to the actual decision maker so you can address those points and educate on value."},
+    {"category": "Trust & Safety Fee", "scenario": "A customer asks 'Why do I have to pay the Trust & Safety fee?' What should you say?", "options": {"A": "It's just an extra charge we add", "B": "It helps cover pro vetting and mediate potential property damage — most companies roll it into price, we itemize for transparency", "C": "You can skip it if you want", "D": "It's a government requirement"}, "correct": "B", "explanation": "The T&S fee covers the pro vetting process and helps mediate potential property damage. Most companies roll it into their price — we itemize it for transparency. Most local providers don't provide any coverage at all!"},
+    {"category": "Frequency Objections", "scenario": "A customer says 'I don't want to be locked into a schedule.' What should you emphasize?", "options": {"A": "You have to commit to the schedule", "B": "Flexible options: reschedule, skip, pause — manage via app or message your pro — can change frequency as needed", "C": "Just cancel if you don't like it", "D": "We'll call you before each service"}, "correct": "B", "explanation": "Emphasize flexibility: reschedule, skip, or pause options. Manage everything on the app or communicate with your pro directly. Can change frequency as needed. Regular maintenance = healthier lawn!"},
